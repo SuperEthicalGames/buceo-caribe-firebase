@@ -1,0 +1,3464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="briefing">
+  <title>Buceo en el Mar Caribe | Guía Oceanográfica, Ecosistemas y Expedición</title>
+  
+  <!-- Tipografía Google Fonts autorizada -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Iconos Lucide CDN autorizado -->
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Paleta Briefing adaptada al Mar Caribe */
+      --background: #f8fafc;
+      --surface-container-low: #ffffff;
+      --surface-container: #edf3f7;
+      --surface-container-high: #e2ecf2;
+      
+      --on-surface: #0a1e33;
+      --on-surface-variant: #3a5068;
+
+      --outline: #0a1e33;
+      --outline-variant: #d0e0eb;
+
+      --primary: #0a2540;
+      --on-primary: #ffffff;
+      --primary-container: #0284c7;
+      --on-primary-container: #ffffff;
+      
+      --secondary: #0d7685;
+      --tertiary: #c0392b; /* Acento coral emblemático */
+      --tertiary-hover: #a93226;
+      --error: #b42318;
+      --on-error: #ffffff;
+      --positive: #059669;
+      --warning: #d97706;
+      --focus: #0284c7;
+
+      --data-1: #0a2540;
+      --data-2: #0284c7;
+      --data-3: #0d7685;
+      --data-4: #c0392b;
+      --data-context: #d0e0eb;
+
+      --font-headline: 'Source Serif 4', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Geist Mono', monospace;
+
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 0.25rem;
+
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --badge-radius: 2px;
+      --heading-tracking: -0.02em;
+      --label-tracking: 0.08em;
+
+      --display-size: clamp(2.25rem, 1.4rem + 3.2vw, 3.75rem);
+      --headline-size: clamp(1.625rem, 1.15rem + 1.8vw, 2.375rem);
+      --subhead-size: clamp(1.1rem, 1rem + 0.45vw, 1.35rem);
+      --body-size: clamp(0.975rem, 0.93rem + 0.2vw, 1.0625rem);
+      --label-size: 0.75rem;
+
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: static !important;
+    }
+
+    /* Barra superior de lectura */
+    .reading-progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--outline-variant);
+      z-index: 1000;
+    }
+    .reading-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      transition: width 0.1s linear;
+    }
+
+    /* Navegación estilo editorial */
+    .editorial-nav {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-bottom: 2px solid var(--tertiary);
+      padding: var(--space-sm) var(--space-lg);
+    }
+    .nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      color: var(--on-primary);
+      text-decoration: none;
+    }
+    .nav-brand i {
+      color: var(--primary-container);
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-md);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      color: var(--surface-container);
+      text-decoration: none;
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      transition: color var(--dur-micro) var(--ease-out);
+      padding: var(--space-xs) 0;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible {
+      color: var(--primary-container);
+      outline: none;
+    }
+
+    /* Rejilla general */
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-lg);
+      max-width: 1240px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * {
+      min-width: 0;
+    }
+
+    /* Dossier section bar y tipografía de Briefing */
+    .dossier-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .dossier-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.6875rem;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: 0.1875rem 0.5rem;
+      border-radius: var(--badge-radius);
+    }
+    .dossier-pill.coral {
+      background: var(--tertiary);
+      color: #ffffff;
+    }
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-size: var(--headline-size);
+      font-weight: 600;
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.15;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs) 0;
+    }
+    .standfirst {
+      font-family: var(--font-body);
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      color: var(--secondary);
+      margin: 0 0 var(--space-md) 0;
+      line-height: 1.45;
+    }
+
+    /* Tarjetas de datos y figuras */
+    .figure-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      position: relative;
+    }
+    .figure-card.highlight {
+      border-top: 3px solid var(--tertiary);
+    }
+    .figure-card.navy {
+      border-top: 3px solid var(--primary);
+    }
+
+    .aside-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      padding: var(--space-md);
+      font-size: 0.92rem;
+    }
+
+    /* Botones y acciones */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--rounded);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+      border: 1px solid transparent;
+      min-height: 44px;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover {
+      background: var(--primary-container);
+      color: #ffffff;
+    }
+    .btn-coral {
+      background: var(--tertiary);
+      color: #ffffff;
+    }
+    .btn-coral:hover {
+      background: var(--tertiary-hover);
+    }
+    .btn-secondary {
+      background: var(--surface-container-low);
+      border-color: var(--outline-variant);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .btn-secondary.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero-container {
+      background: linear-gradient(180deg, #071728 0%, #0d2c4c 60%, #13466f 100%);
+      color: #ffffff;
+      border-radius: var(--rounded-lg);
+      padding: var(--space-2xl) var(--space-xl);
+      border: 1px solid var(--outline);
+      box-shadow: 0 10px 30px rgba(10, 37, 64, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-container::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 85% 20%, rgba(2, 132, 199, 0.25) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+    }
+    .hero-title {
+      font-family: var(--font-headline);
+      font-size: var(--display-size);
+      font-weight: 600;
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.08;
+      margin: var(--space-sm) 0 var(--space-md) 0;
+      color: #ffffff;
+    }
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: var(--subhead-size);
+      line-height: 1.5;
+      color: #e2ecf5;
+      margin-bottom: var(--space-xl);
+      font-weight: 400;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    /* Metric Strip Hero */
+    .metric-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: var(--space-lg);
+      margin-top: var(--space-md);
+    }
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .metric-label {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: #93c5fd;
+      margin-bottom: var(--space-xs);
+    }
+    .metric-value {
+      font-family: var(--font-headline);
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: #ffffff;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+    .metric-desc {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      margin-top: 2px;
+    }
+
+    /* Grids y Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    /* Diagrama de Profundidades y Capas */
+    .depth-profile-box {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    .depth-layer {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      border-left: 4px solid var(--primary-container);
+      margin-bottom: var(--space-sm);
+      background: var(--surface-container);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+    }
+    .depth-layer.shallow {
+      border-left-color: #38bdf8;
+      background: #f0f9ff;
+    }
+    .depth-layer.mid {
+      border-left-color: #0284c7;
+      background: #e0f2fe;
+    }
+    .depth-layer.deep {
+      border-left-color: #0a2540;
+      background: #e2e8f0;
+    }
+
+    /* Componente de Equipamiento Interactivo */
+    .gear-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      transition: transform var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+      cursor: pointer;
+    }
+    .gear-card:hover {
+      border-color: var(--primary-container);
+      transform: translateY(-2px);
+    }
+    .gear-card.selected {
+      border-color: var(--primary);
+      background: var(--surface-container);
+    }
+    .gear-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+    .gear-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-container);
+    }
+
+    /* Tabla Comparativa */
+    .table-container {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      margin-top: var(--space-md);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+    th {
+      background: var(--surface-container-high);
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--on-surface);
+      padding: var(--space-md);
+      border-bottom: 2px solid var(--outline);
+    }
+    td {
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Fichas de Biodiversidad */
+    .species-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color var(--dur-short) var(--ease-out);
+    }
+    .species-card:hover {
+      border-color: var(--primary-container);
+    }
+    .species-art-wrap {
+      background: linear-gradient(135deg, #0b2545 0%, #154c79 100%);
+      padding: var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 160px;
+      position: relative;
+    }
+    .species-body {
+      padding: var(--space-md);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .species-scientific {
+      font-family: var(--font-headline);
+      font-style: italic;
+      color: var(--on-surface-variant);
+      font-size: 0.85rem;
+      margin-bottom: var(--space-xs);
+    }
+    .species-badge {
+      display: inline-block;
+      font-family: var(--font-label);
+      font-size: 0.68rem;
+      padding: 2px 6px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+    }
+    .species-badge.reef { background: #dbeafe; color: #1e40af; }
+    .species-badge.pelagic { background: #e0f2fe; color: #0369a1; }
+    .species-badge.benthic { background: #fef3c7; color: #92400e; }
+    .species-badge.coral { background: #ffe4e6; color: #9f1239; }
+
+    /* Destinos y Filtros */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-lg);
+    }
+    .filter-btn {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      min-height: 38px;
+    }
+    .filter-btn:hover {
+      border-color: var(--outline);
+      color: var(--on-surface);
+    }
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .destination-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 4px solid var(--primary-container);
+    }
+    .destination-card.colombia {
+      border-left-color: #f59e0b;
+    }
+    .destination-card.wall {
+      border-left-color: #0284c7;
+    }
+    .destination-card.wreck {
+      border-left-color: var(--tertiary);
+    }
+    .destination-card.shore {
+      border-left-color: #10b981;
+    }
+    .tag-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin: var(--space-sm) 0;
+    }
+    .tag {
+      font-family: var(--font-label);
+      font-size: 0.68rem;
+      padding: 2px 6px;
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+    }
+
+    /* Modal / Drawer para Detalle de Destino */
+    .detail-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10, 30, 50, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+    .detail-overlay.active {
+      display: flex;
+    }
+    .detail-modal {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      border: 1px solid var(--outline);
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: var(--space-xl);
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: var(--surface-container);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--rounded);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--on-surface);
+    }
+
+    /* Calculadora / Simulador de Inmersión Recreativa */
+    .calc-container {
+      background: var(--surface-container-low);
+      border: 2px solid var(--outline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-xl);
+    }
+    .calc-controls {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .calc-slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .calc-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .calc-val-readout {
+      font-family: var(--font-label);
+      font-weight: 600;
+      color: var(--primary);
+    }
+    input[type=range] {
+      width: 100%;
+      accent-color: var(--primary-container);
+      cursor: pointer;
+      height: 6px;
+    }
+    .calc-results-panel {
+      background: var(--surface-container);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--rounded);
+    }
+    .status-indicator.safe {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .status-indicator.warning {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .status-indicator.danger {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    /* Quiz de Buceo Sostenible */
+    .quiz-box {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      margin-top: var(--space-lg);
+    }
+    .quiz-option {
+      display: block;
+      margin: var(--space-xs) 0;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover {
+      background: var(--surface-container-high);
+    }
+    .quiz-option input {
+      margin-right: var(--space-sm);
+    }
+
+    /* Galería Submarina */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .gallery-item {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: transform var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary-container);
+    }
+    .gallery-svg-wrap {
+      width: 100%;
+      height: 190px;
+      background: #081d33;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .gallery-info {
+      padding: var(--space-md);
+    }
+
+    /* Sección de Fuentes Institucionales */
+    .source-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .source-domain {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      color: var(--primary-container);
+      font-weight: 600;
+      margin-top: var(--space-xs);
+    }
+
+    /* Footer */
+    .editorial-footer {
+      background: var(--primary);
+      color: #ffffff;
+      border-top: 3px solid var(--tertiary);
+      padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+      margin-top: var(--space-3xl);
+    }
+    .footer-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-xl);
+    }
+    .footer-col h4 {
+      font-family: var(--font-headline);
+      font-size: 1.15rem;
+      margin: 0 0 var(--space-md) 0;
+      color: #ffffff;
+    }
+    .footer-col p {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: var(--space-xs);
+    }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color var(--dur-micro) var(--ease-out);
+    }
+    .footer-links a:hover {
+      color: #38bdf8;
+    }
+    .footer-disclaimer {
+      max-width: 1240px;
+      margin: var(--space-xl) auto 0;
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.78rem;
+      color: #94a3b8;
+      text-align: center;
+    }
+
+    /* Accessibility focus */
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-sm);
+        gap: var(--space-xl);
+      }
+      .hero-container {
+        padding: var(--space-xl) var(--space-md);
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .depth-layer {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =========================================================
+       MÓDULO DE ACCESO — Firebase Authentication (correo y contraseña)
+       ========================================================= */
+    .nav-auth [hidden],
+    .auth-modal [hidden] {
+      display: none !important;
+    }
+
+    /* Zona de sesión en la barra de navegación */
+    .nav-auth {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      min-height: 36px;
+      order: 1;          /* arriba a la derecha, junto al logo */
+      margin-left: auto;
+    }
+    .nav-inner > nav {
+      order: 2;
+    }
+    .nav-auth-skeleton {
+      display: inline-block;
+      width: 128px;
+      height: 34px;
+      border-radius: var(--rounded);
+      background: rgba(255, 255, 255, 0.1);
+      animation: auth-pulse 1.2s var(--ease-in-out) infinite alternate;
+    }
+    .nav-auth-offline {
+      font-family: var(--font-label);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: #94a3b8;
+    }
+    .nav-auth-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-height: 36px;
+      padding: 0.4rem 0.85rem;
+      background: transparent;
+      color: var(--on-primary);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .nav-auth-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+    .nav-auth-btn.is-accent {
+      background: var(--tertiary);
+      border-color: var(--tertiary);
+    }
+    .nav-auth-btn.is-accent:hover {
+      background: var(--tertiary-hover);
+      border-color: var(--tertiary-hover);
+    }
+    .nav-auth-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+    .nav-user {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+    }
+    .nav-user-avatar {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--primary-container);
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .nav-user-email {
+      max-width: 22ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Ventana de acceso */
+    .auth-modal {
+      max-width: 440px;
+    }
+    .auth-modal .section-title {
+      font-size: clamp(1.5rem, 1.25rem + 1vw, 1.9rem);
+      padding-right: 2.5rem;
+    }
+    .auth-lead {
+      margin: 0 0 var(--space-lg) 0;
+      color: var(--on-surface-variant);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      padding: 3px;
+      margin-bottom: var(--space-lg);
+      background: var(--surface-container);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+    }
+    .auth-tab {
+      min-height: 40px;
+      padding: 0.5rem;
+      background: transparent;
+      border: none;
+      border-radius: 2px;
+      color: var(--on-surface-variant);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .auth-tab:hover {
+      color: var(--on-surface);
+    }
+    .auth-tab[aria-selected="true"] {
+      background: var(--surface-container-low);
+      color: var(--primary);
+      box-shadow: 0 1px 2px rgba(10, 30, 51, 0.14);
+    }
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .auth-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .auth-field label {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .auth-input-wrap {
+      position: relative;
+    }
+    .auth-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 0.65rem 0.85rem;
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: border-color var(--dur-micro) var(--ease-out);
+    }
+    .auth-input:hover {
+      border-color: var(--on-surface-variant);
+    }
+    .auth-input:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 0;
+      border-color: var(--focus);
+    }
+    .auth-input[aria-invalid="true"] {
+      border-color: var(--error);
+    }
+    .auth-input.has-toggle {
+      padding-right: 3rem;
+    }
+    .auth-toggle-pass {
+      position: absolute;
+      top: 50%;
+      right: 3px;
+      transform: translateY(-50%);
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      background: transparent;
+      border: none;
+      border-radius: var(--rounded);
+      color: var(--on-surface-variant);
+      cursor: pointer;
+    }
+    .auth-toggle-pass:hover {
+      background: var(--surface-container);
+      color: var(--on-surface);
+    }
+    .auth-toggle-pass svg {
+      width: 18px;
+      height: 18px;
+    }
+    .auth-hint {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--on-surface-variant);
+    }
+    .auth-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: calc(var(--space-xs) * -1);
+    }
+    .auth-link {
+      align-self: center;
+      padding: var(--space-xs) 0;
+      background: none;
+      border: none;
+      color: var(--primary-container);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      cursor: pointer;
+    }
+    .auth-link:hover {
+      color: var(--primary);
+    }
+    .auth-message {
+      display: none;
+      padding: 0.7rem 0.85rem;
+      border: 1px solid transparent;
+      border-radius: var(--rounded);
+      font-size: 0.875rem;
+      line-height: 1.45;
+    }
+    .auth-message.is-error {
+      display: block;
+      background: #fef3f2;
+      border-color: #fecdca;
+      color: var(--error);
+    }
+    .auth-message.is-success {
+      display: block;
+      background: #ecfdf3;
+      border-color: #abefc6;
+      color: #067647;
+    }
+    .auth-submit {
+      width: 100%;
+    }
+    .auth-submit[disabled] {
+      opacity: 0.75;
+      cursor: progress;
+    }
+    .auth-spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: auth-spin 0.7s linear infinite;
+    }
+    .auth-submit.is-loading .auth-spinner {
+      display: inline-block;
+    }
+    .auth-footnote {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin: var(--space-lg) 0 0 0;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--outline-variant);
+      color: var(--on-surface-variant);
+      font-family: var(--font-label);
+      font-size: 0.7rem;
+      letter-spacing: 0.02em;
+    }
+    .auth-footnote svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      color: var(--positive);
+    }
+
+    /* Aviso flotante tras iniciar / cerrar sesión */
+    .auth-toast {
+      position: fixed;
+      left: 50%;
+      bottom: var(--space-lg);
+      z-index: 2100;
+      max-width: calc(100vw - 32px);
+      padding: 0.75rem 1.1rem;
+      background: var(--primary);
+      color: #ffffff;
+      border-left: 3px solid var(--tertiary);
+      border-radius: var(--rounded);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      font-size: 0.9rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 16px);
+      transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .auth-toast.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @keyframes auth-spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes auth-pulse {
+      from { opacity: 0.45; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 640px) {
+      .auth-modal {
+        padding: var(--space-lg);
+      }
+    }
+    @media (max-width: 420px) {
+      .nav-user-email {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de progreso de lectura superior -->
+  <div class="reading-progress-track" aria-hidden="true">
+    <div class="reading-progress-fill" id="readingProgress"></div>
+  </div>
+
+  <!-- Navegación Primaria -->
+  <header class="editorial-nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">
+        <i data-lucide="waves" aria-hidden="true"></i>
+        <span>MAR CARIBE SUBMARINO</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#introduccion">Introducción</a></li>
+          <li><a href="#ecosistemas">Ecosistemas</a></li>
+          <li><a href="#biodiversidad">Biodiversidad</a></li>
+          <li><a href="#destinos">Destinos</a></li>
+          <li><a href="#modalidades">Modalidades</a></li>
+          <li><a href="#seguridad">Seguridad & Simulador</a></li>
+          <li><a href="#conservacion">Conservación</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#fuentes">Fuentes</a></li>
+        </ul>
+      </nav>
+
+      <!-- Módulo de acceso (Firebase Authentication) -->
+      <div class="nav-auth" id="navAuth" data-state="loading">
+        <span class="nav-auth-skeleton" aria-hidden="true"></span>
+        <span class="nav-auth-offline" hidden>Acceso no disponible</span>
+        <button type="button" class="nav-auth-btn is-accent" id="openAuthBtn" aria-haspopup="dialog" hidden>
+          <i data-lucide="log-in" aria-hidden="true"></i>
+          <span>Iniciar sesión</span>
+        </button>
+        <div class="nav-user" id="navUser" hidden>
+          <span class="nav-user-avatar" id="navUserAvatar" aria-hidden="true"></span>
+          <span class="nav-user-email" id="navUserEmail"></span>
+          <button type="button" class="nav-auth-btn" id="signOutBtn">
+            <i data-lucide="log-out" aria-hidden="true"></i>
+            <span>Salir</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-grid">
+
+    <!-- SECCIÓN 1: HERO SECTION -->
+    <section id="hero" class="hero-container" aria-labelledby="hero-main-title">
+      <div class="hero-content">
+        <div class="dossier-bar" style="border-bottom: 1px solid rgba(255,255,255,0.25);">
+          <span class="dossier-pill coral">EXPEDICIÓN SUBMARINA 2026</span>
+          <span class="dossier-meta" style="color: #94a3b8;">MONOGRAFÍA OCEANOGRÁFICA Y GUÍA DE INMERSIÓN</span>
+        </div>
+
+        <h1 id="hero-main-title" class="hero-title">
+          Descubre el fascinante mundo submarino del Caribe
+        </h1>
+
+        <p class="hero-subtitle">
+          Explora sus arrecifes, descubre su biodiversidad y conoce las experiencias que hacen del mar Caribe uno de los escenarios más fascinantes para el buceo. Una cuenca oligotrófica privilegiada con aguas de 26 a 30 °C, visibilidades superiores a los 30 metros y una arquitectura geológica de paredes verticales, atolones e historia sumergida.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#introduccion" class="btn btn-coral">
+            <i data-lucide="compass" aria-hidden="true"></i>
+            <span>Explorar el mundo submarino</span>
+          </a>
+          <a href="#destinos" class="btn btn-secondary">
+            <i data-lucide="map-pin" aria-hidden="true"></i>
+            <span>Ver mapa de destinos</span>
+          </a>
+        </div>
+
+        <!-- Metric Strip -->
+        <div class="metric-strip">
+          <div class="metric-item">
+            <span class="metric-label">Temperatura Media</span>
+            <span class="metric-value">26°C – 30°C</span>
+            <span class="metric-desc">Estabilidad térmica anual</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Claridad Óptica</span>
+            <span class="metric-value">20 m – 45+ m</span>
+            <span class="metric-desc">Visibilidad en temporada seca</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Barrera Mesoamericana</span>
+            <span class="metric-value">&gt;1.000 km</span>
+            <span class="metric-desc">2ª mayor barrera del planeta</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Ictiofauna Registrada</span>
+            <span class="metric-value">+370 Especies</span>
+            <span class="metric-desc">Peces en fondos duros y arrecifes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: INTRODUCCIÓN AL BUCEO -->
+    <section id="introduccion" aria-labelledby="intro-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill">01 / FUNDAMENTOS</span>
+        <span class="dossier-meta">DINÁMICA OPERATIVA, EQUIPO Y FISIOLOGÍA DE INMERSIÓN</span>
+      </div>
+
+      <h2 id="intro-title" class="section-title">¿Qué es el buceo recreativo y cómo funciona una inmersión?</h2>
+      <p class="standfirst">
+        La inmersión autónoma es una actividad disciplinada que combina física hiperbárica, control fisiológico y aprecio ecológico para explorar el medio acuático con margen de seguridad absoluto.
+      </p>
+
+      <div class="grid-2">
+        <div class="figure-card highlight">
+          <h3 style="font-family: var(--font-headline); font-size: 1.3rem; margin-top: 0;">Fases de una inmersión planificada</h3>
+          <p>
+            Toda inmersión recreativa comienza en superficie con un <strong>briefing exhaustivo</strong> del perfil de profundidad, corrientes y puntos de interés. El descenso se realiza de forma pausada ecualizando cavidades respiratorias. Durante el fondo, el buceador monitoriza continuamente su manómetro y ordenador.
+          </p>
+          <ul style="padding-left: var(--space-md); margin-bottom: var(--space-md);">
+            <li><strong>Descenso gradual:</strong> Velocidad controlada con compensación continua de oídos mediante maniobra de Valsalva.</li>
+            <li><strong>Gestión de gas:</strong> Retorno planificado con una reserva mínima no negociable de <strong>500 PSI (35 BAR)</strong> en superficie.</li>
+            <li><strong>Parada de seguridad:</strong> Detención reglamentaria de <strong>3 minutos a 5 metros de profundidad</strong> para desaturación pasiva de nitrógeno.</li>
+            <li><strong>Velocidad de ascenso:</strong> Máximo de 9 a 18 metros por minuto, sin rebasar nunca las burbujas más pequeñas.</li>
+          </ul>
+          <div class="aside-box">
+            <strong>Regla Cardinal del Buceo Autónomo:</strong> Respirar de manera continua y pausada. Jamás retener la respiración durante el ascenso para evitar sobreexpansión pulmonar y barotrauma alveolar (Ley de Boyle).
+          </div>
+        </div>
+
+        <div class="figure-card navy">
+          <h3 style="font-family: var(--font-headline); font-size: 1.3rem; margin-top: 0;">Buceo Autónomo (SCUBA) vs. Apnea (Freediving)</h3>
+          <p>
+            Aunque comparten el amor por el océano, ambas modalidades difieren radicalmente en su equipamiento, fisiología y objetivos de exploración:
+          </p>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Parámetro</th>
+                  <th>Buceo Autónomo (SCUBA)</th>
+                  <th>Apnea (Freediving)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Suministro de Gas</strong></td>
+                  <td>Cilindro con aire comprimido o Nitrox a 200–300 bar.</td>
+                  <td>Una sola inspiración pulmonar previa en superficie.</td>
+                </tr>
+                <tr>
+                  <td><strong>Permanencia en Fondo</strong></td>
+                  <td>40 a 60 minutos según consumo y profundidad.</td>
+                  <td>1 a 3+ minutos según capacidad aeróbica.</td>
+                </tr>
+                <tr>
+                  <td><strong>Respuesta Fisiológica</strong></td>
+                  <td>Saturación progresiva de gas inerte en tejidos.</td>
+                  <td>Reflejo mamífero de inmersión (bradicardia y vasoconstricción).</td>
+                </tr>
+                <tr>
+                  <td><strong>Interacción Marina</strong></td>
+                  <td>Ruido constante por exhalación de burbujas.</td>
+                  <td>Silencio absoluto; nula perturbación acústica.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Componente Interactivo de Equipamiento -->
+      <div style="margin-top: var(--space-xl);">
+        <h3 style="font-family: var(--font-headline); font-size: 1.35rem; margin-bottom: var(--space-xs);">
+          El Sistema de Soporte Vital: Componentes del Equipo SCUBA
+        </h3>
+        <p style="color: var(--on-surface-variant); margin-bottom: var(--space-md);">
+          Haz clic en cada componente para conocer su función operativa y su protocolo de verificación pre-inmersión (Sistema BWRAF).
+        </p>
+
+        <div class="grid-3" id="gearGrid">
+          <!-- Item 1 -->
+          <div class="gear-card selected" onclick="selectGear('reg')" id="gear-reg" tabindex="0" role="button" aria-pressed="true">
+            <div class="gear-header">
+              <div class="gear-icon-wrap"><i data-lucide="gauge" aria-hidden="true"></i></div>
+              <h4 style="margin: 0; font-size: 1.05rem;">Regulador de 2 Etapas</h4>
+            </div>
+            <p style="font-size: 0.88rem; margin: 0; color: var(--on-surface-variant);">
+              Reduce la presión del cilindro (200 bar) a presión intermedia y luego a presión ambiente para respirar con suavidad.
+            </p>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="gear-card" onclick="selectGear('bcd')" id="gear-bcd" tabindex="0" role="button" aria-pressed="false">
+            <div class="gear-header">
+              <div class="gear-icon-wrap"><i data-lucide="shield" aria-hidden="true"></i></div>
+              <h4 style="margin: 0; font-size: 1.05rem;">Chaleco BCD / Jacket</h4>
+            </div>
+            <p style="font-size: 0.88rem; margin: 0; color: var(--on-surface-variant);">
+              Dispositivo compensador de flotabilidad con vejiga inflable por gas del cilindro o boquilla oral.
+            </p>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="gear-card" onclick="selectGear('computer')" id="gear-computer" tabindex="0" role="button" aria-pressed="false">
+            <div class="gear-header">
+              <div class="gear-icon-wrap"><i data-lucide="watch" aria-hidden="true"></i></div>
+              <h4 style="margin: 0; font-size: 1.05rem;">Ordenador de Buceo</h4>
+            </div>
+            <p style="font-size: 0.88rem; margin: 0; color: var(--on-surface-variant);">
+              Calcula en tiempo real la absorción tisular de nitrógeno, límite de no descompresión (NDL) y ascenso seguro.
+            </p>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="gear-card" onclick="selectGear('tank')" id="gear-tank" tabindex="0" role="button" aria-pressed="false">
+            <div class="gear-header">
+              <div class="gear-icon-wrap"><i data-lucide="cylinder" aria-hidden="true"></i></div>
+              <h4 style="margin: 0; font-size: 1.05rem;">Cilindro de Gas (Botella)</h4>
+            </div>
+            <p style="font-size: 0.88rem; margin: 0; color: var(--on-surface-variant);">
+              Tanque de aluminio de 12 litros (80 pies³) cargado a 3000 PSI / 207 bar con aire filtrado o EAN32 Nitrox.
+            </p>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="gear-card" onclick="selectGear('mask')" id="gear-mask" tabindex="0" role="button" aria-pressed="false">
+            <div class="gear-header">
+              <div class="gear-icon-wrap"><i data-lucide="eye" aria-hidden="true"></i></div>
+              <h4 style="margin: 0; font-size: 1.05rem;">Máscara y Tubo</h4>
+            </div>
+            <p style="font-size: 0.88rem; margin: 0; color: var(--on-surface-variant);">
+              Crea una cámara de aire frente a los ojos para refracción visual y contiene la nariz para ecualizar presión.
+            </p>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="gear-card" onclick="selectGear('suit')" id="gear-suit" tabindex="0" role="button" aria-pressed="false">
+            <div class="gear-header">
+              <div class="gear-icon-wrap"><i data-lucide="sun" aria-hidden="true"></i></div>
+              <h4 style="margin: 0; font-size: 1.05rem;">Traje Neopreno 3mm</h4>
+            </div>
+            <p style="font-size: 0.88rem; margin: 0; color: var(--on-surface-variant);">
+              Aislamiento térmico en aguas caribeñas de 26-29 °C y barrera de protección mecánica contra abrasiones.
+            </p>
+          </div>
+        </div>
+
+        <!-- Panel Dinámico de Detalle de Equipo -->
+        <div id="gearDetailBox" class="aside-box" style="margin-top: var(--space-md); background: #ffffff; border: var(--card-border); border-top: 3px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+            <h4 id="gearDetailTitle" style="font-family: var(--font-headline); font-size: 1.15rem; margin: 0; color: var(--primary);">
+              Regulador de Buceo (1ª y 2ª Etapa + Octopus)
+            </h4>
+            <span id="gearDetailStep" style="font-family: var(--font-label); font-size: 0.72rem; color: var(--secondary);">
+              REVISIÓN DE COMPAÑERO: "AIR / REGULATOR"
+            </span>
+          </div>
+          <p id="gearDetailText" style="margin: var(--space-xs) 0 0 0; font-size: 0.93rem;">
+            Consta de una primera etapa acoplada a la grifería del tanque que reduce la presión a ~9.5 bar sobre la presión ambiente. La segunda etapa entrega aire a demanda exacta al inhalar. Incluye obligatoriamente una segunda etapa de emergencia (Octopus, habitualmente amarilla) para auxiliar a un compañero en caso de contingencia de gas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: ECOSISTEMAS SUBMARINOS -->
+    <section id="ecosistemas" aria-labelledby="eco-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill">02 / HÁBITATS</span>
+        <span class="dossier-meta">BIOMAS MARINOS Y CONECTIVIDAD ECOLÓGICA DE LA CUENCA</span>
+      </div>
+
+      <h2 id="eco-title" class="section-title">Ecosistemas submarinos del Caribe y su valor ecológico</h2>
+      <p class="standfirst">
+        La cuenca caribeña no es un entorno homogéneo: es un mosaico interconectado de arrecifes, praderas de pastos, manglares costeros y complejos kársticos que sostienen una de las biomasas más productivas del océano.
+      </p>
+
+      <div class="grid-3">
+        <!-- Ecosistema 1 -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="flower2" style="color: var(--tertiary);" aria-hidden="true"></i>
+            <span style="font-family: var(--font-label); font-size: 0.75rem; text-transform: uppercase; color: var(--tertiary);">01. Arrecifes Coralinos</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Estructuras de Carbonato de Calcio</h3>
+          <p style="font-size: 0.9rem; color: var(--on-surface-variant);">
+            Construidos durante milenios por pólipos coloniales en simbiosis con microalgas zooxantelas. Albergan más del 25% de la biodiversidad marina caribeña a pesar de ocupar menos del 1% del lecho marino. Actúan como barreras naturales contra el oleaje de tormentas tropicales.
+          </p>
+        </div>
+
+        <!-- Ecosistema 2 -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="trees" style="color: #059669;" aria-hidden="true"></i>
+            <span style="font-family: var(--font-label); font-size: 0.75rem; text-transform: uppercase; color: #059669;">02. Praderas de Pastos Marinos</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Lechos de <em>Thalassia testudinum</em></h3>
+          <p style="font-size: 0.9rem; color: var(--on-surface-variant);">
+            Extensas alfombras de fanerógamas marinas que estabilizan los sedimentos costeros, clarifican la columna de agua y constituyen sumideros críticos de <em>carbono azul</em>. Fuente esencial de alimento para tortugas verdes (<em>Chelonia mydas</em>) y manatíes antillanos.
+          </p>
+        </div>
+
+        <!-- Ecosistema 3 -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="anchor" style="color: #0284c7;" aria-hidden="true"></i>
+            <span style="font-family: var(--font-label); font-size: 0.75rem; text-transform: uppercase; color: #0284c7;">03. Bosques de Manglar</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Guarderías Costeras de Alevines</h3>
+          <p style="font-size: 0.9rem; color: var(--on-surface-variant);">
+            Las raíces zancudas del mangle rojo (<em>Rhizophora mangle</em>) atrapan nutrientes continentales y ofrecen refugio impenetrable frente a grandes depredadores para larvas y juveniles de pargos, meros, peces loro y langostas antes de migrar al arrecife maduro.
+          </p>
+        </div>
+
+        <!-- Ecosistema 4 -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="mountain" style="color: #d97706;" aria-hidden="true"></i>
+            <span style="font-family: var(--font-label); font-size: 0.75rem; text-transform: uppercase; color: #d97706;">04. Macizos Rocosos Continentales</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Afloramientos y Surgencias (Tayrona)</h3>
+          <p style="font-size: 0.9rem; color: var(--on-surface-variant);">
+            Típicos de la costa norte colombiana donde la Sierra Nevada se hunde en el mar. Las paredes graníticas y cañones submarinos están influenciados por fenómenos de surgencia que aportan nutrientes, sustentando densas poblaciones de invertebrados bentónicos y macrofauna.
+          </p>
+        </div>
+
+        <!-- Ecosistema 5 -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="circle-dot" style="color: #7c3aed;" aria-hidden="true"></i>
+            <span style="font-family: var(--font-label); font-size: 0.75rem; text-transform: uppercase; color: #7c3aed;">05. Complejos Kársticos e Inundados</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Cenotes y Agujeros Azules</h3>
+          <p style="font-size: 0.9rem; color: var(--on-surface-variant);">
+            Formaciones geológicas originadas por disolución ácida de la roca caliza durante eras glaciales. Incluyen los cenotes de la Península de Yucatán con haloclinas y espeleotemas fósiles, y agujeros azules como el Blue Hole de Belice y Andros en Bahamas.
+          </p>
+        </div>
+
+        <!-- Ecosistema 6 / Conectividad -->
+        <div class="figure-card" style="background: var(--surface-container);">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="network" style="color: var(--primary);" aria-hidden="true"></i>
+            <span style="font-family: var(--font-label); font-size: 0.75rem; text-transform: uppercase; color: var(--primary);">06. Dinámica de Conectividad</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Flujo Trófico Tripartito</h3>
+          <p style="font-size: 0.9rem; color: var(--on-surface-variant);">
+            Científicos del PNUMA y NOAA demuestran que ningún arrecife sobrevive aislado: los manglares filtran el sedimento terrestre; los pastos marinos oxigenan y limpian el agua; y el arrecife amortigua el impacto hidrodinámico que protege a las praderas y costas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: BIODIVERSIDAD MARINA -->
+    <section id="biodiversidad" aria-labelledby="bio-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill">03 / FAUNA & FLORA</span>
+        <span class="dossier-meta">ESPECIES REPRESENTATIVAS DE LA BIOTA CARIBEÑA</span>
+      </div>
+
+      <h2 id="bio-title" class="section-title">Biodiversidad marina representativa del Mar Caribe</h2>
+      <p class="standfirst">
+        Desde majestuosos quelonios hasta bioerosionadores clave y gigantescos invertebrados filtradores, cada organismo cumple un rol irremplazable en el equilibrio arrecifal.
+      </p>
+
+      <div class="aside-box" style="margin-bottom: var(--space-lg); border-top: 2px solid var(--warning);">
+        <strong>Nota Ecológica Fundamental:</strong> La presencia y densidad de las especies varía según el gradiente batimétrico, la temperatura estacional, la fuerza de las corrientes y el régimen de protección del parque. <em>No todas las especies coexisten simultáneamente en todos los puntos de inmersión.</em>
+      </div>
+
+      <!-- Filtros de Especies -->
+      <div class="filter-bar" id="speciesFilters" role="tablist" aria-label="Filtrar especies">
+        <button class="filter-btn active" onclick="filterSpecies('all', this)">Todas las Especies</button>
+        <button class="filter-btn" onclick="filterSpecies('reptil-pelagico', this)">Reptiles & Pelágicos</button>
+        <button class="filter-btn" onclick="filterSpecies('peces-arrecife', this)">Peces de Arrecife</button>
+        <button class="filter-btn" onclick="filterSpecies('invertebrados', this)">Invertebrados & Corales</button>
+      </div>
+
+      <div class="grid-4" id="speciesGrid">
+        <!-- 1. Tortuga Carey -->
+        <article class="species-card" data-category="reptil-pelagico">
+          <div class="species-art-wrap" aria-hidden="true">
+            <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="60" cy="48" rx="34" ry="24" fill="#0284c7" fill-opacity="0.25" stroke="#38bdf8" stroke-width="2"/>
+              <path d="M60 24C65 24 72 32 72 48C72 64 65 72 60 72C55 72 48 64 48 48C48 32 55 24 60 24Z" stroke="#f8fafc" stroke-width="1.5" stroke-dasharray="2 2"/>
+              <circle cx="60" cy="18" r="8" fill="#38bdf8"/>
+              <path d="M40 32C28 26 22 28 20 32C22 38 32 40 40 38" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M80 32C92 26 98 28 100 32C98 38 88 40 80 38" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M45 64C38 72 35 76 36 78C40 78 46 72 48 68" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+              <path d="M75 64C82 72 85 76 84 78C80 78 74 72 72 68" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="species-body">
+            <span class="species-badge pelagic">En Peligro Crítico (UICN)</span>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Tortuga Carey</h4>
+            <div class="species-scientific">Eretmochelys imbricata</div>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0 0 0;">
+              Alimentadora especializada de esponjas de vidrio y tóxicas. Su forrajeo previene que las esponjas asfixien las colonias de coral vivo.
+            </p>
+          </div>
+        </article>
+
+        <!-- 2. Pez Loro -->
+        <article class="species-card" data-category="peces-arrecife">
+          <div class="species-art-wrap" aria-hidden="true">
+            <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="60" cy="45" rx="38" ry="20" fill="#059669" fill-opacity="0.3" stroke="#10b981" stroke-width="2"/>
+              <path d="M22 45L8 32V58L22 45Z" fill="#10b981"/>
+              <path d="M50 25C65 22 75 25 80 27" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+              <path d="M98 45C95 47 90 48 85 45" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="82" cy="40" r="3" fill="#ffffff"/>
+            </svg>
+          </div>
+          <div class="species-body">
+            <span class="species-badge reef">Bioerosionador Clave</span>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Pez Loro Guacamaya</h4>
+            <div class="species-scientific">Scarus guacamaia / Sparisoma</div>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0 0 0;">
+              Rasca el sustrato para alimentarse de macroalgas que compiten con el coral; procesa carbonato triturado produciendo arena blanca coralina.
+            </p>
+          </div>
+        </article>
+
+        <!-- 3. Pez Ángel Reina -->
+        <article class="species-card" data-category="peces-arrecife">
+          <div class="species-art-wrap" aria-hidden="true">
+            <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="35,15 85,30 95,55 75,78 35,65 20,45" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" stroke-width="2"/>
+              <circle cx="68" cy="28" r="4" fill="#fbbf24"/>
+              <path d="M35 15L15 45L35 65" fill="#f59e0b" fill-opacity="0.4"/>
+              <circle cx="78" cy="45" r="3" fill="#ffffff"/>
+            </svg>
+          </div>
+          <div class="species-body">
+            <span class="species-badge reef">Fauna Arrecifal</span>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Pez Ángel Reina</h4>
+            <div class="species-scientific">Holacanthus ciliaris</div>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0 0 0;">
+              Famoso por su corona azul eléctrica y cuerpo amarillo brillante. Se alimenta de tunicados y esponjas en grietas protegidas del arrecife.
+            </p>
+          </div>
+        </article>
+
+        <!-- 4. Raya Águila Moteada -->
+        <article class="species-card" data-category="reptil-pelagico">
+          <div class="species-art-wrap" aria-hidden="true">
+            <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M60 22C45 35 10 45 15 50C25 52 50 48 60 58C70 48 95 52 105 50C110 45 75 35 60 22Z" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+              <path d="M60 58C60 65 62 82 64 88" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="50" cy="40" r="1.5" fill="#ffffff"/>
+              <circle cx="70" cy="40" r="1.5" fill="#ffffff"/>
+              <circle cx="42" cy="46" r="1.5" fill="#ffffff"/>
+              <circle cx="78" cy="46" r="1.5" fill="#ffffff"/>
+            </svg>
+          </div>
+          <div class="species-body">
+            <span class="species-badge pelagic">Pelágico Acrobático</span>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Raya Águila Moteada</h4>
+            <div class="species-scientific">Aetobatus narinari</div>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0 0 0;">
+              Plana el azul en grupos o solitarias sobre paredes verticales. Tritura con sus placas dentales moluscos y crustáceos enterrados en arena.
+            </p>
+          </div>
+        </article>
+
+        <!-- 5. Tiburón de Arrecife -->
+        <article class="species-card" data-category="reptil-pelagico">
+          <div class="species-art-wrap" aria-hidden="true">
+            <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 48C35 44 75 38 105 45C95 52 65 58 15 48Z" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M55 40L65 20L75 42" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+              <path d="M15 48L5 36V60L15 48Z" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+              <circle cx="92" cy="44" r="2" fill="#ffffff"/>
+            </svg>
+          </div>
+          <div class="species-body">
+            <span class="species-badge pelagic">Depredador Ápice</span>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Tiburón de Arrecife</h4>
+            <div class="species-scientific">Carcharhinus perezii</div>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0 0 0;">
+              Regula las poblaciones de peces depredadores medianos. Frecuente en las caídas abismales de Providencia, Bahamas y Little Cayman.
+            </p>
+          </div>
+        </article>
+
+        <!-- 6. Morena Verde -->
+        <article class="species-card" data-category="peces-arrecife">
+          <div class="species-art-wrap" aria-hidden="true">
+            <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 65C35 60 40 40 60 45C80 50 85 30 100 35C105 37 108 42 105 46C95 56 75 62 55 58C35 55 25 72 20 65Z" fill="#0d5f47" stroke="#34d399" stroke-width="2"/>
+              <circle cx="102" cy="38" r="2.5" fill="#facc15"/>
+            </svg>
+          </div>
+          <div class="species-body">
+            <span class="species-badge benthic">Cazador Bentónico</span>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Morena Verde</h4>
+            <div class="species-scientific">Gymnothorax funebris</div>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0 0 0;">
+              Su color verde es producto de una mucosa amarilla sobre piel gris azulada. Abre y cierra la mandíbula constantemente para ventilar branquias.
+            </p>
+          </div>
+        </article>
+
+        <!-- 7. Coral Cuerno de Alce -->
+        <article class="species-card" data-category="invertebrados">
+          <div class="species-art-wrap" aria-hidden="true">
+            <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M60 75V50M60 50C50 42 35 40 28 30M60 50C70 42 85 40 92 30M60 40V22M45 40C38 30 40 20 35 15M75 40C82 30 80 20 85 15" stroke="#f97316" stroke-width="4.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="species-body">
+            <span class="species-badge coral">Constructor Arrecifal</span>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Coral Cuerno de Alce</h4>
+            <div class="species-scientific">Acropora palmata</div>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0 0 0;">
+              Especie estructurante de la zona de rompiente. Disipa la fuerza de las olas; sus poblaciones sufren planes de restauración activos.
+            </p>
+          </div>
+        </article>
+
+        <!-- 8. Esponja de Barril Gigante -->
+        <article class="species-card" data-category="invertebrados">
+          <div class="species-art-wrap" aria-hidden="true">
+            <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="60" cy="30" rx="24" ry="9" fill="#78350f" stroke="#b45309" stroke-width="2"/>
+              <path d="M36 30C36 55 42 75 60 75C78 75 84 55 84 30" fill="#92400e" fill-opacity="0.6" stroke="#b45309" stroke-width="2"/>
+              <path d="M48 40V68M60 39V73M72 40V68" stroke="#d97706" stroke-width="1.5" stroke-dasharray="3 3"/>
+            </svg>
+          </div>
+          <div class="species-body">
+            <span class="species-badge benthic">Filtrador Secuencial</span>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Esponja de Barril Gigante</h4>
+            <div class="species-scientific">Xestospongia muta</div>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0 0 0;">
+              Apodada "la secuoya del arrecife", puede superar los 1.000 años de edad y filtrar miles de litros de agua marina cada día.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: DESTINOS DESTACADOS -->
+    <section id="destinos" aria-labelledby="destinos-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill">04 / DESTINOS REGIONALES</span>
+        <span class="dossier-meta">GEOGRAFÍA, CONDICIONES OPERATIVAS Y PERFILES DE INMERSIÓN</span>
+      </div>
+
+      <h2 id="destinos-title" class="section-title">Destinos destacados del buceo en el Mar Caribe</h2>
+      <p class="standfirst">
+        Desde la capital mundial del buceo de orilla en Bonaire hasta las paredes abismales de Seaflower y los célebres pecios de República Dominicana y Caimán.
+      </p>
+
+      <!-- Filtros de Destino -->
+      <div class="filter-bar" id="destFilters" role="tablist" aria-label="Filtrar destinos">
+        <button class="filter-btn active" onclick="filterDest('all', this)">Todos los Destinos</button>
+        <button class="filter-btn" onclick="filterDest('colombia', this)">Caribe Colombiano</button>
+        <button class="filter-btn" onclick="filterDest('wall', this)">Paredes & Cantiles</button>
+        <button class="filter-btn" onclick="filterDest('wreck', this)">Pecios & Naufragios</button>
+        <button class="filter-btn" onclick="filterDest('shore', this)">Buceo de Orilla</button>
+      </div>
+
+      <div class="grid-3" id="destGrid">
+        <!-- 1. San Andrés y Providencia (Colombia) -->
+        <article class="destination-card colombia" data-types="colombia wall">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span class="dossier-meta" style="color: #b45309;">COLOMBIA INSULAR</span>
+              <span class="tag">OW a AOW</span>
+            </div>
+            <h3 style="font-family: var(--font-headline); font-size: 1.35rem; margin: var(--space-xs) 0;">
+              San Andrés y Providencia
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--on-surface-variant); margin-bottom: var(--space-sm);">
+              Núcleo de la <strong>Reserva de Biosfera Seaflower</strong> (UNESCO), que resguarda la 3ª barrera de coral más extensa del mundo y el "Mar de los Siete Colores".
+            </p>
+            <div class="tag-cluster">
+              <span class="tag">La Pared (Blue Wall)</span>
+              <span class="tag">El Cantil (&gt;200m)</span>
+              <span class="tag">Tiburón de arrecife</span>
+              <span class="tag">Visib. 20-30m</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="openDestinationModal('san-andres')" style="width: 100%; margin-top: var(--space-md);">
+            <span>Ver Ficha Técnica</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </article>
+
+        <!-- 2. Cozumel (México) -->
+        <article class="destination-card wall" data-types="wall">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span class="dossier-meta" style="color: var(--secondary);">MÉXICO (YUCATÁN)</span>
+              <span class="tag">OW a AOW+</span>
+            </div>
+            <h3 style="font-family: var(--font-headline); font-size: 1.35rem; margin: var(--space-xs) 0;">
+              Cozumel
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--on-surface-variant); margin-bottom: var(--space-sm);">
+              Parque Nacional Arrecifes de Cozumel (1996, 120 km²). Célebre por el <em>drift diving</em> (buceo de deriva) donde la corriente suave transporta al buceador a lo largo de cañones verticales.
+            </p>
+            <div class="tag-cluster">
+              <span class="tag">Arrecife Palancar</span>
+              <span class="tag">Muro Santa Rosa</span>
+              <span class="tag">Pez Sapo Espléndido</span>
+              <span class="tag">Pecio C-53</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="openDestinationModal('cozumel')" style="width: 100%; margin-top: var(--space-md);">
+            <span>Ver Ficha Técnica</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </article>
+
+        <!-- 3. Bonaire (Caribe Neerlandés) -->
+        <article class="destination-card shore" data-types="shore wreck">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span class="dossier-meta" style="color: #059669;">CARIBE NEERLANDÉS (ABC)</span>
+              <span class="tag">Todos los Niveles</span>
+            </div>
+            <h3 style="font-family: var(--font-headline); font-size: 1.35rem; margin: var(--space-xs) 0;">
+              Bonaire
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--on-surface-variant); margin-bottom: var(--space-sm);">
+              Capital mundial indiscutible del <em>shore diving</em>. Más de 54 sitios balizados con piedras amarillas junto al camino. Pionera en gobernanza con STINAPA y prohibición de oxibenzona.
+            </p>
+            <div class="tag-cluster">
+              <span class="tag">Salt Pier</span>
+              <span class="tag">Pecio Hilma Hooker (72m)</span>
+              <span class="tag">Arrecifes de Franja</span>
+              <span class="tag">Libertad Total</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="openDestinationModal('bonaire')" style="width: 100%; margin-top: var(--space-md);">
+            <span>Ver Ficha Técnica</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </article>
+
+        <!-- 4. Islas Caimán -->
+        <article class="destination-card wall" data-types="wall wreck">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span class="dossier-meta" style="color: #0284c7;">TERRITORIO BRITÁNICO</span>
+              <span class="tag">Iniciación a Avanzado</span>
+            </div>
+            <h3 style="font-family: var(--font-headline); font-size: 1.35rem; margin: var(--space-xs) 0;">
+              Islas Caimán
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--on-surface-variant); margin-bottom: var(--space-sm);">
+              Visibilidad de hasta 45 metros. Bloody Bay Wall en Little Cayman ofrece caídas abismales desde 6m hacia los 1.000m, mientras Grand Cayman acoge el pecio USS Kittiwake.
+            </p>
+            <div class="tag-cluster">
+              <span class="tag">Bloody Bay Wall</span>
+              <span class="tag">USS Kittiwake (5 cubiertas)</span>
+              <span class="tag">Stingray City</span>
+              <span class="tag">Visib. 30-45m</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="openDestinationModal('cayman')" style="width: 100%; margin-top: var(--space-md);">
+            <span>Ver Ficha Técnica</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </article>
+
+        <!-- 5. Roatán (Honduras) -->
+        <article class="destination-card shore" data-types="shore wall">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span class="dossier-meta" style="color: #0d7685;">HONDURAS (ISLAS DE LA BAHÍA)</span>
+              <span class="tag">Todos los Niveles</span>
+            </div>
+            <h3 style="font-family: var(--font-headline); font-size: 1.35rem; margin: var(--space-xs) 0;">
+              Roatán
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--on-surface-variant); margin-bottom: var(--space-sm);">
+              Paredes de arrecife accesibles a minutos de costa gestionadas por el Roatan Marine Park (BINMP). Boyas obligatorias, control activo de pez león y un ambiente formativo de renombre mundial.
+            </p>
+            <div class="tag-cluster">
+              <span class="tag">West End</span>
+              <span class="tag">Pecio El Águila</span>
+              <span class="tag">Pecio Halliburton</span>
+              <span class="tag">Boyas Obligatorias</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="openDestinationModal('roatan')" style="width: 100%; margin-top: var(--space-md);">
+            <span>Ver Ficha Técnica</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </article>
+
+        <!-- 6. República Dominicana -->
+        <article class="destination-card wreck" data-types="wreck">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span class="dossier-meta" style="color: var(--tertiary);">ANTILLAS MAYORES</span>
+              <span class="tag">OW a Técnico</span>
+            </div>
+            <h3 style="font-family: var(--font-headline); font-size: 1.35rem; margin: var(--space-xs) 0;">
+              República Dominicana
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--on-surface-variant); margin-bottom: var(--space-sm);">
+              Mayor concentración de pecios accesibles del Caribe insular en Bayahibe, Punta Cana y Santo Domingo, complementado por cañones del siglo XVIII en el arrecife Guaraguao.
+            </p>
+            <div class="tag-cluster">
+              <span class="tag">St. George (12-44m)</span>
+              <span class="tag">Atlantic Princess (12m)</span>
+              <span class="tag">Hickory (18m)</span>
+              <span class="tag">Arrecife Guaraguao</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="openDestinationModal('dom-rep')" style="width: 100%; margin-top: var(--space-md);">
+            <span>Ver Ficha Técnica</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </article>
+
+        <!-- 7. Enfoque Especial Colombia Continental: Santa Marta y Tayrona -->
+        <article class="destination-card colombia" data-types="colombia shore" style="grid-column: 1 / -1; background: #fffcf5;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: var(--space-lg); align-items: center;">
+            <div>
+              <div style="display: flex; gap: var(--space-xs); align-items: center;">
+                <span class="dossier-pill coral">CAPITAL FORMATIVA DE COLOMBIA</span>
+                <span class="dossier-meta">CARIBE CONTINENTAL</span>
+              </div>
+              <h3 style="font-family: var(--font-headline); font-size: 1.45rem; margin: var(--space-xs) 0;">
+                Santa Marta, Bahía de Taganga y P.N.N. Tayrona
+              </h3>
+              <p style="font-size: 0.92rem; color: var(--on-surface-variant);">
+                A diferencia de los atolones de ultramar, el litoral del Magdalena presenta una interacción directa con la Sierra Nevada de Santa Marta. Destaca por más de 30 sitios de inmersión en bahías protegidas como Granate y Calichan, rica macrofauna (caballitos de mar, pulpos y más de 370 peces censados) y cuenta con la principal infraestructura médica hiperbárica en el Hospital Universitario Julio Méndez Barreneche.
+              </p>
+            </div>
+            <div class="aside-box" style="margin: 0;">
+              <h4 style="margin: 0 0 var(--space-xs) 0; font-family: var(--font-headline);">Puntos Clave Continentales</h4>
+              <ul style="margin: 0; padding-left: var(--space-md); font-size: 0.88rem;">
+                <li><strong>Calichan & El Coro:</strong> Terrazas rocosas entre 4 y 25m ideales para entrenamiento y fotografía macro.</li>
+                <li><strong>Isla Aguja:</strong> Paredes inclinadas hasta 40m con corrientes oceánicas y cardúmenes de jureles.</li>
+                <li><strong>Barcaza de Carbón:</strong> Pecio partido en tres secciones entre 5 y 30m en la bahía urbana.</li>
+                <li><strong>Punta Venado:</strong> La inmersión nocturna de referencia con pulpos cazando y pez loro durmiente.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 6: MODALIDADES DE BUCEO -->
+    <section id="modalidades" aria-labelledby="mod-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill">05 / MODALIDADES</span>
+        <span class="dossier-meta">DISCIPLINAS SUBACUÁTICAS Y EXIGENCIAS TÉCNICAS</span>
+      </div>
+
+      <h2 id="mod-title" class="section-title">Modalidades de buceo en el Mar Caribe</h2>
+      <p class="standfirst">
+        Diferenciación estricta entre inmersiones recreativas dentro de la curva de seguridad y disciplinas avanzadas que demandan redundancia de equipamiento y entrenamiento especializado.
+      </p>
+
+      <div class="grid-3">
+        <!-- 1. Recreativo -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="smile" style="color: #059669;" aria-hidden="true"></i>
+            <span class="dossier-meta" style="color: #059669;">RECREATIVO GENERAL</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Buceo Recreativo sin Paradas</h3>
+          <p style="font-size: 0.88rem; color: var(--on-surface-variant);">
+            Límites estándar de 18m (Open Water) a 30m / 40m (Advanced OW). Se realiza siempre dentro del Tiempo Límite de No Descompresión (NDL) con ascenso libre directo a superficie en caso de emergencia.
+          </p>
+        </div>
+
+        <!-- 2. Técnico -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="layers" style="color: var(--tertiary);" aria-hidden="true"></i>
+            <span class="dossier-meta" style="color: var(--tertiary);">ENTRENAMIENTO AVANZADO</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Buceo Técnico (Tek Diving)</h3>
+          <p style="font-size: 0.88rem; color: var(--on-surface-variant);">
+            Inmersiones más allá de los 40 metros o con paradas descompresivas planificadas obligatorias. Empleo de mezclas Trimix (helio, nitrógeno, oxígeno) y botellas de descompresión con oxígeno al 50%-100%.
+          </p>
+        </div>
+
+        <!-- 3. Apnea -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="wind" style="color: #0284c7;" aria-hidden="true"></i>
+            <span class="dossier-meta" style="color: #0284c7;">PULMÓN LIBRE</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Apnea o Freediving</h3>
+          <p style="font-size: 0.88rem; color: var(--on-surface-variant);">
+            Descenso sin tanque con aletas largas o monoaleta. Exige concentración mental, relajación muscular y gestión del reflejo mamífero. Muy popular en arrecifes someros y cenotes.
+          </p>
+        </div>
+
+        <!-- 4. Nocturno -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="moon" style="color: #7c3aed;" aria-hidden="true"></i>
+            <span class="dossier-meta" style="color: #7c3aed;">HORAS CREPUSCULARES</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Buceo Nocturno</h3>
+          <p style="font-size: 0.88rem; color: var(--on-surface-variant);">
+            Revela la fauna oculta: pólipos de coral abiertos, bioluminiscencia y depredadores como pulpos, calamares y morenas cazando. Obligatorio el uso de foco primario, respaldo y luz química o estroboscópica.
+          </p>
+        </div>
+
+        <!-- 5. Naufragios -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="ship" style="color: #d97706;" aria-hidden="true"></i>
+            <span class="dossier-meta" style="color: #d97706;">ARRECIFES ARTIFICIALES</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Buceo en Naufragios (Wreck)</h3>
+          <p style="font-size: 0.88rem; color: var(--on-surface-variant);">
+            Exploración de barcos de guerra o mercantes hundidos. Distingue entre navegación externa recreativa y penetración interior, la cual exige certificación de pecios, carrete guía y linternas redundantes.
+          </p>
+        </div>
+
+        <!-- 6. Cuevas y Cenotes -->
+        <div class="figure-card">
+          <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-xs);">
+            <i data-lucide="compass" style="color: #dc2626;" aria-hidden="true"></i>
+            <span class="dossier-meta" style="color: #dc2626;">ENTORNO BAJO TECHO</span>
+          </div>
+          <h3 style="font-family: var(--font-headline); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0;">Cavernas vs. Cuevas (Cave)</h3>
+          <p style="font-size: 0.88rem; color: var(--on-surface-variant);">
+            <em>Caverna:</em> zona con luz natural visible y penetración horizontal máxima de 40m (apta con guía). <em>Cueva:</em> oscuridad total que exige entrenamiento técnico completo, línea continua y regla de tercios de gas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 7: SEGURIDAD, MEDICINA HIPERBÁRICA & SIMULADOR -->
+    <section id="seguridad" aria-labelledby="seg-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill coral">06 / SEGURIDAD & MEDICINA</span>
+        <span class="dossier-meta">NORMAS CARDINALES, RED HIPERBÁRICA Y PLANIFICADOR DIDÁCTICO</span>
+      </div>
+
+      <h2 id="seg-title" class="section-title">Seguridad operativa, medicina hiperbárica y cálculo de inmersión</h2>
+      <p class="standfirst">
+        El buceo responsable se sustenta en protocolos preventivos rigurosos y en el conocimiento de la infraestructura asistencial de respuesta ante emergencias hiperbáricas.
+      </p>
+
+      <div class="grid-2">
+        <div class="figure-card highlight">
+          <h3 style="font-family: var(--font-headline); font-size: 1.3rem; margin-top: 0;">Las 8 Normas Cardinales de Seguridad DAN / PADI</h3>
+          <ol style="padding-left: var(--space-md); margin-bottom: var(--space-md); font-size: 0.92rem;">
+            <li><strong>Certificación Válida:</strong> Bucear estrictamente dentro de los límites de tu acreditación y experiencia documentada.</li>
+            <li><strong>Sistema de Compañeros (Buddy System):</strong> Jamás bucear en solitario; realizar el chequeo BWRAF previo antes de cada entrada.</li>
+            <li><strong>Revisión Instrumental de Equipos:</strong> Manómetro, inflador de baja presión y ordenador personal verificados y calibrados.</li>
+            <li><strong>Velocidad de Ascenso y Parada:</strong> Ascender a menos de 9-18 m/min y ejecutar sin excepción 3 minutos a 5 metros de seguridad.</li>
+            <li><strong>Reserva de Presión Mínima:</strong> Iniciar el ascenso para arribar al barco con un remanente no inferior a 500 PSI (35 BAR).</li>
+            <li><strong>Intervalo Pre-Vuelo:</strong> Esperar 12 horas tras una inmersión única sin deco, y 18 a 24 horas tras inmersiones múltiples antes de volar en avión.</li>
+            <li><strong>Condición Psicofísica:</strong> Prohibición absoluta de alcohol, drogas o fatiga previa extrema. Mantener hidratación continua.</li>
+            <li><strong>Suspensión Preventiva:</strong> Cualquier buceador tiene derecho y deber de cancelar la inmersión en cualquier momento por cualquier motivo de seguridad.</li>
+          </ol>
+          <div class="aside-box">
+            <strong>Cámaras Hiperbáricas Clave en el Caribe:</strong>
+            Hospital Universitario Julio Méndez Barreneche (Santa Marta, Colombia), Cornerstone Medical Chamber (Roatán, Honduras), Clínica San Miguel (Cozumel, México) y San Francisco Hospital (Bonaire). Asistencia internacional coordinada vía DAN (Divers Alert Network).
+          </div>
+        </div>
+
+        <!-- SIMULADOR INTERACTIVO RECREATIVO -->
+        <div class="calc-container" style="grid-template-columns: 1fr;">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <h3 style="font-family: var(--font-headline); font-size: 1.3rem; margin: 0; color: var(--primary);">
+                Planificador Interactivo de Parámetros Recreativos
+              </h3>
+              <span class="dossier-pill">HERRAMIENTA DIDÁCTICA</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--on-surface-variant); margin: var(--space-xs) 0 var(--space-md) 0;">
+              Ajusta la profundidad y la mezcla gaseosa para observar el comportamiento del Límite de No Descompresión (NDL), la presión parcial de oxígeno (PO₂) y la parada de seguridad.
+            </p>
+
+            <div class="calc-controls">
+              <!-- Slider Profundidad -->
+              <div class="calc-slider-group">
+                <div class="calc-label-row">
+                  <label for="depthInput" style="font-weight: 600; font-size: 0.9rem;">Profundidad de Inmersión (Metros):</label>
+                  <span id="depthVal" class="calc-val-readout">18 m (59 ft)</span>
+                </div>
+                <input type="range" id="depthInput" min="10" max="40" step="1" value="18" oninput="updateDivePlan()">
+              </div>
+
+              <!-- Selector de Gas -->
+              <div class="calc-slider-group">
+                <div class="calc-label-row">
+                  <label for="gasSelect" style="font-weight: 600; font-size: 0.9rem;">Mezcla de Respiración:</label>
+                </div>
+                <select id="gasSelect" onchange="updateDivePlan()" style="padding: 0.5rem; border: 1px solid var(--outline-variant); border-radius: var(--rounded); font-family: var(--font-body); font-size: 0.9rem;">
+                  <option value="air">Aire Comprimido Estándar (21% O₂, 79% N₂)</option>
+                  <option value="ean32">Aire Enriquecido Nitrox EAN32 (32% O₂, 68% N₂)</option>
+                  <option value="ean36">Aire Enriquecido Nitrox EAN36 (36% O₂, 64% N₂)</option>
+                </select>
+              </div>
+
+              <!-- Slider Tiempo Previsto en Fondo -->
+              <div class="calc-slider-group">
+                <div class="calc-label-row">
+                  <label for="timeInput" style="font-weight: 600; font-size: 0.9rem;">Tiempo Previsto de Fondo:</label>
+                  <span id="timeVal" class="calc-val-readout">35 minutos</span>
+                </div>
+                <input type="range" id="timeInput" min="10" max="70" step="5" value="35" oninput="updateDivePlan()">
+              </div>
+            </div>
+
+            <!-- Panel de Resultados del Simulador -->
+            <div class="calc-results-panel" style="margin-top: var(--space-md);">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <div>
+                  <span style="font-size: 0.75rem; font-family: var(--font-label); color: var(--on-surface-variant); text-transform: uppercase;">Límite NDL Aprox.</span>
+                  <div id="ndlResult" style="font-family: var(--font-headline); font-size: 1.45rem; font-weight: 600; color: var(--primary);">56 min</div>
+                </div>
+                <div>
+                  <span style="font-size: 0.75rem; font-family: var(--font-label); color: var(--on-surface-variant); text-transform: uppercase;">Presión Parcial PO₂</span>
+                  <div id="po2Result" style="font-family: var(--font-headline); font-size: 1.45rem; font-weight: 600; color: #059669;">0.59 ATA</div>
+                </div>
+                <div>
+                  <span style="font-size: 0.75rem; font-family: var(--font-label); color: var(--on-surface-variant); text-transform: uppercase;">Estado de Descomp.</span>
+                  <div id="statusBadgeWrap" style="margin-top: 4px;">
+                    <span class="status-indicator safe" id="statusBadge">DENTRO DE LÍMITES</span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="font-size: 0.85rem; border-top: 1px solid var(--outline-variant); padding-top: var(--space-xs); color: var(--on-surface-variant);">
+                <strong>Protocolo de Salida:</strong> Parada de seguridad reglamentaria de <strong>3 min a 5 metros</strong>. Intervalo en superficie recomendado antes de volar: <strong>18 a 24 horas</strong>.
+              </div>
+            </div>
+
+            <div style="font-size: 0.75rem; color: #64748b; margin-top: var(--space-xs); font-style: italic;">
+              * Aclaración legal: Este simulador tiene carácter meramente educativo e ilustrativo y se basa en modelos recreativos estándar. No sustituye la computadora de buceo personal, las tablas oficiales ni la supervisión de un instructor certificado.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 8: CONSERVACIÓN MARINA -->
+    <section id="conservacion" aria-labelledby="cons-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill">07 / CONSERVACIÓN</span>
+        <span class="dossier-meta">GOBERNANZA AMBIENTAL, AMENAZAS Y BUCEO SOSTENIBLE</span>
+      </div>
+
+      <h2 id="cons-title" class="section-title">Conservación marina: amenazas y buenas prácticas</h2>
+      <p class="standfirst">
+        Los arrecifes de coral del Caribe enfrentan la mayor encrucijada biológica de su historia contemporánea. Protegerlos exige acciones de gobernanza estricta y buceadores éticamente comprometidos.
+      </p>
+
+      <div class="grid-2">
+        <!-- Amenazas Principales -->
+        <div class="figure-card">
+          <h3 style="font-family: var(--font-headline); font-size: 1.25rem; margin-top: 0; color: var(--tertiary);">
+            Cinco Amenazas Críticas en la Cuenca
+          </h3>
+          <ul style="padding-left: var(--space-md); margin: 0; font-size: 0.92rem;">
+            <li style="margin-bottom: var(--space-xs);">
+              <strong>Calentamiento Global y Blanqueamiento:</strong> Olas de calor prolongadas provocan la expulsión masiva de zooxantelas fotosintéticas, dejando al coral en estado de inanición biológica.
+            </li>
+            <li style="margin-bottom: var(--space-xs);">
+              <strong>Químicos en Filtros Solares:</strong> Compuestos sintéticos como la <strong>oxibenzona</strong> y el <strong>octinoxato</strong> alteran el ADN coralino e inducen deformaciones en larvas de plancton (prohibidos por ley en Bonaire).
+            </li>
+            <li style="margin-bottom: var(--space-xs);">
+              <strong>Invasión Biológica del Pez León (<em>Pterois volitans</em>):</strong> Depredador del Indopacífico sin enemigos naturales en el Caribe que diezma especies herbívoras juveniles.
+            </li>
+            <li style="margin-bottom: var(--space-xs);">
+              <strong>Sobrepesca de Especies Clave:</strong> Extracción indiscriminada de herbívoros (como peces loro) que propicia la asfixia del coral por macroalgas invasoras.
+            </li>
+            <li>
+              <strong>Impacto Físico de Fondeo y Buceo Descuidado:</strong> Aleteo sobre sedimentos, contacto físico y uso de anclas tradicionales que destruyen colonias centenarias en segundos.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Decálogo del Buceador Responsable -->
+        <div class="figure-card" style="border-top: 3px solid #059669;">
+          <h3 style="font-family: var(--font-headline); font-size: 1.25rem; margin-top: 0; color: #059669;">
+            Decálogo de Buenas Prácticas Ambientales (Green Fins & PADI AWARE)
+          </h3>
+          <ul style="padding-left: var(--space-md); margin: 0; font-size: 0.92rem;">
+            <li style="margin-bottom: var(--space-xs);">
+              <strong>Flotabilidad Neutra Impecable:</strong> Ajustar el lastre exacto para mantenerse horizontal sin tocar el fondo ni golpear corales con las aletas.
+            </li>
+            <li style="margin-bottom: var(--space-xs);">
+              <strong>Política Estricta de "No Tocar":</strong> Los corales son animales vivos hipersensibles; un simple toque manual destruye su capa mucosa protectora.
+            </li>
+            <li style="margin-bottom: var(--space-xs);">
+              <strong>Cero Alimentación e Interacción Forzada:</strong> No alimentar peces ni perseguir tortugas o rayas; altera su conducta natural de forrajeo.
+            </li>
+            <li style="margin-bottom: var(--space-xs);">
+              <strong>Protector Solar Mineral Exclusivo:</strong> Emplear sólo filtros basados en óxido de zinc o dióxido de titanio no nano (Reef-Safe Certified) o camisetas UV (rashguards).
+            </li>
+            <li style="margin-bottom: var(--space-xs);">
+              <strong>Uso Obligatorio de Boyas de Amarre:</strong> Exigir a los centros de buceo el amarre exclusivo a boyas fijas sin soltar jamás el ancla sobre el arrecife.
+            </li>
+            <li>
+              <strong>Respeto Estricto a Vedas y Tasas de Parques:</strong> Respetar las temporadas de veda de langosta espinosa y pagar con orgullo las tarifas de conservación marina.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Test Interactivo de Autoevaluación -->
+      <div class="quiz-box">
+        <h3 style="font-family: var(--font-headline); font-size: 1.25rem; margin-top: 0;">
+          Autoevaluación: ¿Qué tan sostenible es tu perfil de buceador?
+        </h3>
+        <p style="font-size: 0.9rem; color: var(--on-surface-variant); margin-bottom: var(--space-md);">
+          Responde a estas 3 situaciones prácticas para medir tu índice de impacto ecológico subacuático.
+        </p>
+
+        <form id="ecoQuiz" onsubmit="calculateEcoScore(event)">
+          <div style="margin-bottom: var(--space-md);">
+            <strong style="font-size: 0.95rem;">1. Si pierdes flotabilidad y estás a punto de caer sobre una colonia de coral cerebro:</strong>
+            <label class="quiz-option">
+              <input type="radio" name="q1" value="bad"> Me apoyo suavemente con un dedo en una parte rocosa del coral para frenar el descenso.
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q1" value="good"> Utilizo una bocanada de aire en mis pulmones o un toque sutil al inflador del BCD para recuperar flotabilidad neutra de inmediato sin tocar nada.
+            </label>
+          </div>
+
+          <div style="margin-bottom: var(--space-md);">
+            <strong style="font-size: 0.95rem;">2. Antes de embarcar en un bote de buceo en Roatán o Bonaire:</strong>
+            <label class="quiz-option">
+              <input type="radio" name="q2" value="good"> Utilizo ropa con filtro UV o un protector solar mineral 100% libre de oxibenzona y octinoxato.
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q2" value="bad"> Aplico cualquier crema solar convencional resistente al agua justo antes de lanzarme al mar.
+            </label>
+          </div>
+
+          <div style="margin-bottom: var(--space-md);">
+            <strong style="font-size: 0.95rem;">3. Al observar un pez león durante una inmersión recreativa:</strong>
+            <label class="quiz-option">
+              <input type="radio" name="q3" value="good"> Mantengo mi distancia de seguridad y reporto la ubicación exacta a los guías o autoridades del parque acreditados.
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q3" value="bad"> Intento tocarlo o arrinconarlo con el cuchillo de buceo sin contar con entrenamiento ni arpón regulado.
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            <span>Calcular mi Diagnóstico Ambiental</span>
+          </button>
+        </form>
+
+        <div id="quizResult" style="display: none; margin-top: var(--space-md); padding: var(--space-md); border-radius: var(--rounded); background: var(--surface-container); border: 1px solid var(--outline-variant);">
+          <!-- Inyectado por JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 9: GALERÍA SUBMARINA INTERACTIVA -->
+    <section id="galeria" aria-labelledby="gal-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill">08 / GALERÍA</span>
+        <span class="dossier-meta">TESTIMONIOS VISUALES DE LA BIÓSFERA Y PECIOS DEL CARIBE</span>
+      </div>
+
+      <h2 id="gal-title" class="section-title">Galería submarina interactiva</h2>
+      <p class="standfirst">
+        Explora estampas emblemáticas de los fondos marinos caribeños: jardines de coral blando, pecios históricos colonizados y criaturas legendarias. Haz clic en cada escena para abrir el registro fotográfico.
+      </p>
+
+      <div class="gallery-grid">
+        <!-- Item 1 -->
+        <div class="gallery-item" onclick="openGalleryModal('bloody-wall')">
+          <div class="gallery-svg-wrap">
+            <svg width="100%" height="100%" viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="190" fill="#041426"/>
+              <path d="M0 0H140C160 50 120 120 130 190H0V0Z" fill="#0f3458"/>
+              <circle cx="210" cy="80" r="12" fill="#38bdf8" fill-opacity="0.2"/>
+              <path d="M120 40C110 55 125 70 115 85" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+              <path d="M90 90C85 110 100 130 95 150" stroke="#f43f5e" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="220" cy="70" r="3" fill="#ffffff"/>
+            </svg>
+          </div>
+          <div class="gallery-info">
+            <span class="dossier-meta" style="color: #0284c7;">CAYMAN ISLANDS</span>
+            <h4 style="margin: var(--space-xs) 0 0 0; font-family: var(--font-headline); font-size: 1.05rem;">Bloody Bay Wall</h4>
+            <p style="font-size: 0.82rem; color: var(--on-surface-variant); margin: 2px 0 0 0;">Caída vertical infinita tapizada de esponjas de tubo amarillo.</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="gallery-item" onclick="openGalleryModal('kittiwake')">
+          <div class="gallery-svg-wrap">
+            <svg width="100%" height="100%" viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="190" fill="#082038"/>
+              <!-- Pecio Kittiwake -->
+              <path d="M50 140H250L230 110H90L50 140Z" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+              <rect x="110" y="85" width="80" height="25" fill="#334155" stroke="#64748b"/>
+              <line x1="140" y1="85" x2="140" y2="55" stroke="#94a3b8" stroke-width="3"/>
+              <circle cx="220" cy="75" r="4" fill="#38bdf8" fill-opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="gallery-info">
+            <span class="dossier-meta" style="color: var(--tertiary);">PECIOS HISTÓRICOS</span>
+            <h4 style="margin: var(--space-xs) 0 0 0; font-family: var(--font-headline); font-size: 1.05rem;">USS Kittiwake (Grand Cayman)</h4>
+            <p style="font-size: 0.82rem; color: var(--on-surface-variant); margin: 2px 0 0 0;">Buque de rescate de submarinos de 5 cubiertas bañado por la luz.</p>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="gallery-item" onclick="openGalleryModal('salt-pier')">
+          <div class="gallery-svg-wrap">
+            <svg width="100%" height="100%" viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="190" fill="#061c30"/>
+              <!-- Pilotes Salt Pier -->
+              <line x1="80" y1="0" x2="80" y2="190" stroke="#475569" stroke-width="12"/>
+              <line x1="150" y1="0" x2="150" y2="190" stroke="#334155" stroke-width="14"/>
+              <line x1="220" y1="0" x2="220" y2="190" stroke="#475569" stroke-width="12"/>
+              <ellipse cx="150" cy="110" rx="45" ry="15" fill="#38bdf8" fill-opacity="0.25"/>
+            </svg>
+          </div>
+          <div class="gallery-info">
+            <span class="dossier-meta" style="color: #059669;">BONAIRE</span>
+            <h4 style="margin: var(--space-xs) 0 0 0; font-family: var(--font-headline); font-size: 1.05rem;">Pilotes del Salt Pier</h4>
+            <p style="font-size: 0.82rem; color: var(--on-surface-variant); margin: 2px 0 0 0;">Catedral submarina forrada de esponjas con nubes de jureles.</p>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="gallery-item" onclick="openGalleryModal('tayrona')">
+          <div class="gallery-svg-wrap">
+            <svg width="100%" height="100%" viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="190" fill="#08223d"/>
+              <!-- Macizo Tayrona -->
+              <polygon points="0,190 60,80 180,190" fill="#1e293b"/>
+              <polygon points="120,190 220,100 300,190" fill="#0f172a"/>
+              <circle cx="160" cy="130" r="5" fill="#f59e0b"/>
+            </svg>
+          </div>
+          <div class="gallery-info">
+            <span class="dossier-meta" style="color: #d97706;">COLOMBIA CONTINENTAL</span>
+            <h4 style="margin: var(--space-xs) 0 0 0; font-family: var(--font-headline); font-size: 1.05rem;">Arrecifes del Macizo Tayrona</h4>
+            <p style="font-size: 0.82rem; color: var(--on-surface-variant); margin: 2px 0 0 0;">Rocas graníticas tapizadas de gorgonias y macrofauna críptica.</p>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="gallery-item" onclick="openGalleryModal('seaflower')">
+          <div class="gallery-svg-wrap">
+            <svg width="100%" height="100%" viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="190" fill="#041528"/>
+              <!-- Cantil Seaflower -->
+              <path d="M0 50C100 55 160 80 180 190H0V50Z" fill="#0e3a5f"/>
+              <circle cx="230" cy="60" r="6" fill="#38bdf8"/>
+              <circle cx="210" cy="110" r="4" fill="#38bdf8" fill-opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="gallery-info">
+            <span class="dossier-meta" style="color: #b45309;">SAN ANDRÉS & PROVIDENCIA</span>
+            <h4 style="margin: var(--space-xs) 0 0 0; font-family: var(--font-headline); font-size: 1.05rem;">Cantil de la Reserva Seaflower</h4>
+            <p style="font-size: 0.82rem; color: var(--on-surface-variant); margin: 2px 0 0 0;">Muro oceánico tapizado de corales negros y avistamiento de pelágicos.</p>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="gallery-item" onclick="openGalleryModal('rhone')">
+          <div class="gallery-svg-wrap">
+            <svg width="100%" height="100%" viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="190" fill="#0a233c"/>
+              <!-- Hélice RMS Rhone -->
+              <circle cx="150" cy="95" r="30" stroke="#f59e0b" stroke-width="4"/>
+              <line x1="150" y1="65" x2="150" y2="125" stroke="#f59e0b" stroke-width="6"/>
+              <line x1="120" y1="95" x2="180" y2="95" stroke="#f59e0b" stroke-width="6"/>
+            </svg>
+          </div>
+          <div class="gallery-info">
+            <span class="dossier-meta" style="color: var(--secondary);">ISLAS VÍRGENES BRITÁNICAS</span>
+            <h4 style="margin: var(--space-xs) 0 0 0; font-family: var(--font-headline); font-size: 1.05rem;">Hélice Gigante del RMS Rhone</h4>
+            <p style="font-size: 0.82rem; color: var(--on-surface-variant); margin: 2px 0 0 0;">Vapor postal de 1867 convertido en parque nacional submarino.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 10: FUENTES E INSTITUCIONES DE REFERENCIA -->
+    <section id="fuentes" aria-labelledby="fuentes-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill">09 / REFERENCIAS</span>
+        <span class="dossier-meta">ORGANISMOS CIENTÍFICOS Y ENTIDADES GUBERNAMENTALES DE CONSULTA</span>
+      </div>
+
+      <h2 id="fuentes-title" class="section-title">Fuentes de información e instituciones científicas</h2>
+      <p class="standfirst">
+        Este documento compendia datos verificables derivados de entidades de gobernanza ambiental, institutos de investigación marina y federaciones internacionales de buceo.
+      </p>
+
+      <div class="grid-3">
+        <!-- Fuente 1: NOAA -->
+        <div class="source-card">
+          <div>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">NOAA (National Oceanic and Atmospheric Administration)</h4>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0;">
+              Monitoreo satelital del estrés térmico arrecifal (Coral Reef Watch) y evaluación de ecosistemas costeros caribeños.
+            </p>
+          </div>
+          <div class="source-domain">ecowatch.noaa.gov</div>
+        </div>
+
+        <!-- Fuente 2: PNUMA / CEP -->
+        <div class="source-card">
+          <div>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">PNUMA - Programa Ambiental del Caribe</h4>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0;">
+              Protocolo SPAW sobre Áreas y Flora y Fauna Silvestres Especialmente Protegidas para el Gran Caribe.
+            </p>
+          </div>
+          <div class="source-domain">unep.org/cep</div>
+        </div>
+
+        <!-- Fuente 3: PADI -->
+        <div class="source-card">
+          <div>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">PADI Worldwide & PADI AWARE</h4>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0;">
+              Estándares de formación de buceadores recreativos y programas globales de protección de elasmobranquios y arrecifes.
+            </p>
+          </div>
+          <div class="source-domain">travel.padi.com</div>
+        </div>
+
+        <!-- Fuente 4: Colombia Travel -->
+        <div class="source-card">
+          <div>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Colombia Travel (MinCIT)</h4>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0;">
+              Guía técnica oficial de turismo subacuático, centros de buceo certificados y destinos del Caribe y Pacífico colombiano.
+            </p>
+          </div>
+          <div class="source-domain">colombia.travel</div>
+        </div>
+
+        <!-- Fuente 5: MinAmbiente Colombia -->
+        <div class="source-card">
+          <div>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Ministerio de Ambiente de Colombia</h4>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0;">
+              Política nacional para la conservación de arrecifes coralinos y ordenamiento de la Reserva de Biosfera Seaflower.
+            </p>
+          </div>
+          <div class="source-domain">minambiente.gov.co</div>
+        </div>
+
+        <!-- Fuente 6: Marine Conservation Institute & BINMP -->
+        <div class="source-card">
+          <div>
+            <h4 style="margin: 0; font-family: var(--font-headline); font-size: 1.1rem;">Iniciativa Blue Parks & Roatan Marine Park</h4>
+            <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: var(--space-xs) 0;">
+              Estándares de efectividad en áreas marinas protegidas y normativas de conservación comunitaria en las Islas de la Bahía.
+            </p>
+          </div>
+          <div class="source-domain">marine-conservation.org / roatanmarinepark.org</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL PARA DETALLES DE DESTINO Y GALERÍA -->
+  <div class="detail-overlay" id="detailModalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="detail-modal">
+      <button class="modal-close-btn" onclick="closeDestinationModal()" aria-label="Cerrar ventana">
+        <i data-lucide="x" aria-hidden="true"></i>
+      </button>
+      <div id="modalContent">
+        <!-- Contenido inyectado dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE ACCESO: Firebase Authentication (correo electrónico y contraseña) -->
+  <div class="detail-overlay" id="authModalOverlay" role="dialog" aria-modal="true" aria-labelledby="authTitle" aria-describedby="authLead">
+    <div class="detail-modal auth-modal">
+      <button type="button" class="modal-close-btn" id="authCloseBtn" aria-label="Cerrar ventana de acceso">
+        <i data-lucide="x" aria-hidden="true"></i>
+      </button>
+
+      <div class="dossier-bar">
+        <span class="dossier-pill coral">Acceso</span>
+        <span class="dossier-meta">Bitácora del buceador</span>
+      </div>
+
+      <h2 id="authTitle" class="section-title">Inicia sesión</h2>
+      <p id="authLead" class="auth-lead">Accede con tu correo electrónico y contraseña.</p>
+
+      <div class="auth-tabs" id="authTabs" role="tablist" aria-label="Tipo de acceso">
+        <button type="button" class="auth-tab" role="tab" id="tabLogin" data-mode="login" aria-selected="true" aria-controls="authForm">Iniciar sesión</button>
+        <button type="button" class="auth-tab" role="tab" id="tabRegister" data-mode="register" aria-selected="false" aria-controls="authForm" tabindex="-1">Crear cuenta</button>
+      </div>
+
+      <form class="auth-form" id="authForm" novalidate>
+        <div class="auth-field">
+          <label for="authEmail">Correo electrónico</label>
+          <input class="auth-input" type="email" id="authEmail" name="email" autocomplete="email" inputmode="email" placeholder="tu@correo.com" required>
+        </div>
+
+        <div class="auth-field" id="fieldPassword">
+          <label for="authPassword">Contraseña</label>
+          <div class="auth-input-wrap">
+            <input class="auth-input has-toggle" type="password" id="authPassword" name="password" autocomplete="current-password" required>
+            <button type="button" class="auth-toggle-pass" id="togglePassBtn" aria-label="Mostrar contraseña" aria-pressed="false">
+              <span data-icon="show"><i data-lucide="eye" aria-hidden="true"></i></span>
+              <span data-icon="hide" hidden><i data-lucide="eye-off" aria-hidden="true"></i></span>
+            </button>
+          </div>
+          <p class="auth-hint" id="authPasswordHint" hidden>Mínimo 6 caracteres.</p>
+        </div>
+
+        <div class="auth-field" id="fieldConfirm" hidden>
+          <label for="authConfirm">Confirmar contraseña</label>
+          <input class="auth-input" type="password" id="authConfirm" name="confirm" autocomplete="new-password">
+        </div>
+
+        <div class="auth-row" id="rowForgot">
+          <button type="button" class="auth-link" id="forgotBtn">¿Olvidaste tu contraseña?</button>
+        </div>
+
+        <div class="auth-message" id="authMessage" role="alert"></div>
+
+        <button type="submit" class="btn btn-primary auth-submit" id="authSubmit">
+          <span class="auth-spinner" aria-hidden="true"></span>
+          <span id="authSubmitLabel">Entrar</span>
+        </button>
+
+        <button type="button" class="auth-link" id="backToLoginBtn" hidden>Volver a iniciar sesión</button>
+      </form>
+
+      <p class="auth-footnote">
+        <i data-lucide="shield-check" aria-hidden="true"></i>
+        <span>Autenticación segura con Firebase · Correo y contraseña</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Aviso flotante de sesión -->
+  <div class="auth-toast" id="authToast" role="status" aria-live="polite"></div>
+
+  <!-- Footer Editorial -->
+  <footer class="editorial-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>MAR CARIBE SUBMARINO</h4>
+        <p>
+          Monografía digital y guía formativa para la exploración responsable, segura y sostenible del medio marino en la cuenca del Mar Caribe. Edición actualizada a 2026.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Secciones de Consulta</h4>
+        <ul class="footer-links">
+          <li><a href="#introduccion">Dinámica y Equipo de Buceo</a></li>
+          <li><a href="#ecosistemas">Ecosistemas y Conectividad</a></li>
+          <li><a href="#biodiversidad">Catálogo de Biodiversidad</a></li>
+          <li><a href="#destinos">Fichas Técnicas de Destinos</a></li>
+          <li><a href="#seguridad">Planificador y Medicina Hiperbárica</a></li>
+          <li><a href="#conservacion">Conservación y Código de Conducta</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Compromiso Ético</h4>
+        <p>
+          "Toma solo fotografías, deja solo burbujas, no mates más que el tiempo." El buceo recreativo es un privilegio que depende de la integridad de los arrecifes y del cumplimiento estricto de las leyes marinas.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-disclaimer">
+      Esta plataforma tiene carácter estrictamente educativo, científico e informativo. No sustituye la formación reglada de agencias certificadoras (PADI, NAUI, SSI, CMAS) ni las instrucciones en el agua de un profesional acreditado. Todos los datos oceanográficos y normativas se basan en fuentes públicas verificables.
+    </div>
+  </footer>
+
+  <!-- API Shim para persistencia de estado -->
+  <api-shim></api-shim>
+
+  <script>
+    // Inicialización de iconos Lucide
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+
+    // Estado de la aplicación
+    const appState = {
+      selectedGear: 'reg',
+      activeSpeciesFilter: 'all',
+      activeDestFilter: 'all',
+      depth: 18,
+      gas: 'air',
+      bottomTime: 35,
+      quizAnswers: {}
+    };
+
+    // Barra de progreso de lectura
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      const progressEl = document.getElementById('readingProgress');
+      if (progressEl) {
+        progressEl.style.width = scrolled + '%';
+      }
+    });
+
+    // Datos del equipamiento
+    const gearData = {
+      reg: {
+        title: "Regulador de Buceo (1ª y 2ª Etapa + Octopus)",
+        step: "REVISIÓN DE COMPAÑERO: 'AIR / REGULATOR'",
+        desc: "Consta de una primera etapa acoplada a la grifería del tanque que reduce la presión a ~9.5 bar sobre la presión ambiente. La segunda etapa entrega aire a demanda exacta al inhalar. Incluye obligatoriamente una segunda etapa de emergencia (Octopus, habitualmente amarilla) para auxiliar a un compañero en caso de contingencia de gas."
+      },
+      bcd: {
+        title: "Chaleco Compensador de Flotabilidad (BCD / Jacket)",
+        step: "REVISIÓN DE COMPAÑERO: 'BUOYANCY / BCD'",
+        desc: "Permite controlar la densidad volumétrica del buzo. En superficie proporciona flotabilidad positiva para descansar cómodamente; en profundidad permite alcanzar la flotabilidad neutra ingrávida mediante pulsaciones cortas de inflado y purgado. Cuenta con válvulas de sobrepresión automáticas y desinfladores rápidos."
+      },
+      computer: {
+        title: "Ordenador de Buceo Multifunción",
+        step: "MONITORIZACIÓN Y SEGURIDAD",
+        desc: "Dispositivo digital con sensor barométrico que procesa algoritmos de descompresión (Haldane/Bühlmann). Muestra profundidad actual, tiempo restante de no descompresión (NDL), velocidad de ascenso en m/min y cuenta regresiva de la parada de seguridad a 5 metros."
+      },
+      tank: {
+        title: "Cilindro de Gas Submarino (Botella)",
+        step: "VERIFICACIÓN DE PRESIÓN INICIAL",
+        desc: "Cilindro fabricado en aleación de aluminio 6061-T6 o acero. La capacidad estándar es de 12 litros cargado a 207 bar (3000 PSI). Debe inspeccionarse anualmente mediante revisión visual y cada 5 años por prueba hidrostática reglamentaria."
+      },
+      mask: {
+        title: "Máscara de Vidrio Templado y Tubo",
+        step: "AJUSTE ÓPTICO Y ECUALIZACIÓN",
+        desc: "Crea una cámara de aire estanca frente a los ojos, restaurando el ángulo de refracción óptica bajo el agua. Su faldón de silicona incluye un bolsillo nasal flexible indispensable para poder pinzar la nariz y ejecutar la maniobra de Valsalva durante el descenso."
+      },
+      suit: {
+        title: "Traje Húmedo de Neopreno 3mm",
+        step: "PROTECCIÓN ISOTÉRMICA Y MECÁNICA",
+        desc: "El agua conduce el calor corporal 25 veces más rápido que el aire. En el Caribe (26 a 30 °C), un traje de 3mm atrapa una fina película de agua que el cuerpo calienta, evitando la pérdida calórica en inmersiones de 50 minutos y protegiendo contra roces accidentales con corales de fuego."
+      }
+    };
+
+    function selectGear(id) {
+      appState.selectedGear = id;
+      document.querySelectorAll('.gear-card').forEach(el => {
+        el.classList.remove('selected');
+        el.setAttribute('aria-pressed', 'false');
+      });
+      const card = document.getElementById('gear-' + id);
+      if (card) {
+        card.classList.add('selected');
+        card.setAttribute('aria-pressed', 'true');
+      }
+
+      const info = gearData[id];
+      if (info) {
+        const titleEl = document.getElementById('gearDetailTitle');
+        const stepEl = document.getElementById('gearDetailStep');
+        const descEl = document.getElementById('gearDetailText');
+        if (titleEl) titleEl.textContent = info.title;
+        if (stepEl) stepEl.textContent = info.step;
+        if (descEl) descEl.textContent = info.desc;
+      }
+    }
+
+    // Filtro de Especies
+    function filterSpecies(cat, btn) {
+      appState.activeSpeciesFilter = cat;
+      const btns = document.querySelectorAll('#speciesFilters .filter-btn');
+      btns.forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const cards = document.querySelectorAll('#speciesGrid .species-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Filtro de Destinos
+    function filterDest(type, btn) {
+      appState.activeDestFilter = type;
+      const btns = document.querySelectorAll('#destFilters .filter-btn');
+      btns.forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const cards = document.querySelectorAll('#destGrid .destination-card');
+      cards.forEach(card => {
+        const cardTypes = card.getAttribute('data-types') || '';
+        if (type === 'all' || cardTypes.includes(type)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Datos detallados de Destinos para el Modal
+    const destDetails = {
+      'san-andres': {
+        title: "San Andrés y Providencia (Colombia)",
+        region: "Reserva de la Biosfera Seaflower (Caribe Suroccidental)",
+        depth: "6 a >300 metros (Fondos someros a paredes oceánicas)",
+        vis: "20 a 35 metros continuos",
+        season: "Diciembre a Abril (estación seca ideal; operable año completo fuera de huracanes)",
+        sites: "La Pared (Blue Wall), Nirvana, La Rocosa, Cantil de Providencia, Felipe's Place, Manta City y Cayo Cangrejo.",
+        regulations: "Área Marina Protegida con zonificación estricta. Prohibido extraer conchas de caracol pala (Aliger gigas) y pesca submarina con tanques. Monitoreo liderado por CORALINA.",
+        desc: "San Andrés y Providencia acogen la tercera barrera coralina más extensa del planeta. Mientras San Andrés ofrece una logística turística ágil con inmersiones de pared abrupta como La Pared (que cae de 15 a más de 300 metros), Providencia se mantiene como un paraíso prístino y remoto, con avistamientos regulares de tiburones de arrecife, mantarrayas y extensos bosques de coral negro en The Wall."
+      },
+      'cozumel': {
+        title: "Cozumel (México)",
+        region: "Arrecife Mesoamericano (Quintana Roo)",
+        depth: "10 a 40+ metros (Plataformas y grandes muros de corriente)",
+        vis: "30 a 45 metros (claridad óptica de clase mundial)",
+        season: "Noviembre a Mayo (aguas tranquilas y temperaturas de 26-28 °C)",
+        sites: "Arrecife Palancar (Jardines, Cuevas, Herradura), Muro de Santa Rosa, Paso del Cedral, Pecio C-53 Felipe Xicoténcatl.",
+        regulations: "Parque Nacional Arrecifes de Cozumel (decretado en 1996). Obligatorio el acompañamiento de guía local acreditado. Prohibido el uso de guantes para evitar el contacto físico con el arrecife.",
+        desc: "Cozumel es la capital indiscutible del 'drift diving' (buceo de deriva). La Corriente del Caribe fluye de sur a norte a lo largo de la costa oeste de la isla, permitiendo al buceador planear sin esfuerzo sobre formaciones de coral colosales y cañones que caen hacia el abismo. Hogar exclusivo del pez sapo espléndido (Sanopus splendidus), una especie endémica que habita en oquedades de arena bajo las rocas coralinas."
+      },
+      'bonaire': {
+        title: "Bonaire (Caribe Neerlandés)",
+        region: "Islas ABC (Sur del Mar Caribe)",
+        depth: "5 a 40 metros (Arrecife de franja que nace a escasos metros de la playa)",
+        vis: "25 a 35 metros",
+        season: "Todo el año (situada fuera del cinturón habitual de huracanes)",
+        sites: "Salt Pier, Pecio Hilma Hooker (72m), 1000 Steps, Karpata, Bari Reef.",
+        regulations: "STINAPA Bonaire National Marine Park. Pago obligatorio del 'Nature Fee' anual. Orientación obligatoria y 'check dive' de flotabilidad previo. Prohibición estricta de protectores solares con oxibenzona.",
+        desc: "Reconocida internacionalmente como la capital del buceo desde costa. Divers alquilan camionetas pick-up y se dirigen libremente a cualquiera de los más de 54 puntos señalizados con rocas pintadas de amarillo al costado de la carretera. Sus arrecifes son pioneros mundiales en políticas de bioseguridad, habiendo prohibido totalmente el fondeo con anclas desde la década de 1970."
+      },
+      'cayman': {
+        title: "Islas Caimán (Grand Cayman & Little Cayman)",
+        region: "Caribe Central",
+        depth: "3 a >1.000 metros (De sandbars familiares a fosas abismales)",
+        vis: "30 a 45+ metros",
+        season: "Diciembre a Mayo (mar calmo y máxima transparencia)",
+        sites: "Bloody Bay Wall (Little Cayman), USS Kittiwake (Grand Cayman), Stingray City, MV Captain Keith Tibbetts (Cayman Brac).",
+        regulations: "Sistema de zonas de conservación marina y límites estrictos de velocidad de embarcaciones. Prohibición de extracción de corales y artefactos de naufragios.",
+        desc: "Little Cayman alberga el mítico Bloody Bay Wall, considerado uno de los mayores espectáculos geológicos submarinos del mundo: una cornisa coralina que arranca en sólo 6 metros y se desploma verticalmente hacia los cañones del fondo oceánico. Por su parte, Grand Cayman alberga el USS Kittiwake, un buque de rescate de submarinos de 5 cubiertas perfectamente acondicionado para penetración recreativa segura."
+      },
+      'roatan': {
+        title: "Roatán (Honduras)",
+        region: "Sistema Arrecifal Mesoamericano (Islas de la Bahía)",
+        depth: "8 a 40 metros (Cañones, chimeneas y paredes)",
+        vis: "20 a 35 metros",
+        season: "Febrero a Septiembre (temporada seca y aguas cálidas de 28-29 °C)",
+        sites: "West End Wall, Mary's Place, Pecio El Águila, Pecio Halliburton, Mandy's Eel Garden.",
+        regulations: "Roatan Marine Park (BINMP). Obligatorio el uso de boyas fijas de amarre. Regulación especial para la erradicación supervisada del pez león con arpones hawaianos.",
+        desc: "Roatán combina una biodiversidad asombrosa con una accesibilidad inmejorable: los arrecifes de barrera se sitúan a apenas 2 o 3 minutos en lancha rápida desde la playa de West End. Su relieve submarino está marcado por profundas fracturas y chimeneas volcánicas recubiertas de esponjas tubo, con una vibrante comunidad de tortugas y cardúmenes de jureles."
+      },
+      'dom-rep': {
+        title: "República Dominicana (Bayahibe & Santo Domingo)",
+        region: "Antillas Mayores",
+        depth: "10 a 44 metros (Especialización en buceo de pecios)",
+        vis: "20 a 30 metros",
+        season: "Diciembre a Mayo",
+        sites: "Pecio St. George (Bayahibe, 12-44m), Atlantic Princess (Bayahibe, 12m), El Hickory (Parque Submarino La Caleta, 18m), Arrecife Guaraguao.",
+        regulations: "Parque Nacional Cotubanamá y Parque Nacional Submarino La Caleta. Respeto a las estructuras de patrimonio subacuático e investigación arqueológica.",
+        desc: "El litoral dominicano es el epicentro de la historia de pecios del Caribe. El Atlantic Princess (12m) ofrece la iniciación perfecta en barcos hundidos sobre fondos de arena blanca, mientras el impresionante St. George (carguero de 73m de eslora que descansa entre 12 y 44 metros) brinda una experiencia fascinante para buceadores avanzados con presencia constante de rayas águila y meros gigantes."
+      }
+    };
+
+    function openDestinationModal(key) {
+      const data = destDetails[key];
+      if (!data) return;
+
+      const content = `
+        <div class="dossier-bar" style="margin-bottom: var(--space-sm);">
+          <span class="dossier-pill">${data.region}</span>
+        </div>
+        <h3 id="modalTitle" style="font-family: var(--font-headline); font-size: 1.6rem; margin: 0 0 var(--space-sm) 0; color: var(--primary);">
+          ${data.title}
+        </h3>
+        <p style="font-size: 0.95rem; color: var(--on-surface); line-height: 1.6; margin-bottom: var(--space-md);">
+          ${data.desc}
+        </p>
+
+        <div class="aside-box" style="margin-bottom: var(--space-md);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-sm); font-size: 0.88rem;">
+            <div><strong>Perfil de Profundidad:</strong> ${data.depth}</div>
+            <div><strong>Visibilidad Media:</strong> ${data.vis}</div>
+            <div><strong>Mejor Época Operativa:</strong> ${data.season}</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: var(--space-md); font-size: 0.9rem;">
+          <strong>Puntos de Inmersión Clave:</strong>
+          <p style="margin: 4px 0 0 0; color: var(--on-surface-variant);">${data.sites}</p>
+        </div>
+
+        <div style="font-size: 0.88rem; background: #fef2f2; border-left: 3px solid var(--tertiary); padding: var(--space-sm) var(--space-md);">
+          <strong style="color: var(--tertiary);">Gobernanza y Reglas Locales:</strong>
+          <span style="color: #7f1d1d;"> ${data.regulations}</span>
+        </div>
+      `;
+
+      const container = document.getElementById('modalContent');
+      if (container) container.innerHTML = content;
+
+      const modal = document.getElementById('detailModalOverlay');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeDestinationModal() {
+      const modal = document.getElementById('detailModalOverlay');
+      if (modal) modal.classList.remove('active');
+    }
+
+    // Modal para Galería Submarina
+    const galleryDetails = {
+      'bloody-wall': {
+        title: "Bloody Bay Wall (Little Cayman)",
+        location: "Little Cayman, Islas Caimán",
+        depth: "18 a 35 metros (caída a >1.000m)",
+        desc: "Considerado el abismo más espectacular del Caribe. Una caída perpendicular tapizada de esponjas gigantes de tubo, abanicos de mar gorgónicos y aguas tan límpidas que producen la sensación de volar en el vacío cósmico.",
+        photoTip: "Utilizar lente gran angular (16-35mm) para captar la silueta del buzo recortada contra el azul profundo abismal sin utilizar flash para evitar partículas flotantes."
+      },
+      'kittiwake': {
+        title: "USS Kittiwake (Grand Cayman)",
+        location: "Seven Mile Beach, Grand Cayman",
+        depth: "5 a 20 metros",
+        desc: "Antiguo buque de rescate de la Marina de EE.UU. de 76 metros de eslora hundido en 2011. Sus 5 cubiertas fueron totalmente descontaminadas y abiertas con amplios pasos para una penetración recreativa completamente segura.",
+        photoTip: "La luz cenital del mediodía atraviesa las escotillas del puente de mando creando haces solares volumétricos ideales para fotografía interior."
+      },
+      'salt-pier': {
+        title: "Pilotes del Salt Pier (Bonaire)",
+        location: "Costa Sur, Bonaire",
+        depth: "8 a 16 metros",
+        desc: "Las colosales columnas de hormigón del muelle salinero funcionan como un arrecife artificial vertical exuberante, recubierto de anémonas, esponjas incrustantes y patrullado por nubes de tarpones y barracudas.",
+        photoTip: "Composición vertical aprovechando las líneas de fuga de las columnas y el contraste con cardúmenes en formación cerrada."
+      },
+      'tayrona': {
+        title: "Arrecifes Graníticos del Tayrona (Santa Marta)",
+        location: "Parque Nacional Natural Tayrona, Colombia",
+        depth: "10 a 25 metros",
+        desc: "Fusión geomorfológica entre la cordillera costera más alta del mundo y el Mar Caribe. Afloramientos de roca oscura colonizados por corales blandos y el hábitat por excelencia de caballitos de mar y pulpos.",
+        photoTip: "Lente macro (60-100mm) y flash con difusor para retratar los detalles cromáticos de nudibranquios y pequeños invertebrados en grietas."
+      },
+      'seaflower': {
+        title: "Cantil de la Reserva Seaflower (Providencia)",
+        location: "Archipiélago de San Andrés, Colombia",
+        depth: "20 a 40 metros",
+        desc: "El borde exterior de la tercera barrera de coral más extensa del planeta. Un paredón virgen donde proliferan colonias de coral negro y donde es común coincidir con tiburones de arrecife patrullando la corriente.",
+        photoTip: "Velocidad de obturación rápida (1/250s) para congelar el nado majestuoso de tiburones o rayas águila en media agua."
+      },
+      'rhone': {
+        title: "El Histórico RMS Rhone (BVI)",
+        location: "Salt Island, Islas Vírgenes Británicas",
+        depth: "9 a 24 metros",
+        desc: "Vapor de correos de hierro construido en 1865 y hundido durante el huracán San Narciso de 1867. Su enorme hélice de bronce y el túnel del eje de transmisión forman uno de los escenarios arqueológicos más fotografiados del mundo.",
+        photoTip: "Iluminación cruzada con dos flashes estroboscópicos para resaltar la textura de hierro oxidado colonizado por corales copa naranja."
+      }
+    };
+
+    function openGalleryModal(key) {
+      const data = galleryDetails[key];
+      if (!data) return;
+
+      const content = `
+        <div class="dossier-bar" style="margin-bottom: var(--space-sm);">
+          <span class="dossier-pill coral">REGISTRO FOTOGRÁFICO</span>
+          <span class="dossier-meta">${data.location}</span>
+        </div>
+        <h3 id="modalTitle" style="font-family: var(--font-headline); font-size: 1.5rem; margin: 0 0 var(--space-xs) 0; color: var(--primary);">
+          ${data.title}
+        </h3>
+        <div style="font-size: 0.85rem; font-family: var(--font-label); color: var(--secondary); margin-bottom: var(--space-md);">
+          PROFUNDIDAD MEDIA: ${data.depth}
+        </div>
+        <p style="font-size: 0.95rem; color: var(--on-surface); line-height: 1.6; margin-bottom: var(--space-md);">
+          ${data.desc}
+        </p>
+        <div class="aside-box" style="background: var(--surface-container); border-left: 3px solid var(--primary-container);">
+          <strong style="color: var(--primary);"><i data-lucide="camera" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i> Consejo para Fotografía Submarina:</strong>
+          <p style="margin: 4px 0 0 0; font-size: 0.88rem; color: var(--on-surface-variant);">${data.photoTip}</p>
+        </div>
+      `;
+
+      const container = document.getElementById('modalContent');
+      if (container) container.innerHTML = content;
+
+      if (window.lucide) window.lucide.createIcons();
+
+      const modal = document.getElementById('detailModalOverlay');
+      if (modal) modal.classList.add('active');
+    }
+
+    // Cerrar modal con tecla Escape o clic fuera
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDestinationModal();
+    });
+    const overlayEl = document.getElementById('detailModalOverlay');
+    if (overlayEl) {
+      overlayEl.addEventListener('click', (e) => {
+        if (e.target === overlayEl) closeDestinationModal();
+      });
+    }
+
+    // SIMULADOR / PLANIFICADOR DE INMERSIÓN
+    // Tabla simplificada NDL (No-Decompression Limit) según US Navy / PADI en minutos
+    const ndlTableAir = {
+      10: 219, 12: 147, 14: 98, 16: 72, 18: 56, 20: 45,
+      22: 37, 24: 29, 26: 25, 28: 20, 30: 17, 32: 15,
+      34: 12, 36: 11, 38: 9, 40: 8
+    };
+    const ndlTableEan32 = {
+      10: 300, 12: 210, 14: 150, 16: 105, 18: 85, 20: 70,
+      22: 55, 24: 45, 26: 37, 28: 30, 30: 25, 32: 22,
+      34: 18, 36: 15, 38: 13, 40: 10
+    };
+    const ndlTableEan36 = {
+      10: 350, 12: 260, 14: 190, 16: 135, 18: 110, 20: 90,
+      22: 70, 24: 55, 26: 45, 28: 38, 30: 30, 32: 26,
+      34: 22, 36: 18, 38: 15, 40: 12
+    };
+
+    function updateDivePlan() {
+      const depthInput = document.getElementById('depthInput');
+      const gasSelect = document.getElementById('gasSelect');
+      const timeInput = document.getElementById('timeInput');
+
+      if (!depthInput || !gasSelect || !timeInput) return;
+
+      const depth = parseInt(depthInput.value, 10);
+      const gas = gasSelect.value;
+      const bTime = parseInt(timeInput.value, 10);
+
+      appState.depth = depth;
+      appState.gas = gas;
+      appState.bottomTime = bTime;
+
+      const depthValEl = document.getElementById('depthVal');
+      const timeValEl = document.getElementById('timeVal');
+      if (depthValEl) depthValEl.textContent = `${depth} m (${Math.round(depth * 3.28)} ft)`;
+      if (timeValEl) timeValEl.textContent = `${bTime} minutos`;
+
+      // Cálculo de Presión Absoluta (ATA) = (Profundidad / 10) + 1
+      const ata = (depth / 10) + 1;
+      let fo2 = 0.21;
+      let table = ndlTableAir;
+
+      if (gas === 'ean32') {
+        fo2 = 0.32;
+        table = ndlTableEan32;
+      } else if (gas === 'ean36') {
+        fo2 = 0.36;
+        table = ndlTableEan36;
+      }
+
+      // PO2 = FO2 * ATA
+      const po2 = fo2 * ata;
+      const po2ResultEl = document.getElementById('po2Result');
+      if (po2ResultEl) {
+        po2ResultEl.textContent = po2.toFixed(2) + ' ATA';
+        if (po2 > 1.6) {
+          po2ResultEl.style.color = '#dc2626'; // Toxicidad grave
+        } else if (po2 > 1.4) {
+          po2ResultEl.style.color = '#d97706'; // Límite contingencia
+        } else {
+          po2ResultEl.style.color = '#059669'; // Margen seguro
+        }
+      }
+
+      // NDL Lookup con interpolación
+      const closestDepth = Math.round(depth / 2) * 2;
+      const validKey = Math.min(Math.max(closestDepth, 10), 40);
+      const ndl = table[validKey] || 15;
+
+      const ndlResultEl = document.getElementById('ndlResult');
+      if (ndlResultEl) {
+        ndlResultEl.textContent = ndl + ' min';
+      }
+
+      // Evaluación del Estado
+      const badge = document.getElementById('statusBadge');
+      if (badge) {
+        if (po2 > 1.4) {
+          badge.className = 'status-indicator danger';
+          badge.textContent = 'ALERTA PO₂ (> 1.4 ATA)';
+        } else if (bTime > ndl) {
+          badge.className = 'status-indicator warning';
+          badge.textContent = 'INCURSIÓN EN DECO (NDL EXCEDIDO)';
+        } else {
+          badge.className = 'status-indicator safe';
+          badge.textContent = 'DENTRO DE LÍMITES';
+        }
+      }
+
+      savePersistedState();
+    }
+
+    // Quiz de Buceo Sostenible
+    function calculateEcoScore(e) {
+      e.preventDefault();
+      const form = document.getElementById('ecoQuiz');
+      if (!form) return;
+
+      const q1 = form.elements['q1'] ? form.elements['q1'].value : null;
+      const q2 = form.elements['q2'] ? form.elements['q2'].value : null;
+      const q3 = form.elements['q3'] ? form.elements['q3'].value : null;
+
+      if (!q1 || !q2 || !q3) {
+        const resultBox = document.getElementById('quizResult');
+        if (resultBox) {
+          resultBox.style.display = 'block';
+          resultBox.innerHTML = `
+            <div style="display: flex; align-items: center; gap: var(--space-xs); color: var(--warning); font-weight: 700;">
+              <i data-lucide="alert-circle"></i> Selección incompleta
+            </div>
+            <p style="margin: var(--space-xs) 0 0 0; font-size: 0.92rem; color: var(--on-surface);">
+              Por favor responde a las tres preguntas para obtener tu diagnóstico ambiental.
+            </p>
+          `;
+          if (window.lucide) window.lucide.createIcons();
+        }
+        return;
+      }
+
+      appState.quizAnswers = { q1, q2, q3 };
+
+      let score = 0;
+      if (q1 === 'good') score++;
+      if (q2 === 'good') score++;
+      if (q3 === 'good') score++;
+
+      const resultBox = document.getElementById('quizResult');
+      if (!resultBox) return;
+
+      resultBox.style.display = 'block';
+
+      if (score === 3) {
+        resultBox.innerHTML = `
+          <div style="display: flex; align-items: center; gap: var(--space-xs); color: #059669; font-weight: 700;">
+            <i data-lucide="check-circle-2"></i> Puntuación: 3/3 - Buceador Guardián del Arrecife (Nivel Excelente)
+          </div>
+          <p style="margin: var(--space-xs) 0 0 0; font-size: 0.92rem; color: var(--on-surface);">
+            ¡Felicitaciones! Demuestras un entendimiento sobresaliente del control de flotabilidad, protección química mineral y manejo ético de especies invasoras. Cumples con los estándares de Green Fins y PADI AWARE.
+          </p>
+        `;
+      } else if (score === 2) {
+        resultBox.innerHTML = `
+          <div style="display: flex; align-items: center; gap: var(--space-xs); color: #d97706; font-weight: 700;">
+            <i data-lucide="alert-circle"></i> Puntuación: 2/3 - Buceador Consciente con Margen de Mejora
+          </div>
+          <p style="margin: var(--space-xs) 0 0 0; font-size: 0.92rem; color: var(--on-surface);">
+            Tienes una buena sensibilidad ambiental, pero recuerda: nunca toques el coral bajo ninguna circunstancia (usa el BCD o pulmones para corregir flotabilidad) y jamás emplees cremas convencionales en el mar.
+          </p>
+        `;
+      } else {
+        resultBox.innerHTML = `
+          <div style="display: flex; align-items: center; gap: var(--space-xs); color: var(--tertiary); font-weight: 700;">
+            <i data-lucide="alert-triangle"></i> Puntuación: ${score}/3 - Nivel de Impacto Elevado
+          </div>
+          <p style="margin: var(--space-xs) 0 0 0; font-size: 0.92rem; color: var(--on-surface);">
+            Es fundamental repasar los conceptos de flotabilidad neutra, el daño celular que los bloqueadores químicos ocasionan a los corales y los protocolos de seguridad ante fauna invasora. Consulta el decálogo de buenas prácticas arriba.
+          </p>
+        `;
+      }
+
+      if (window.lucide) window.lucide.createIcons();
+      savePersistedState();
+    }
+
+    // Persistencia con NotebookAppApi (Shim)
+    async function loadSavedState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            if (saved.depth) {
+              const dInput = document.getElementById('depthInput');
+              if (dInput) dInput.value = saved.depth;
+            }
+            if (saved.gas) {
+              const gSelect = document.getElementById('gasSelect');
+              if (gSelect) gSelect.value = saved.gas;
+            }
+            if (saved.bottomTime) {
+              const tInput = document.getElementById('timeInput');
+              if (tInput) tInput.value = saved.bottomTime;
+            }
+            if (saved.selectedGear) {
+              selectGear(saved.selectedGear);
+            }
+            updateDivePlan();
+          }
+        } catch (err) {
+          console.warn('No se pudo cargar el estado previo:', err);
+        }
+      }
+    }
+
+    async function savePersistedState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          console.warn('No se pudo guardar el estado actual:', err);
+        }
+      }
+    }
+
+    // Ejecución inicial tras carga del DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      updateDivePlan();
+      loadSavedState();
+    });
+  </script>
+
+  <!-- =========================================================
+       MÓDULO DE ACCESO — Firebase Authentication
+       Proveedor: correo electrónico y contraseña.
+       Si el SDK no se puede descargar, se muestra "Acceso no disponible".
+       ========================================================= -->
+  <script type="module" onerror="var n=document.getElementById('navAuth');if(n){n.dataset.state='error';n.querySelector('.nav-auth-skeleton').hidden=true;n.querySelector('.nav-auth-offline').hidden=false;}">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      sendPasswordResetEmail,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
+
+    // ---------- 1. Configuración del proyecto Firebase "web-caribe" ----------
+    // Estos valores identifican al proyecto y son públicos por diseño: la
+    // seguridad la aportan Firebase Authentication y las reglas del proyecto.
+    const firebaseConfig = {
+      apiKey: "AIzaSyBeqxkihiCpuiUm88SOMlH19ldrUPncaaQ",
+      authDomain: "web-caribe.firebaseapp.com",
+      projectId: "web-caribe",
+      storageBucket: "web-caribe.firebasestorage.app",
+      messagingSenderId: "531276173278",
+      appId: "1:531276173278:web:1ae23a7d3a5dae7783d74f",
+      measurementId: "G-9T0FVWTEEQ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    auth.languageCode = 'es'; // Correos de Firebase (p. ej. restablecer contraseña) en español
+
+    // Analytics se carga aparte: si un bloqueador de anuncios lo impide
+    // o el navegador no lo admite, el inicio de sesión sigue funcionando.
+    import("https://www.gstatic.com/firebasejs/13.3.0/firebase-analytics.js")
+      .then(async ({ getAnalytics, isSupported }) => {
+        if (await isSupported()) getAnalytics(app);
+      })
+      .catch(() => console.info('Firebase Analytics no está disponible en este navegador.'));
+
+    // ---------- 2. Referencias al DOM ----------
+    const $ = (id) => document.getElementById(id);
+    const navAuth = $('navAuth');
+    const openAuthBtn = $('openAuthBtn');
+    const navUser = $('navUser');
+    const overlay = $('authModalOverlay');
+    const form = $('authForm');
+    const emailInput = $('authEmail');
+    const passwordInput = $('authPassword');
+    const confirmInput = $('authConfirm');
+    const togglePassBtn = $('togglePassBtn');
+    const messageBox = $('authMessage');
+    const submitBtn = $('authSubmit');
+    const tabs = [$('tabLogin'), $('tabRegister')];
+
+    // ---------- 3. Textos de cada modo de la ventana ----------
+    const MODOS = {
+      login: {
+        titulo: 'Inicia sesión',
+        descripcion: 'Accede con tu correo electrónico y contraseña.',
+        boton: 'Entrar',
+        autocompletar: 'current-password'
+      },
+      register: {
+        titulo: 'Crea tu cuenta',
+        descripcion: 'Regístrate con tu correo electrónico y una contraseña de al menos 6 caracteres.',
+        boton: 'Crear cuenta',
+        autocompletar: 'new-password'
+      },
+      reset: {
+        titulo: 'Recupera tu contraseña',
+        descripcion: 'Escribe tu correo y te enviaremos un enlace para crear una contraseña nueva.',
+        boton: 'Enviar enlace',
+        autocompletar: 'current-password'
+      }
+    };
+
+    // Errores de Firebase traducidos a mensajes claros en español
+    const ERRORES = {
+      'auth/invalid-email': 'El correo electrónico no tiene un formato válido.',
+      'auth/missing-email': 'Escribe tu correo electrónico.',
+      'auth/missing-password': 'Escribe tu contraseña.',
+      'auth/invalid-credential': 'Correo o contraseña incorrectos.',
+      'auth/invalid-login-credentials': 'Correo o contraseña incorrectos.',
+      'auth/wrong-password': 'Correo o contraseña incorrectos.',
+      'auth/user-not-found': 'Correo o contraseña incorrectos.',
+      'auth/user-disabled': 'Esta cuenta está deshabilitada.',
+      'auth/email-already-in-use': 'Ya existe una cuenta con este correo. Inicia sesión o recupera tu contraseña.',
+      'auth/weak-password': 'La contraseña es muy débil: usa al menos 6 caracteres.',
+      'auth/password-does-not-meet-requirements': 'La contraseña no cumple los requisitos de seguridad del proyecto.',
+      'auth/too-many-requests': 'Demasiados intentos seguidos. Espera unos minutos e inténtalo de nuevo.',
+      'auth/network-request-failed': 'No hay conexión con el servidor. Revisa tu conexión a internet.',
+      'auth/operation-not-allowed': 'El acceso con correo y contraseña no está habilitado en la consola de Firebase.'
+    };
+    const traducirError = (err) =>
+      ERRORES[err?.code] || 'No se pudo completar la operación. Inténtalo de nuevo.';
+
+    // ---------- 4. Utilidades de interfaz ----------
+    let modoActual = 'login';
+    let ultimoFoco = null;
+    let toastTimer = null;
+
+    function mostrarMensaje(texto, tipo) {
+      messageBox.textContent = texto;
+      messageBox.className = 'auth-message ' + (tipo === 'success' ? 'is-success' : 'is-error');
+    }
+
+    function limpiarMensaje() {
+      messageBox.textContent = '';
+      messageBox.className = 'auth-message';
+      [emailInput, passwordInput, confirmInput].forEach((el) => el.removeAttribute('aria-invalid'));
+    }
+
+    function marcarCampo(input, texto) {
+      mostrarMensaje(texto, 'error');
+      input.setAttribute('aria-invalid', 'true');
+      input.focus();
+    }
+
+    function setCargando(cargando) {
+      submitBtn.disabled = cargando;
+      submitBtn.classList.toggle('is-loading', cargando);
+      submitBtn.setAttribute('aria-busy', String(cargando));
+    }
+
+    function mostrarContrasena(mostrar) {
+      const tipo = mostrar ? 'text' : 'password';
+      passwordInput.type = tipo;
+      confirmInput.type = tipo;
+      togglePassBtn.setAttribute('aria-pressed', String(mostrar));
+      togglePassBtn.setAttribute('aria-label', mostrar ? 'Ocultar contraseña' : 'Mostrar contraseña');
+      togglePassBtn.querySelector('[data-icon="show"]').hidden = mostrar;
+      togglePassBtn.querySelector('[data-icon="hide"]').hidden = !mostrar;
+    }
+
+    function toast(texto) {
+      const el = $('authToast');
+      el.textContent = texto;
+      el.classList.add('is-visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('is-visible'), 3500);
+    }
+
+    // Cambia entre "login", "register" y "reset"
+    function setModo(modo) {
+      modoActual = modo;
+      const cfg = MODOS[modo];
+      $('authTitle').textContent = cfg.titulo;
+      $('authLead').textContent = cfg.descripcion;
+      $('authSubmitLabel').textContent = cfg.boton;
+      passwordInput.setAttribute('autocomplete', cfg.autocompletar);
+
+      $('authTabs').hidden = modo === 'reset';
+      $('fieldPassword').hidden = modo === 'reset';
+      $('authPasswordHint').hidden = modo !== 'register';
+      $('fieldConfirm').hidden = modo !== 'register';
+      $('rowForgot').hidden = modo !== 'login';
+      $('backToLoginBtn').hidden = modo !== 'reset';
+
+      tabs.forEach((tab) => {
+        const activa = tab.dataset.mode === modo;
+        tab.setAttribute('aria-selected', String(activa));
+        tab.tabIndex = activa ? 0 : -1;
+      });
+
+      confirmInput.value = '';
+      mostrarContrasena(false);
+      limpiarMensaje();
+    }
+
+    function abrirModal(modo = 'login') {
+      ultimoFoco = document.activeElement;
+      form.reset();
+      setModo(modo);
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => emailInput.focus(), 50);
+    }
+
+    function cerrarModal() {
+      if (!overlay.classList.contains('active')) return;
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+      setCargando(false);
+      if (ultimoFoco && document.contains(ultimoFoco)) ultimoFoco.focus();
+    }
+
+    // ---------- 5. Validación antes de llamar a Firebase ----------
+    const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Devuelve [campo, mensaje] si hay un error, o null si todo está bien
+    function validar(email, password, confirmacion) {
+      if (!email) return [emailInput, 'Escribe tu correo electrónico.'];
+      if (!EMAIL_VALIDO.test(email)) return [emailInput, 'El correo electrónico no tiene un formato válido.'];
+      if (modoActual === 'reset') return null;
+      if (!password) return [passwordInput, 'Escribe tu contraseña.'];
+      if (modoActual === 'register') {
+        if (password.length < 6) return [passwordInput, 'La contraseña debe tener al menos 6 caracteres.'];
+        if (password !== confirmacion) return [confirmInput, 'Las contraseñas no coinciden.'];
+      }
+      return null;
+    }
+
+    // ---------- 6. Envío del formulario: login, registro o recuperación ----------
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      limpiarMensaje();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      const error = validar(email, password, confirmInput.value);
+      if (error) {
+        marcarCampo(...error);
+        return;
+      }
+
+      setCargando(true);
+      try {
+        if (modoActual === 'login') {
+          const { user } = await signInWithEmailAndPassword(auth, email, password);
+          cerrarModal();
+          toast(`Sesión iniciada: ${user.email}`);
+        } else if (modoActual === 'register') {
+          const { user } = await createUserWithEmailAndPassword(auth, email, password);
+          cerrarModal();
+          toast(`Cuenta creada para ${user.email}. ¡Te damos la bienvenida a bordo!`);
+        } else {
+          await sendPasswordResetEmail(auth, email);
+          mostrarMensaje('Si existe una cuenta con ese correo, recibirás un enlace para restablecer la contraseña. Revisa también la carpeta de spam.', 'success');
+        }
+      } catch (err) {
+        console.error('[Firebase Auth]', err.code, err.message);
+        mostrarMensaje(traducirError(err), 'error');
+      } finally {
+        setCargando(false);
+      }
+    });
+
+    // ---------- 7. Estado de la sesión (se ejecuta al cargar y en cada cambio) ----------
+    onAuthStateChanged(auth, (user) => {
+      navAuth.dataset.state = user ? 'in' : 'out';
+      navAuth.querySelector('.nav-auth-skeleton').hidden = true;
+      openAuthBtn.hidden = Boolean(user);
+      navUser.hidden = !user;
+
+      if (user) {
+        $('navUserEmail').textContent = user.email;
+        $('navUserEmail').title = user.email;
+        $('navUserAvatar').textContent = (user.email || '?').charAt(0);
+      }
+    });
+
+    $('signOutBtn').addEventListener('click', async () => {
+      try {
+        await signOut(auth);
+        toast('Sesión cerrada. ¡Buenas inmersiones!');
+      } catch (err) {
+        console.error('[Firebase Auth]', err.code, err.message);
+        toast('No se pudo cerrar la sesión. Inténtalo de nuevo.');
+      }
+    });
+
+    // ---------- 8. Interacción de la ventana ----------
+    openAuthBtn.addEventListener('click', () => abrirModal('login'));
+    $('authCloseBtn').addEventListener('click', cerrarModal);
+    $('forgotBtn').addEventListener('click', () => {
+      setModo('reset');
+      emailInput.focus();
+    });
+    $('backToLoginBtn').addEventListener('click', () => {
+      setModo('login');
+      emailInput.focus();
+    });
+    togglePassBtn.addEventListener('click', () => mostrarContrasena(passwordInput.type === 'password'));
+
+    [emailInput, passwordInput, confirmInput].forEach((input) =>
+      input.addEventListener('input', () => input.removeAttribute('aria-invalid'))
+    );
+
+    // Pestañas: clic y flechas izquierda/derecha
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => setModo(tab.dataset.mode));
+      tab.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const siguiente = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        setModo(siguiente.dataset.mode);
+        siguiente.focus();
+      });
+    });
+
+    // Cerrar con clic fuera de la ventana o con Escape; mantener el foco dentro
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) cerrarModal();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (!overlay.classList.contains('active')) return;
+      if (e.key === 'Escape') {
+        cerrarModal();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const enfocables = [...overlay.querySelectorAll('button, input')]
+        .filter((el) => !el.disabled && el.offsetParent !== null && el.tabIndex !== -1);
+      const primero = enfocables[0];
+      const ultimo = enfocables[enfocables.length - 1];
+      if (e.shiftKey && document.activeElement === primero) {
+        e.preventDefault();
+        ultimo.focus();
+      } else if (!e.shiftKey && document.activeElement === ultimo) {
+        e.preventDefault();
+        primero.focus();
+      }
+    });
+  </script>
+</body>
+</html>
