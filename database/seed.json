@@ -1,0 +1,1507 @@
+{
+  "meta": {
+    "schemaVersion": 1,
+    "generatedAt": "2026-11-12T20:08:32.757Z",
+    "locale": "es",
+    "counts": {
+      "regions": 5,
+      "countries": 6,
+      "sources": 6,
+      "certifications": 8,
+      "diveModes": 8,
+      "species": 15,
+      "ecosystems": 5,
+      "destinations": 7,
+      "diveSites": 28,
+      "wrecks": 11,
+      "threats": 5,
+      "practices": 6,
+      "safetyRules": 8,
+      "hyperbaricChambers": 4,
+      "glossary": 13
+    }
+  },
+  "catalog": {
+    "regions": {
+      "caribe-suroccidental": {
+        "status": "published",
+        "name": "Caribe suroccidental",
+        "order": 1,
+        "summary": "Archipiélago de San Andrés, Providencia y Santa Catalina, núcleo de la Reserva de Biosfera Seaflower."
+      },
+      "caribe-sur": {
+        "status": "published",
+        "name": "Caribe sur",
+        "order": 2,
+        "summary": "Costa continental de Colombia y las islas ABC (Aruba, Bonaire y Curazao)."
+      },
+      "arrecife-mesoamericano": {
+        "status": "published",
+        "name": "Sistema Arrecifal Mesoamericano",
+        "order": 3,
+        "summary": "Segunda barrera de coral más grande del mundo: de Yucatán (México) a las Islas de la Bahía (Honduras)."
+      },
+      "caribe-central": {
+        "status": "published",
+        "name": "Caribe central",
+        "order": 4,
+        "summary": "Islas oceánicas con paredes que caen a grandes profundidades, como las Islas Caimán."
+      },
+      "antillas-mayores": {
+        "status": "published",
+        "name": "Antillas Mayores",
+        "order": 5,
+        "summary": "Cuba, La Española, Jamaica y Puerto Rico: gran concentración de pecios accesibles."
+      }
+    },
+    "countries": {
+      "co": {
+        "status": "published",
+        "name": "Colombia"
+      },
+      "mx": {
+        "status": "published",
+        "name": "México"
+      },
+      "bq": {
+        "status": "published",
+        "name": "Caribe Neerlandés"
+      },
+      "ky": {
+        "status": "published",
+        "name": "Islas Caimán"
+      },
+      "hn": {
+        "status": "published",
+        "name": "Honduras"
+      },
+      "do": {
+        "status": "published",
+        "name": "República Dominicana"
+      }
+    },
+    "sources": {
+      "noaa": {
+        "status": "published",
+        "name": "NOAA (National Oceanic and Atmospheric Administration)",
+        "type": "gobierno",
+        "url": "https://www.noaa.gov"
+      },
+      "pnuma-cep": {
+        "status": "published",
+        "name": "PNUMA - Programa Ambiental del Caribe",
+        "type": "organizacion",
+        "url": "https://www.unep.org/cep/"
+      },
+      "padi": {
+        "status": "published",
+        "name": "PADI Worldwide & PADI AWARE",
+        "type": "certificadora",
+        "url": "https://www.padi.com"
+      },
+      "colombia-travel": {
+        "status": "published",
+        "name": "Colombia Travel (MinCIT)",
+        "type": "turismo",
+        "url": "https://colombia.travel"
+      },
+      "minambiente": {
+        "status": "published",
+        "name": "Ministerio de Ambiente de Colombia",
+        "type": "gobierno",
+        "url": "https://www.minambiente.gov.co"
+      },
+      "roatan-marine-park": {
+        "status": "published",
+        "name": "Iniciativa Blue Parks & Roatan Marine Park",
+        "type": "organizacion",
+        "url": "https://www.roatanmarinepark.org"
+      }
+    },
+    "certifications": {
+      "open-water": {
+        "status": "published",
+        "name": "Open Water Diver",
+        "order": 1,
+        "maxDepthM": 18,
+        "summary": "Nivel inicial: inmersiones autónomas con un compañero hasta 18 m."
+      },
+      "advanced-open-water": {
+        "status": "published",
+        "name": "Advanced Open Water Diver",
+        "order": 2,
+        "maxDepthM": 30,
+        "prerequisiteId": "open-water",
+        "summary": "Amplía el límite a 30 m e introduce navegación, buceo profundo y nocturno."
+      },
+      "deep": {
+        "status": "published",
+        "name": "Especialidad de buceo profundo",
+        "order": 3,
+        "maxDepthM": 40,
+        "prerequisiteId": "advanced-open-water",
+        "summary": "Planificación y gestión de gas hasta el límite recreativo de 40 m."
+      },
+      "nitrox": {
+        "status": "published",
+        "name": "Aire enriquecido (Nitrox)",
+        "order": 4,
+        "prerequisiteId": "open-water",
+        "summary": "Uso de mezclas con más oxígeno (normalmente 32 % o 36 %) para reducir la carga de nitrógeno."
+      },
+      "wreck": {
+        "status": "published",
+        "name": "Especialidad de pecios",
+        "order": 5,
+        "prerequisiteId": "open-water",
+        "summary": "Técnicas de navegación exterior y, con formación adicional, penetración en barcos hundidos."
+      },
+      "rescue": {
+        "status": "published",
+        "name": "Rescue Diver",
+        "order": 6,
+        "prerequisiteId": "advanced-open-water",
+        "summary": "Prevención y gestión de emergencias, autorrescate y rescate de compañeros."
+      },
+      "divemaster": {
+        "status": "published",
+        "name": "Divemaster",
+        "order": 7,
+        "prerequisiteId": "rescue",
+        "summary": "Primer nivel profesional: guía de buceadores certificados y asistencia a instructores."
+      },
+      "tec": {
+        "status": "published",
+        "name": "Buceo técnico",
+        "order": 8,
+        "prerequisiteId": "deep",
+        "summary": "Inmersiones más allá de 40 m o con descompresión obligatoria, con mezclas como Trimix."
+      }
+    },
+    "diveModes": {
+      "recreativo": {
+        "status": "published",
+        "name": "Buceo recreativo sin paradas",
+        "level": "recreativo",
+        "order": 1,
+        "minCertificationId": "open-water",
+        "summary": "De 18 m (Open Water) a 30-40 m (Advanced), siempre dentro del límite de no descompresión."
+      },
+      "deriva": {
+        "status": "published",
+        "name": "Buceo de deriva",
+        "level": "avanzado",
+        "order": 2,
+        "minCertificationId": "advanced-open-water",
+        "summary": "La corriente transporta al buceador a lo largo del arrecife; la embarcación lo sigue en superficie."
+      },
+      "orilla": {
+        "status": "published",
+        "name": "Buceo desde la orilla",
+        "level": "recreativo",
+        "order": 3,
+        "minCertificationId": "open-water",
+        "summary": "Entrada directa desde la costa a arrecifes de franja cercanos, sin necesidad de barco."
+      },
+      "nocturno": {
+        "status": "published",
+        "name": "Buceo nocturno",
+        "level": "avanzado",
+        "order": 4,
+        "minCertificationId": "advanced-open-water",
+        "summary": "Revela pólipos abiertos y depredadores cazando; exige foco primario, de respaldo y luz de posición."
+      },
+      "pecios": {
+        "status": "published",
+        "name": "Buceo en naufragios",
+        "level": "avanzado",
+        "order": 5,
+        "minCertificationId": "wreck",
+        "summary": "Exploración de barcos hundidos; la penetración interior exige certificación, carrete y luces redundantes."
+      },
+      "apnea": {
+        "status": "published",
+        "name": "Apnea o freediving",
+        "level": "recreativo",
+        "order": 6,
+        "summary": "Descenso sin tanque, con una sola respiración; exige relajación y gestión del reflejo de inmersión."
+      },
+      "cavernas": {
+        "status": "published",
+        "name": "Cavernas y cuevas",
+        "level": "tecnico",
+        "order": 7,
+        "minCertificationId": "tec",
+        "summary": "Caverna: con luz natural visible. Cueva: oscuridad total, línea guía continua y regla de tercios."
+      },
+      "tecnico": {
+        "status": "published",
+        "name": "Buceo técnico",
+        "level": "tecnico",
+        "order": 8,
+        "minCertificationId": "tec",
+        "summary": "Más allá de 40 m o con paradas descompresivas, usando Trimix y botellas de descompresión."
+      }
+    },
+    "species": {
+      "tortuga-carey": {
+        "status": "published",
+        "name": "Tortuga carey",
+        "scientificName": "Eretmochelys imbricata",
+        "group": "reptil",
+        "category": "reptil-pelagico",
+        "role": "Alimentadora de esponjas",
+        "iucnStatus": "CR",
+        "summary": "Se alimenta de esponjas que, sin control, asfixiarían las colonias de coral vivo."
+      },
+      "tortuga-verde": {
+        "status": "published",
+        "name": "Tortuga verde",
+        "scientificName": "Chelonia mydas",
+        "group": "reptil",
+        "category": "reptil-pelagico",
+        "role": "Herbívora de praderas",
+        "iucnStatus": "EN",
+        "summary": "Pasta en las praderas de pastos marinos y ayuda a mantenerlas sanas."
+      },
+      "raya-aguila-moteada": {
+        "status": "published",
+        "name": "Raya águila moteada",
+        "scientificName": "Aetobatus narinari",
+        "group": "elasmobranquio",
+        "category": "reptil-pelagico",
+        "role": "Pelágico acrobático",
+        "iucnStatus": "EN",
+        "summary": "Planea en grupos sobre paredes verticales y tritura moluscos enterrados en la arena."
+      },
+      "tiburon-arrecife": {
+        "status": "published",
+        "name": "Tiburón de arrecife del Caribe",
+        "scientificName": "Carcharhinus perezi",
+        "group": "elasmobranquio",
+        "category": "reptil-pelagico",
+        "role": "Depredador ápice",
+        "iucnStatus": "EN",
+        "summary": "Regula las poblaciones de depredadores medianos; frecuente en las paredes de Providencia y Little Cayman."
+      },
+      "pez-loro-guacamayo": {
+        "status": "published",
+        "name": "Pez loro guacamayo",
+        "scientificName": "Scarus guacamaia",
+        "group": "pez",
+        "category": "peces-arrecife",
+        "role": "Bioerosionador clave",
+        "iucnStatus": "NT",
+        "summary": "Raspa macroalgas que compiten con el coral y produce arena coralina blanca."
+      },
+      "pez-angel-reina": {
+        "status": "published",
+        "name": "Pez ángel reina",
+        "scientificName": "Holacanthus ciliaris",
+        "group": "pez",
+        "category": "peces-arrecife",
+        "role": "Fauna arrecifal",
+        "iucnStatus": "LC",
+        "summary": "Corona azul eléctrica y cuerpo amarillo; se alimenta de esponjas y tunicados."
+      },
+      "morena-verde": {
+        "status": "published",
+        "name": "Morena verde",
+        "scientificName": "Gymnothorax funebris",
+        "group": "pez",
+        "category": "peces-arrecife",
+        "role": "Cazador bentónico",
+        "iucnStatus": "LC",
+        "summary": "Su color verde proviene de una mucosa amarilla sobre piel gris azulada."
+      },
+      "mero-guasa": {
+        "status": "published",
+        "name": "Mero guasa",
+        "scientificName": "Epinephelus itajara",
+        "group": "pez",
+        "category": "peces-arrecife",
+        "role": "Gran depredador",
+        "iucnStatus": "VU",
+        "summary": "El mayor mero del Atlántico; sus juveniles crecen en los manglares."
+      },
+      "pez-sapo-esplendido": {
+        "status": "published",
+        "name": "Pez sapo espléndido",
+        "scientificName": "Sanopus splendidus",
+        "group": "pez",
+        "category": "peces-arrecife",
+        "role": "Endémico de Cozumel",
+        "endemic": true,
+        "summary": "Solo vive en Cozumel, oculto en oquedades de arena bajo las rocas coralinas."
+      },
+      "pez-leon": {
+        "status": "published",
+        "name": "Pez león",
+        "scientificName": "Pterois volitans",
+        "group": "pez",
+        "category": "peces-arrecife",
+        "role": "Especie invasora",
+        "invasive": true,
+        "summary": "Depredador del Indopacífico sin enemigos naturales en el Caribe; su control es prioritario."
+      },
+      "coral-cuerno-de-alce": {
+        "status": "published",
+        "name": "Coral cuerno de alce",
+        "scientificName": "Acropora palmata",
+        "group": "coral",
+        "category": "invertebrados",
+        "role": "Constructor arrecifal",
+        "iucnStatus": "CR",
+        "summary": "Estructura la zona de rompiente y disipa el oleaje; objeto de planes de restauración."
+      },
+      "esponja-barril-gigante": {
+        "status": "published",
+        "name": "Esponja de barril gigante",
+        "scientificName": "Xestospongia muta",
+        "group": "esponja",
+        "category": "invertebrados",
+        "role": "Filtrador",
+        "summary": "Llamada «la secuoya del arrecife»: puede vivir siglos y filtrar miles de litros al día."
+      },
+      "caracol-pala": {
+        "status": "published",
+        "name": "Caracol pala",
+        "scientificName": "Aliger gigas",
+        "group": "invertebrado",
+        "category": "invertebrados",
+        "role": "Especie protegida",
+        "summary": "Gasterópodo de las praderas marinas; su extracción está prohibida en San Andrés."
+      },
+      "langosta-espinosa": {
+        "status": "published",
+        "name": "Langosta espinosa del Caribe",
+        "scientificName": "Panulirus argus",
+        "group": "invertebrado",
+        "category": "invertebrados",
+        "role": "Especie con veda",
+        "summary": "Pasa su etapa juvenil en manglares y praderas; tiene temporadas de veda."
+      },
+      "pulpo-de-arrecife": {
+        "status": "published",
+        "name": "Pulpo de arrecife del Caribe",
+        "scientificName": "Octopus briareus",
+        "group": "invertebrado",
+        "category": "invertebrados",
+        "role": "Cazador nocturno",
+        "summary": "Protagonista de las inmersiones nocturnas, cuando sale a cazar entre las rocas."
+      }
+    },
+    "ecosystems": {
+      "arrecifes-coralinos": {
+        "status": "published",
+        "name": "Arrecifes coralinos",
+        "order": 1,
+        "subtitle": "Estructuras de carbonato de calcio",
+        "summary": "Construidos por pólipos en simbiosis con zooxantelas; albergan gran parte de la biodiversidad marina del Caribe.",
+        "keySpeciesIds": {
+          "coral-cuerno-de-alce": true,
+          "pez-loro-guacamayo": true,
+          "esponja-barril-gigante": true
+        },
+        "sourceIds": {
+          "noaa": true
+        }
+      },
+      "praderas-pastos-marinos": {
+        "status": "published",
+        "name": "Praderas de pastos marinos",
+        "order": 2,
+        "subtitle": "Lechos de Thalassia testudinum",
+        "summary": "Estabilizan sedimentos, clarifican el agua y almacenan carbono azul; alimentan a tortugas verdes y manatíes.",
+        "keySpeciesIds": {
+          "tortuga-verde": true,
+          "caracol-pala": true
+        },
+        "sourceIds": {
+          "pnuma-cep": true
+        }
+      },
+      "manglares": {
+        "status": "published",
+        "name": "Bosques de manglar",
+        "order": 3,
+        "subtitle": "Guarderías costeras",
+        "summary": "Las raíces del mangle rojo protegen larvas y juveniles de meros, pargos y langostas antes de migrar al arrecife.",
+        "keySpeciesIds": {
+          "mero-guasa": true,
+          "langosta-espinosa": true
+        },
+        "sourceIds": {
+          "pnuma-cep": true
+        }
+      },
+      "macizos-rocosos": {
+        "status": "published",
+        "name": "Macizos rocosos continentales",
+        "order": 4,
+        "subtitle": "Afloramientos y surgencias (Tayrona)",
+        "summary": "Paredes graníticas de la Sierra Nevada de Santa Marta bajo el mar, enriquecidas por fenómenos de surgencia.",
+        "keySpeciesIds": {
+          "pulpo-de-arrecife": true
+        },
+        "sourceIds": {
+          "minambiente": true
+        }
+      },
+      "complejos-karsticos": {
+        "status": "published",
+        "name": "Complejos kársticos",
+        "order": 5,
+        "subtitle": "Cenotes y agujeros azules",
+        "summary": "Formaciones de roca caliza disuelta, como los cenotes de Yucatán con haloclinas y espeleotemas.",
+        "sourceIds": {
+          "noaa": true
+        }
+      }
+    },
+    "destinations": {
+      "san-andres": {
+        "status": "published",
+        "name": "San Andrés y Providencia",
+        "countryCode": "co",
+        "regionId": "caribe-suroccidental",
+        "order": 1,
+        "summary": "Núcleo de la Reserva de Biosfera Seaflower (UNESCO) y del «Mar de los Siete Colores».",
+        "description": "Tercera barrera coralina más extensa del planeta. San Andrés ofrece logística ágil y paredes como La Pared (de 15 a más de 300 m); Providencia es remota y prístina, con tiburones de arrecife y coral negro.",
+        "depthRangeM": {
+          "min": 6,
+          "max": 300
+        },
+        "visibilityRangeM": {
+          "min": 20,
+          "max": 35
+        },
+        "bestSeason": "Diciembre a abril",
+        "protectedArea": "Reserva de Biosfera Seaflower (UNESCO)",
+        "regulations": "Zonificación estricta; prohibido extraer caracol pala y la pesca submarina con tanque. Monitoreo de CORALINA.",
+        "location": {
+          "lat": 12.58,
+          "lng": -81.7
+        },
+        "levelIds": {
+          "open-water": true,
+          "advanced-open-water": true
+        },
+        "diveModeIds": {
+          "recreativo": true,
+          "deriva": true
+        },
+        "ecosystemIds": {
+          "arrecifes-coralinos": true,
+          "praderas-pastos-marinos": true,
+          "manglares": true
+        },
+        "featuredSpeciesIds": {
+          "tiburon-arrecife": true,
+          "caracol-pala": true
+        },
+        "sourceIds": {
+          "colombia-travel": true,
+          "minambiente": true
+        }
+      },
+      "santa-marta": {
+        "status": "published",
+        "name": "Santa Marta, Taganga y P.N.N. Tayrona",
+        "countryCode": "co",
+        "regionId": "caribe-sur",
+        "order": 2,
+        "summary": "Capital formativa de Colombia, donde la Sierra Nevada se hunde en el mar.",
+        "description": "Más de 30 sitios en bahías protegidas como Granate y Calichan, rica macrofauna y la principal infraestructura hiperbárica del Caribe colombiano.",
+        "depthRangeM": {
+          "min": 4,
+          "max": 40
+        },
+        "visibilityRangeM": {
+          "min": 8,
+          "max": 20
+        },
+        "bestSeason": "Todo el año (mejor visibilidad fuera de la temporada de lluvias)",
+        "protectedArea": "Parque Nacional Natural Tayrona",
+        "regulations": "Áreas del parque con capacidad de carga y operadores autorizados.",
+        "location": {
+          "lat": 11.24,
+          "lng": -74.21
+        },
+        "levelIds": {
+          "open-water": true,
+          "advanced-open-water": true
+        },
+        "diveModeIds": {
+          "recreativo": true,
+          "nocturno": true,
+          "pecios": true
+        },
+        "ecosystemIds": {
+          "macizos-rocosos": true,
+          "arrecifes-coralinos": true
+        },
+        "featuredSpeciesIds": {
+          "pulpo-de-arrecife": true,
+          "pez-loro-guacamayo": true
+        },
+        "sourceIds": {
+          "colombia-travel": true,
+          "minambiente": true
+        }
+      },
+      "cozumel": {
+        "status": "published",
+        "name": "Cozumel",
+        "countryCode": "mx",
+        "regionId": "arrecife-mesoamericano",
+        "order": 3,
+        "summary": "Parque Nacional Arrecifes de Cozumel, célebre por el buceo de deriva.",
+        "description": "La corriente del Caribe fluye de sur a norte por la costa oeste y transporta al buceador sobre muros y cañones. Hogar del pez sapo espléndido, endémico de la isla.",
+        "depthRangeM": {
+          "min": 10,
+          "max": 40
+        },
+        "visibilityRangeM": {
+          "min": 30,
+          "max": 45
+        },
+        "bestSeason": "Noviembre a mayo",
+        "protectedArea": "Parque Nacional Arrecifes de Cozumel (1996)",
+        "regulations": "Guía local acreditado obligatorio; prohibido el uso de guantes.",
+        "location": {
+          "lat": 20.42,
+          "lng": -86.92
+        },
+        "levelIds": {
+          "open-water": true,
+          "advanced-open-water": true
+        },
+        "diveModeIds": {
+          "deriva": true,
+          "pecios": true
+        },
+        "ecosystemIds": {
+          "arrecifes-coralinos": true
+        },
+        "featuredSpeciesIds": {
+          "pez-sapo-esplendido": true,
+          "tortuga-carey": true
+        },
+        "sourceIds": {
+          "noaa": true
+        }
+      },
+      "bonaire": {
+        "status": "published",
+        "name": "Bonaire",
+        "countryCode": "bq",
+        "regionId": "caribe-sur",
+        "order": 4,
+        "summary": "Capital mundial del buceo desde la orilla, con más de 54 sitios señalizados.",
+        "description": "Los sitios se marcan con piedras amarillas junto a la carretera. Pionera en prohibir el fondeo con anclas y los protectores solares con oxibenzona.",
+        "depthRangeM": {
+          "min": 5,
+          "max": 40
+        },
+        "visibilityRangeM": {
+          "min": 25,
+          "max": 35
+        },
+        "bestSeason": "Todo el año (fuera del cinturón habitual de huracanes)",
+        "protectedArea": "Bonaire National Marine Park (STINAPA)",
+        "regulations": "Tasa de naturaleza obligatoria, orientación y check dive de flotabilidad; prohibida la oxibenzona.",
+        "location": {
+          "lat": 12.15,
+          "lng": -68.27
+        },
+        "levelIds": {
+          "open-water": true,
+          "advanced-open-water": true
+        },
+        "diveModeIds": {
+          "orilla": true,
+          "pecios": true,
+          "nocturno": true
+        },
+        "ecosystemIds": {
+          "arrecifes-coralinos": true
+        },
+        "featuredSpeciesIds": {
+          "pez-loro-guacamayo": true,
+          "pez-angel-reina": true
+        },
+        "sourceIds": {
+          "padi": true
+        }
+      },
+      "cayman": {
+        "status": "published",
+        "name": "Islas Caimán",
+        "countryCode": "ky",
+        "regionId": "caribe-central",
+        "order": 5,
+        "summary": "Visibilidad de hasta 45 m, el muro de Bloody Bay y el pecio USS Kittiwake.",
+        "description": "Bloody Bay Wall arranca a 6 m y cae verticalmente hacia el abismo; Grand Cayman acoge el USS Kittiwake, preparado para la penetración recreativa.",
+        "depthRangeM": {
+          "min": 3,
+          "max": 1000
+        },
+        "visibilityRangeM": {
+          "min": 30,
+          "max": 45
+        },
+        "bestSeason": "Diciembre a mayo",
+        "protectedArea": "Zonas de conservación marina de las Islas Caimán",
+        "regulations": "Prohibida la extracción de coral y de artefactos de naufragios; límites de velocidad para embarcaciones.",
+        "location": {
+          "lat": 19.31,
+          "lng": -81.25
+        },
+        "levelIds": {
+          "open-water": true,
+          "advanced-open-water": true,
+          "deep": true
+        },
+        "diveModeIds": {
+          "recreativo": true,
+          "pecios": true
+        },
+        "ecosystemIds": {
+          "arrecifes-coralinos": true
+        },
+        "featuredSpeciesIds": {
+          "tiburon-arrecife": true,
+          "raya-aguila-moteada": true
+        },
+        "sourceIds": {
+          "noaa": true
+        }
+      },
+      "roatan": {
+        "status": "published",
+        "name": "Roatán",
+        "countryCode": "hn",
+        "regionId": "arrecife-mesoamericano",
+        "order": 6,
+        "summary": "Paredes de arrecife a minutos de la costa, gestionadas por el Roatan Marine Park.",
+        "description": "Fracturas profundas y chimeneas recubiertas de esponjas tubo, con tortugas y cardúmenes de jureles. Control activo del pez león.",
+        "depthRangeM": {
+          "min": 8,
+          "max": 40
+        },
+        "visibilityRangeM": {
+          "min": 20,
+          "max": 35
+        },
+        "bestSeason": "Febrero a septiembre",
+        "protectedArea": "Roatan Marine Park (BINMP)",
+        "regulations": "Uso obligatorio de boyas de amarre; erradicación supervisada del pez león.",
+        "location": {
+          "lat": 16.32,
+          "lng": -86.53
+        },
+        "levelIds": {
+          "open-water": true,
+          "advanced-open-water": true
+        },
+        "diveModeIds": {
+          "recreativo": true,
+          "pecios": true,
+          "nocturno": true
+        },
+        "ecosystemIds": {
+          "arrecifes-coralinos": true,
+          "manglares": true
+        },
+        "featuredSpeciesIds": {
+          "pez-leon": true,
+          "tortuga-carey": true
+        },
+        "sourceIds": {
+          "roatan-marine-park": true
+        }
+      },
+      "dom-rep": {
+        "status": "published",
+        "name": "República Dominicana",
+        "countryCode": "do",
+        "regionId": "antillas-mayores",
+        "order": 7,
+        "summary": "La mayor concentración de pecios accesibles del Caribe insular.",
+        "description": "Bayahibe, Punta Cana y Santo Domingo reúnen pecios para todos los niveles, del Atlantic Princess (12 m) al St. George (hasta 44 m).",
+        "depthRangeM": {
+          "min": 10,
+          "max": 44
+        },
+        "visibilityRangeM": {
+          "min": 20,
+          "max": 30
+        },
+        "bestSeason": "Diciembre a mayo",
+        "protectedArea": "P.N. Cotubanamá y P.N. Submarino La Caleta",
+        "regulations": "Protección del patrimonio cultural subacuático.",
+        "location": {
+          "lat": 18.37,
+          "lng": -68.84
+        },
+        "levelIds": {
+          "open-water": true,
+          "advanced-open-water": true,
+          "deep": true,
+          "tec": true
+        },
+        "diveModeIds": {
+          "pecios": true,
+          "recreativo": true
+        },
+        "ecosystemIds": {
+          "arrecifes-coralinos": true
+        },
+        "featuredSpeciesIds": {
+          "raya-aguila-moteada": true,
+          "mero-guasa": true
+        },
+        "sourceIds": {
+          "noaa": true
+        }
+      }
+    },
+    "diveSites": {
+      "la-pared-san-andres": {
+        "status": "published",
+        "name": "La Pared (Blue Wall)",
+        "destinationId": "san-andres",
+        "type": "pared",
+        "depthRangeM": {
+          "min": 15,
+          "max": 40
+        },
+        "summary": "Pared abrupta que cae a más de 300 m; se bucea en su tramo recreativo."
+      },
+      "cantil-providencia": {
+        "status": "published",
+        "name": "El Cantil de Providencia",
+        "destinationId": "san-andres",
+        "type": "pared",
+        "summary": "Caída oceánica con tiburones de arrecife y coral negro."
+      },
+      "calichan-el-coro": {
+        "status": "published",
+        "name": "Calichan y El Coro",
+        "destinationId": "santa-marta",
+        "type": "arrecife",
+        "depthRangeM": {
+          "min": 4,
+          "max": 25
+        },
+        "summary": "Terrazas rocosas ideales para formación y fotografía macro."
+      },
+      "isla-aguja": {
+        "status": "published",
+        "name": "Isla Aguja",
+        "destinationId": "santa-marta",
+        "type": "pared",
+        "depthRangeM": {
+          "min": 10,
+          "max": 40
+        },
+        "summary": "Paredes inclinadas con corrientes oceánicas y cardúmenes de jureles."
+      },
+      "barcaza-de-carbon": {
+        "status": "published",
+        "name": "Barcaza de Carbón",
+        "destinationId": "santa-marta",
+        "type": "pecio",
+        "depthRangeM": {
+          "min": 5,
+          "max": 30
+        },
+        "summary": "Pecio partido en tres secciones en la bahía urbana."
+      },
+      "punta-venado": {
+        "status": "published",
+        "name": "Punta Venado",
+        "destinationId": "santa-marta",
+        "type": "nocturno",
+        "summary": "Inmersión nocturna de referencia, con pulpos cazando y peces loro dormidos."
+      },
+      "arrecife-palancar": {
+        "status": "published",
+        "name": "Arrecife Palancar",
+        "destinationId": "cozumel",
+        "type": "deriva",
+        "summary": "Grandes formaciones coralinas (Jardines, Cuevas, Herradura) recorridas a la deriva."
+      },
+      "muro-santa-rosa": {
+        "status": "published",
+        "name": "Muro de Santa Rosa",
+        "destinationId": "cozumel",
+        "type": "pared",
+        "summary": "Muro vertical con corriente, cuevas y saliente de coral."
+      },
+      "paso-del-cedral": {
+        "status": "published",
+        "name": "Paso del Cedral",
+        "destinationId": "cozumel",
+        "type": "deriva",
+        "summary": "Arrecife de baja altura con abundante vida y corriente suave."
+      },
+      "pecio-c53": {
+        "status": "published",
+        "name": "Pecio C-53 Felipe Xicoténcatl",
+        "destinationId": "cozumel",
+        "type": "pecio",
+        "depthRangeM": {
+          "min": 10,
+          "max": 24
+        },
+        "summary": "Antiguo buque de la Armada de México hundido como arrecife artificial."
+      },
+      "salt-pier": {
+        "status": "published",
+        "name": "Salt Pier",
+        "destinationId": "bonaire",
+        "type": "orilla",
+        "summary": "Pilares del muelle salinero cubiertos de corales y esponjas."
+      },
+      "1000-steps": {
+        "status": "published",
+        "name": "1000 Steps",
+        "destinationId": "bonaire",
+        "type": "orilla",
+        "summary": "Escalera hacia un arrecife de franja de aguas muy claras."
+      },
+      "karpata": {
+        "status": "published",
+        "name": "Karpata",
+        "destinationId": "bonaire",
+        "type": "orilla",
+        "summary": "Pendiente arrecifal con gorgonias en el parque marino."
+      },
+      "bari-reef": {
+        "status": "published",
+        "name": "Bari Reef",
+        "destinationId": "bonaire",
+        "type": "orilla",
+        "summary": "Uno de los arrecifes con más especies de peces registradas de la isla."
+      },
+      "pecio-hilma-hooker": {
+        "status": "published",
+        "name": "Pecio Hilma Hooker",
+        "destinationId": "bonaire",
+        "type": "pecio",
+        "depthRangeM": {
+          "min": 18,
+          "max": 30
+        },
+        "summary": "Carguero tumbado sobre la arena entre dos arrecifes."
+      },
+      "bloody-bay-wall": {
+        "status": "published",
+        "name": "Bloody Bay Wall",
+        "destinationId": "cayman",
+        "type": "pared",
+        "depthRangeM": {
+          "min": 6,
+          "max": 40
+        },
+        "summary": "Muro de Little Cayman que arranca a 6 m y cae hacia el abismo."
+      },
+      "stingray-city": {
+        "status": "published",
+        "name": "Stingray City",
+        "destinationId": "cayman",
+        "type": "bajo-arenoso",
+        "depthRangeM": {
+          "min": 3,
+          "max": 4
+        },
+        "summary": "Banco de arena somero frecuentado por rayas."
+      },
+      "uss-kittiwake": {
+        "status": "published",
+        "name": "USS Kittiwake",
+        "destinationId": "cayman",
+        "type": "pecio",
+        "depthRangeM": {
+          "min": 5,
+          "max": 20
+        },
+        "summary": "Buque de rescate de submarinos de 5 cubiertas, preparado para buceo recreativo."
+      },
+      "captain-keith-tibbetts": {
+        "status": "published",
+        "name": "MV Captain Keith Tibbetts",
+        "destinationId": "cayman",
+        "type": "pecio",
+        "summary": "Antigua fragata hundida frente a Cayman Brac."
+      },
+      "west-end-wall": {
+        "status": "published",
+        "name": "West End Wall",
+        "destinationId": "roatan",
+        "type": "pared",
+        "summary": "Pared arrecifal a pocos minutos en lancha desde West End."
+      },
+      "marys-place": {
+        "status": "published",
+        "name": "Mary's Place",
+        "destinationId": "roatan",
+        "type": "pared",
+        "summary": "Grietas y fracturas profundas recubiertas de esponjas."
+      },
+      "mandys-eel-garden": {
+        "status": "published",
+        "name": "Mandy's Eel Garden",
+        "destinationId": "roatan",
+        "type": "arrecife",
+        "summary": "Fondo arenoso con colonias de anguilas jardineras."
+      },
+      "pecio-el-aguila": {
+        "status": "published",
+        "name": "Pecio El Águila",
+        "destinationId": "roatan",
+        "type": "pecio",
+        "summary": "Carguero hundido como arrecife artificial y partido por un huracán."
+      },
+      "pecio-halliburton": {
+        "status": "published",
+        "name": "Pecio Halliburton",
+        "destinationId": "roatan",
+        "type": "pecio",
+        "summary": "Buque de suministro hundido como arrecife artificial."
+      },
+      "pecio-st-george": {
+        "status": "published",
+        "name": "Pecio St. George",
+        "destinationId": "dom-rep",
+        "type": "pecio",
+        "depthRangeM": {
+          "min": 12,
+          "max": 44
+        },
+        "summary": "Carguero de 73 m frente a Bayahibe, con rayas águila y meros."
+      },
+      "pecio-atlantic-princess": {
+        "status": "published",
+        "name": "Pecio Atlantic Princess",
+        "destinationId": "dom-rep",
+        "type": "pecio",
+        "depthRangeM": {
+          "min": 10,
+          "max": 12
+        },
+        "summary": "Iniciación perfecta a los pecios sobre arena blanca."
+      },
+      "pecio-hickory": {
+        "status": "published",
+        "name": "Pecio Hickory",
+        "destinationId": "dom-rep",
+        "type": "pecio",
+        "depthRangeM": {
+          "min": 10,
+          "max": 18
+        },
+        "summary": "Pecio del Parque Nacional Submarino La Caleta."
+      },
+      "arrecife-guaraguao": {
+        "status": "published",
+        "name": "Arrecife Guaraguao",
+        "destinationId": "dom-rep",
+        "type": "arrecife",
+        "summary": "Arrecife con cañones históricos del siglo XVIII."
+      }
+    },
+    "wrecks": {
+      "hilma-hooker": {
+        "status": "published",
+        "name": "Hilma Hooker",
+        "destinationId": "bonaire",
+        "siteId": "pecio-hilma-hooker",
+        "vesselType": "Carguero",
+        "sunkYear": 1984,
+        "cause": "accidente",
+        "lengthM": 72,
+        "depthRangeM": {
+          "min": 18,
+          "max": 30
+        },
+        "minCertificationId": "advanced-open-water",
+        "order": 1,
+        "summary": "Carguero que se hundió en 1984 junto a la costa sur de Bonaire mientras estaba retenido por las autoridades. Reposa sobre su costado entre dos arrecifes."
+      },
+      "uss-kittiwake": {
+        "status": "published",
+        "name": "USS Kittiwake",
+        "destinationId": "cayman",
+        "siteId": "uss-kittiwake",
+        "vesselType": "Buque de rescate de submarinos",
+        "sunkYear": 2011,
+        "cause": "arrecife-artificial",
+        "lengthM": 76,
+        "depthRangeM": {
+          "min": 5,
+          "max": 20
+        },
+        "minCertificationId": "open-water",
+        "order": 2,
+        "summary": "Buque de la Armada de EE. UU. hundido en 2011 en Grand Cayman como arrecife artificial. Sus 5 cubiertas están preparadas para la penetración recreativa."
+      },
+      "captain-keith-tibbetts": {
+        "status": "published",
+        "name": "MV Captain Keith Tibbetts",
+        "destinationId": "cayman",
+        "siteId": "captain-keith-tibbetts",
+        "vesselType": "Fragata",
+        "sunkYear": 1996,
+        "cause": "arrecife-artificial",
+        "minCertificationId": "open-water",
+        "order": 3,
+        "summary": "Antigua fragata de construcción soviética hundida en 1996 frente a Cayman Brac como arrecife artificial."
+      },
+      "c53-felipe-xicotencatl": {
+        "status": "published",
+        "name": "C-53 Felipe Xicoténcatl",
+        "destinationId": "cozumel",
+        "siteId": "pecio-c53",
+        "vesselType": "Dragaminas",
+        "sunkYear": 2000,
+        "cause": "arrecife-artificial",
+        "lengthM": 56,
+        "depthRangeM": {
+          "min": 10,
+          "max": 24
+        },
+        "minCertificationId": "open-water",
+        "order": 4,
+        "summary": "Dragaminas de la Armada de México hundido en el año 2000 como arrecife artificial frente a Cozumel."
+      },
+      "el-aguila": {
+        "status": "published",
+        "name": "El Águila",
+        "destinationId": "roatan",
+        "siteId": "pecio-el-aguila",
+        "vesselType": "Carguero",
+        "sunkYear": 1997,
+        "cause": "arrecife-artificial",
+        "minCertificationId": "advanced-open-water",
+        "order": 5,
+        "summary": "Carguero hundido en 1997 como arrecife artificial. El huracán Mitch (1998) lo partió en tres secciones."
+      },
+      "halliburton": {
+        "status": "published",
+        "name": "Halliburton",
+        "destinationId": "roatan",
+        "siteId": "pecio-halliburton",
+        "vesselType": "Buque de suministro",
+        "cause": "arrecife-artificial",
+        "minCertificationId": "advanced-open-water",
+        "order": 6,
+        "summary": "Buque de suministro hundido intencionalmente frente a Roatán como arrecife artificial."
+      },
+      "st-george": {
+        "status": "published",
+        "name": "St. George",
+        "destinationId": "dom-rep",
+        "siteId": "pecio-st-george",
+        "vesselType": "Carguero",
+        "sunkYear": 1999,
+        "cause": "arrecife-artificial",
+        "lengthM": 73,
+        "depthRangeM": {
+          "min": 12,
+          "max": 44
+        },
+        "minCertificationId": "advanced-open-water",
+        "order": 7,
+        "summary": "Carguero de 73 m hundido en 1999 frente a Bayahibe. Rayas águila y meros lo visitan con frecuencia."
+      },
+      "atlantic-princess": {
+        "status": "published",
+        "name": "Atlantic Princess",
+        "destinationId": "dom-rep",
+        "siteId": "pecio-atlantic-princess",
+        "vesselType": "Embarcación",
+        "cause": "arrecife-artificial",
+        "depthRangeM": {
+          "min": 10,
+          "max": 12
+        },
+        "minCertificationId": "open-water",
+        "order": 8,
+        "summary": "Pecio somero sobre fondo de arena blanca en Bayahibe, ideal para iniciarse en naufragios."
+      },
+      "hickory": {
+        "status": "published",
+        "name": "Hickory",
+        "destinationId": "dom-rep",
+        "siteId": "pecio-hickory",
+        "vesselType": "Embarcación de exploración",
+        "cause": "arrecife-artificial",
+        "depthRangeM": {
+          "min": 10,
+          "max": 18
+        },
+        "minCertificationId": "open-water",
+        "order": 9,
+        "summary": "Antiguo barco de exploración hundido en el Parque Nacional Submarino La Caleta, en Santo Domingo."
+      },
+      "nuestra-senora-de-guadalupe": {
+        "status": "published",
+        "name": "Nuestra Señora de Guadalupe",
+        "destinationId": "dom-rep",
+        "vesselType": "Galeón español",
+        "sunkYear": 1724,
+        "cause": "tormenta",
+        "order": 10,
+        "summary": "Galeón que naufragó en 1724 en la bahía de Samaná durante un huracán. Sus restos son patrimonio cultural subacuático."
+      },
+      "barcaza-de-carbon": {
+        "status": "published",
+        "name": "Barcaza de Carbón",
+        "destinationId": "santa-marta",
+        "siteId": "barcaza-de-carbon",
+        "vesselType": "Barcaza",
+        "cause": "desconocida",
+        "depthRangeM": {
+          "min": 5,
+          "max": 30
+        },
+        "minCertificationId": "open-water",
+        "order": 11,
+        "summary": "Barcaza partida en tres secciones en la bahía de Santa Marta; buena para practicar navegación en pecios."
+      }
+    },
+    "threats": {
+      "blanqueamiento": {
+        "status": "published",
+        "name": "Calentamiento global y blanqueamiento",
+        "order": 1,
+        "summary": "Las olas de calor provocan la expulsión de las zooxantelas y dejan al coral sin alimento."
+      },
+      "filtros-solares": {
+        "status": "published",
+        "name": "Químicos de los protectores solares",
+        "order": 2,
+        "summary": "La oxibenzona y el octinoxato dañan el ADN del coral y deforman larvas de plancton."
+      },
+      "pez-leon": {
+        "status": "published",
+        "name": "Invasión del pez león",
+        "order": 3,
+        "summary": "Depredador sin enemigos naturales que diezma especies herbívoras juveniles.",
+        "speciesId": "pez-leon"
+      },
+      "sobrepesca": {
+        "status": "published",
+        "name": "Sobrepesca de especies clave",
+        "order": 4,
+        "summary": "Extraer herbívoros como el pez loro favorece que las macroalgas asfixien al coral.",
+        "speciesId": "pez-loro-guacamayo"
+      },
+      "impacto-fisico": {
+        "status": "published",
+        "name": "Fondeo y buceo descuidado",
+        "order": 5,
+        "summary": "Anclas, aleteo sobre sedimentos y contacto físico destruyen colonias centenarias."
+      }
+    },
+    "practices": {
+      "flotabilidad-neutra": {
+        "status": "published",
+        "name": "Flotabilidad neutra impecable",
+        "order": 1,
+        "summary": "Ajustar el lastre para mantenerse horizontal sin tocar el fondo ni los corales."
+      },
+      "no-tocar": {
+        "status": "published",
+        "name": "Política de no tocar",
+        "order": 2,
+        "summary": "Un simple toque destruye la capa mucosa protectora del coral."
+      },
+      "no-alimentar": {
+        "status": "published",
+        "name": "Cero alimentación e interacción forzada",
+        "order": 3,
+        "summary": "No alimentar peces ni perseguir tortugas o rayas."
+      },
+      "protector-mineral": {
+        "status": "published",
+        "name": "Protector solar mineral",
+        "order": 4,
+        "summary": "Usar óxido de zinc o dióxido de titanio no nano, o camisetas de protección UV."
+      },
+      "boyas-de-amarre": {
+        "status": "published",
+        "name": "Boyas de amarre",
+        "order": 5,
+        "summary": "Exigir que la embarcación se amarre a boyas fijas y nunca fondee sobre el arrecife."
+      },
+      "vedas-y-tasas": {
+        "status": "published",
+        "name": "Respeto a vedas y tasas",
+        "order": 6,
+        "summary": "Respetar las vedas de langosta y pagar las tasas de conservación de los parques."
+      }
+    },
+    "safetyRules": {
+      "certificacion": {
+        "status": "published",
+        "name": "Certificación válida",
+        "order": 1,
+        "summary": "Bucear dentro de los límites de tu certificación y experiencia."
+      },
+      "companero": {
+        "status": "published",
+        "name": "Sistema de compañeros",
+        "order": 2,
+        "summary": "Nunca bucear solo y hacer el chequeo BWRAF antes de cada entrada."
+      },
+      "equipo": {
+        "status": "published",
+        "name": "Revisión del equipo",
+        "order": 3,
+        "summary": "Manómetro, inflador y ordenador verificados y calibrados."
+      },
+      "ascenso": {
+        "status": "published",
+        "name": "Velocidad de ascenso y parada",
+        "order": 4,
+        "summary": "Ascender a no más de 9-18 m/min y hacer 3 minutos de parada a 5 m."
+      },
+      "reserva": {
+        "status": "published",
+        "name": "Reserva mínima de gas",
+        "order": 5,
+        "summary": "Llegar a la superficie con al menos 35 bar (500 psi)."
+      },
+      "pre-vuelo": {
+        "status": "published",
+        "name": "Intervalo antes de volar",
+        "order": 6,
+        "summary": "12 h tras una inmersión única sin descompresión; 18-24 h tras inmersiones repetitivas."
+      },
+      "condicion-fisica": {
+        "status": "published",
+        "name": "Condición física",
+        "order": 7,
+        "summary": "Nada de alcohol, drogas ni fatiga extrema; mantener la hidratación."
+      },
+      "suspension": {
+        "status": "published",
+        "name": "Derecho a suspender",
+        "order": 8,
+        "summary": "Cualquier buceador puede cancelar la inmersión en cualquier momento por seguridad."
+      }
+    },
+    "hyperbaricChambers": {
+      "hospital-julio-mendez": {
+        "status": "published",
+        "name": "Hospital Universitario Julio Méndez Barreneche",
+        "city": "Santa Marta",
+        "countryCode": "co",
+        "destinationId": "santa-marta"
+      },
+      "cornerstone-roatan": {
+        "status": "published",
+        "name": "Cornerstone Medical Chamber",
+        "city": "Roatán",
+        "countryCode": "hn",
+        "destinationId": "roatan"
+      },
+      "clinica-san-miguel": {
+        "status": "published",
+        "name": "Clínica San Miguel",
+        "city": "Cozumel",
+        "countryCode": "mx",
+        "destinationId": "cozumel"
+      },
+      "san-francisco-bonaire": {
+        "status": "published",
+        "name": "San Francisco Hospital",
+        "city": "Kralendijk",
+        "countryCode": "bq",
+        "destinationId": "bonaire"
+      }
+    },
+    "glossary": {
+      "ndl": {
+        "status": "published",
+        "term": "Límite de no descompresión (NDL)",
+        "definition": "Tiempo máximo a una profundidad sin necesidad de paradas de descompresión obligatorias."
+      },
+      "parada-de-seguridad": {
+        "status": "published",
+        "term": "Parada de seguridad",
+        "definition": "Pausa de 3 minutos a 5 m antes de salir, recomendada en toda inmersión recreativa."
+      },
+      "flotabilidad-neutra": {
+        "status": "published",
+        "term": "Flotabilidad neutra",
+        "definition": "Estado en el que el buceador ni sube ni baja, controlado con el lastre, el chaleco y la respiración."
+      },
+      "narcosis": {
+        "status": "published",
+        "term": "Narcosis por nitrógeno",
+        "definition": "Efecto narcótico del nitrógeno a presión; se vuelve perceptible a partir de unos 30 m."
+      },
+      "nitrox": {
+        "status": "published",
+        "term": "Nitrox",
+        "definition": "Aire enriquecido con más del 21 % de oxígeno (normalmente 32 % o 36 %) que reduce la absorción de nitrógeno."
+      },
+      "trimix": {
+        "status": "published",
+        "term": "Trimix",
+        "definition": "Mezcla de helio, nitrógeno y oxígeno usada en el buceo técnico profundo."
+      },
+      "termoclina": {
+        "status": "published",
+        "term": "Termoclina",
+        "definition": "Capa de agua donde la temperatura cambia bruscamente con la profundidad."
+      },
+      "haloclina": {
+        "status": "published",
+        "term": "Haloclina",
+        "definition": "Límite entre agua dulce y salada, típico de los cenotes; produce un efecto visual borroso."
+      },
+      "zooxantelas": {
+        "status": "published",
+        "term": "Zooxantelas",
+        "definition": "Microalgas que viven dentro del coral y le aportan alimento mediante la fotosíntesis."
+      },
+      "blanqueamiento": {
+        "status": "published",
+        "term": "Blanqueamiento",
+        "definition": "Pérdida de las zooxantelas por estrés térmico, que deja el coral blanco y debilitado."
+      },
+      "pecio": {
+        "status": "published",
+        "term": "Pecio",
+        "definition": "Restos de una embarcación hundida."
+      },
+      "bwraf": {
+        "status": "published",
+        "term": "BWRAF",
+        "definition": "Chequeo con el compañero antes de entrar: chaleco (BCD), lastre, liberaciones, aire y revisión final."
+      },
+      "enfermedad-descompresiva": {
+        "status": "published",
+        "term": "Enfermedad descompresiva",
+        "definition": "Formación de burbujas de nitrógeno en los tejidos por un ascenso rápido o por exceder los límites; se trata en cámara hiperbárica."
+      }
+    }
+  },
+  "indexes": {
+    "destinationsBySpecies": {
+      "tiburon-arrecife": {
+        "san-andres": true,
+        "cayman": true
+      },
+      "caracol-pala": {
+        "san-andres": true
+      },
+      "pulpo-de-arrecife": {
+        "santa-marta": true
+      },
+      "pez-loro-guacamayo": {
+        "santa-marta": true,
+        "bonaire": true
+      },
+      "pez-sapo-esplendido": {
+        "cozumel": true
+      },
+      "tortuga-carey": {
+        "cozumel": true,
+        "roatan": true
+      },
+      "pez-angel-reina": {
+        "bonaire": true
+      },
+      "raya-aguila-moteada": {
+        "cayman": true,
+        "dom-rep": true
+      },
+      "pez-leon": {
+        "roatan": true
+      },
+      "mero-guasa": {
+        "dom-rep": true
+      }
+    },
+    "destinationsBySiteType": {
+      "pared": {
+        "san-andres": true,
+        "santa-marta": true,
+        "cozumel": true,
+        "cayman": true,
+        "roatan": true
+      },
+      "arrecife": {
+        "santa-marta": true,
+        "roatan": true,
+        "dom-rep": true
+      },
+      "pecio": {
+        "santa-marta": true,
+        "cozumel": true,
+        "bonaire": true,
+        "cayman": true,
+        "roatan": true,
+        "dom-rep": true
+      },
+      "nocturno": {
+        "santa-marta": true
+      },
+      "deriva": {
+        "cozumel": true
+      },
+      "orilla": {
+        "bonaire": true
+      },
+      "bajo-arenoso": {
+        "cayman": true
+      }
+    },
+    "destinationsByEcosystem": {
+      "arrecifes-coralinos": {
+        "san-andres": true,
+        "santa-marta": true,
+        "cozumel": true,
+        "bonaire": true,
+        "cayman": true,
+        "roatan": true,
+        "dom-rep": true
+      },
+      "praderas-pastos-marinos": {
+        "san-andres": true
+      },
+      "manglares": {
+        "san-andres": true,
+        "roatan": true
+      },
+      "macizos-rocosos": {
+        "santa-marta": true
+      }
+    },
+    "speciesByEcosystem": {
+      "arrecifes-coralinos": {
+        "coral-cuerno-de-alce": true,
+        "pez-loro-guacamayo": true,
+        "esponja-barril-gigante": true
+      },
+      "praderas-pastos-marinos": {
+        "tortuga-verde": true,
+        "caracol-pala": true
+      },
+      "manglares": {
+        "mero-guasa": true,
+        "langosta-espinosa": true
+      },
+      "macizos-rocosos": {
+        "pulpo-de-arrecife": true
+      }
+    }
+  }
+}

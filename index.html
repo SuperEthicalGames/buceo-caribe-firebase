@@ -1227,6 +1227,449 @@
         display: none;
       }
     }
+
+    /* =========================================================
+       BASE DE DATOS — Naufragios y Comunidad (Realtime Database)
+       ========================================================= */
+    #naufragios [hidden],
+    #comunidad [hidden] {
+      display: none !important;
+    }
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: auto;
+      font-family: var(--font-label);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--positive);
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--positive);
+      animation: live-pulse 2s infinite;
+    }
+    @keyframes live-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.45); }
+      70% { box-shadow: 0 0 0 8px rgba(5, 150, 105, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+    }
+    .private-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-label);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--on-surface-variant);
+    }
+    .private-badge svg {
+      width: 13px;
+      height: 13px;
+    }
+    .db-status {
+      margin: var(--space-sm) 0 0 0;
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      color: var(--on-surface-variant);
+    }
+    .db-status.is-error {
+      color: var(--error);
+    }
+
+    /* Naufragios */
+    .wreck-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      padding: var(--space-lg);
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: 3px solid var(--tertiary);
+      border-radius: var(--rounded-lg);
+    }
+    .wreck-card.is-historic {
+      border-top-color: #b45309;
+    }
+    .wreck-card.is-skeleton {
+      min-height: 240px;
+      border-top-color: var(--outline-variant);
+      background: linear-gradient(90deg, var(--surface-container-low) 0%, var(--surface-container) 50%, var(--surface-container-low) 100%);
+      background-size: 200% 100%;
+      animation: db-skeleton 1.4s ease-in-out infinite;
+    }
+    @keyframes db-skeleton {
+      from { background-position: 100% 0; }
+      to { background-position: -100% 0; }
+    }
+    .wreck-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+    }
+    .wreck-year {
+      font-family: var(--font-label);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--tertiary);
+      white-space: nowrap;
+    }
+    .wreck-name {
+      margin: 0;
+      font-family: var(--font-headline);
+      font-size: 1.3rem;
+      line-height: 1.2;
+    }
+    .wreck-type {
+      margin: 0;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+    .wreck-summary {
+      flex: 1;
+      margin: var(--space-xs) 0 0 0;
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+    }
+    .wreck-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: var(--space-sm);
+      margin: var(--space-sm) 0 0 0;
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--outline-variant);
+    }
+    .wreck-facts dt {
+      font-family: var(--font-label);
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--on-surface-variant);
+    }
+    .wreck-facts dd {
+      margin: 0;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* Comunidad: bloques, formularios y listas */
+    .community-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+    .community-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .community-head h3 {
+      margin: 0;
+      font-family: var(--font-headline);
+      font-size: 1.35rem;
+    }
+    .community-head .live-badge {
+      margin-left: 0;
+    }
+    .community-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+    .community-cta > svg {
+      width: 28px;
+      height: 28px;
+      color: var(--primary-container);
+    }
+    .community-cta p {
+      margin: 0;
+      color: var(--on-surface-variant);
+    }
+    .community-private {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .db-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .db-form-title {
+      margin: 0;
+      font-family: var(--font-headline);
+      font-size: 1.15rem;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    .field label,
+    .field legend {
+      padding: 0;
+      margin-bottom: 0.3rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .field label {
+      margin-bottom: 0;
+    }
+    .field-optional {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--on-surface-variant);
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .field-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 0.6rem 0.75rem;
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      font-family: var(--font-body);
+      font-size: 1rem;
+    }
+    textarea.field-input {
+      min-height: 64px;
+      resize: vertical;
+    }
+    .field-input:hover {
+      border-color: var(--on-surface-variant);
+    }
+    .field-input:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 0;
+      border-color: var(--focus);
+    }
+    .check-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      max-height: 156px;
+      overflow-y: auto;
+      padding: 2px;
+    }
+    .check-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.6rem;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .check-chip:has(input:checked) {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+    .check-chip input {
+      margin: 0;
+      accent-color: var(--primary-container);
+    }
+    .feed-wrap {
+      min-width: 0;
+    }
+    .feed {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      max-height: 640px;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
+      list-style: none;
+    }
+    .feed-item,
+    .log-item {
+      padding: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+    }
+    .feed-item {
+      border-left: 3px solid var(--positive);
+    }
+    .feed-main {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+    .feed-main strong,
+    .log-title strong {
+      font-family: var(--font-headline);
+      font-size: 1.05rem;
+    }
+    .feed-place {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+    .feed-meta {
+      margin-top: 0.2rem;
+      font-family: var(--font-label);
+      font-size: 0.7rem;
+      color: var(--on-surface-variant);
+    }
+    .feed-notes {
+      margin: var(--space-xs) 0 0 0;
+      font-size: 0.88rem;
+    }
+    .feed-delete {
+      margin-top: var(--space-xs);
+      font-size: 0.78rem;
+      color: var(--error);
+    }
+    .feed-empty {
+      padding: var(--space-md);
+      border: 1px dashed var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+      list-style: none;
+    }
+    .log-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      border-left: 3px solid var(--primary-container);
+    }
+    .log-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .log-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+    .log-rating {
+      color: #b45309;
+      letter-spacing: 2px;
+    }
+    .log-species {
+      margin: var(--space-xs) 0 0 0;
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+    }
+    .log-delete {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface-variant);
+      cursor: pointer;
+    }
+    .log-delete:hover {
+      color: var(--error);
+      border-color: var(--error);
+    }
+    .log-delete svg {
+      width: 16px;
+      height: 16px;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .stat-tile {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: var(--space-md);
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: var(--rounded-lg);
+    }
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: #9cc3e0;
+    }
+    .stat-value {
+      font-family: var(--font-headline);
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+    .favorites-bar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .favorites-bar .filter-bar {
+      margin-bottom: 0;
+    }
+
+    /* Botón de favorito añadido a cada ficha de destino */
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      width: 100%;
+      min-height: 38px;
+      margin-top: var(--space-xs);
+      background: transparent;
+      border: 1px dashed var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface-variant);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .fav-btn:hover {
+      border-color: #d97706;
+      color: #b45309;
+    }
+    .fav-btn[aria-pressed="true"] {
+      background: #fffbeb;
+      border-style: solid;
+      border-color: #d97706;
+      color: #b45309;
+    }
+    .fav-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    .fav-btn[aria-pressed="true"] svg {
+      fill: currentColor;
+    }
   </style>
 </head>
 <body>
@@ -1249,9 +1692,11 @@
           <li><a href="#ecosistemas">Ecosistemas</a></li>
           <li><a href="#biodiversidad">Biodiversidad</a></li>
           <li><a href="#destinos">Destinos</a></li>
+          <li><a href="#naufragios">Naufragios</a></li>
           <li><a href="#modalidades">Modalidades</a></li>
           <li><a href="#seguridad">Seguridad & Simulador</a></li>
           <li><a href="#conservacion">Conservación</a></li>
+          <li><a href="#comunidad">Comunidad</a></li>
           <li><a href="#galeria">Galería</a></li>
           <li><a href="#fuentes">Fuentes</a></li>
         </ul>
@@ -1977,10 +2422,32 @@
       </div>
     </section>
 
+    <!-- SECCIÓN 5B: NAUFRAGIOS (datos desde Firebase Realtime Database: catalog/wrecks) -->
+    <section id="naufragios" aria-labelledby="wrecks-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill coral">05 / NAUFRAGIOS</span>
+        <span class="dossier-meta">PATRIMONIO SUMERGIDO Y ARRECIFES ARTIFICIALES</span>
+        <span class="live-badge"><span class="live-dot" aria-hidden="true"></span>Base de datos</span>
+      </div>
+
+      <h2 id="wrecks-title" class="section-title">Naufragios y pecios del Caribe</h2>
+      <p class="standfirst">
+        Galeones hundidos por huracanes, cargueros naufragados y barcos hundidos a propósito para crear arrecifes artificiales.
+      </p>
+
+      <div class="filter-bar" id="wreckFilters" role="group" aria-label="Filtrar naufragios por destino"></div>
+
+      <div class="grid-3" id="wrecksGrid" aria-live="polite">
+        <div class="wreck-card is-skeleton" aria-hidden="true"></div>
+        <div class="wreck-card is-skeleton" aria-hidden="true"></div>
+        <div class="wreck-card is-skeleton" aria-hidden="true"></div>
+      </div>
+      <p class="db-status" id="wrecksStatus" role="status"></p>
+    </section>
     <!-- SECCIÓN 6: MODALIDADES DE BUCEO -->
     <section id="modalidades" aria-labelledby="mod-title">
       <div class="dossier-bar">
-        <span class="dossier-pill">05 / MODALIDADES</span>
+        <span class="dossier-pill">06 / MODALIDADES</span>
         <span class="dossier-meta">DISCIPLINAS SUBACUÁTICAS Y EXIGENCIAS TÉCNICAS</span>
       </div>
 
@@ -2067,7 +2534,7 @@
     <!-- SECCIÓN 7: SEGURIDAD, MEDICINA HIPERBÁRICA & SIMULADOR -->
     <section id="seguridad" aria-labelledby="seg-title">
       <div class="dossier-bar">
-        <span class="dossier-pill coral">06 / SEGURIDAD & MEDICINA</span>
+        <span class="dossier-pill coral">07 / SEGURIDAD & MEDICINA</span>
         <span class="dossier-meta">NORMAS CARDINALES, RED HIPERBÁRICA Y PLANIFICADOR DIDÁCTICO</span>
       </div>
 
@@ -2175,7 +2642,7 @@
     <!-- SECCIÓN 8: CONSERVACIÓN MARINA -->
     <section id="conservacion" aria-labelledby="cons-title">
       <div class="dossier-bar">
-        <span class="dossier-pill">07 / CONSERVACIÓN</span>
+        <span class="dossier-pill">08 / CONSERVACIÓN</span>
         <span class="dossier-meta">GOBERNANZA AMBIENTAL, AMENAZAS Y BUCEO SOSTENIBLE</span>
       </div>
 
@@ -2288,10 +2755,188 @@
       </div>
     </section>
 
+    <!-- SECCIÓN 8B: COMUNIDAD (avistamientos en vivo y bitácora privada en Realtime Database) -->
+    <section id="comunidad" aria-labelledby="com-title">
+      <div class="dossier-bar">
+        <span class="dossier-pill">09 / COMUNIDAD</span>
+        <span class="dossier-meta">CIENCIA CIUDADANA Y BITÁCORA PERSONAL</span>
+      </div>
+
+      <h2 id="com-title" class="section-title">Avistamientos en vivo y tu bitácora de buceo</h2>
+      <p class="standfirst">
+        Comparte las especies que viste bajo el agua y lleva el registro de tus inmersiones. Los avistamientos se actualizan en tiempo real para todos los visitantes.
+      </p>
+
+      <!-- Avistamientos públicos -->
+      <div class="community-block">
+        <div class="community-head">
+          <h3>Avistamientos de la comunidad</h3>
+          <span class="live-badge"><span class="live-dot" aria-hidden="true"></span>En vivo · <span id="sightingsCount">Cargando…</span></span>
+        </div>
+        <div class="grid-2">
+          <div class="figure-card highlight">
+            <div id="sightingCta" class="community-cta">
+              <i data-lucide="binoculars" aria-hidden="true"></i>
+              <p>Inicia sesión para compartir lo que viste. Cualquier visitante puede leer los avistamientos.</p>
+              <button type="button" class="btn btn-coral" id="sightingLoginBtn">Iniciar sesión para publicar</button>
+            </div>
+            <form id="sightingForm" class="db-form" novalidate hidden>
+              <h4 class="db-form-title">Reportar un avistamiento</h4>
+              <div class="field">
+                <label for="sAlias">Tu alias público</label>
+                <input class="field-input" id="sAlias" maxlength="30" autocomplete="nickname" placeholder="Ej.: Buzo de Taganga" required>
+              </div>
+              <div class="field">
+                <label for="sSpecies">Especie</label>
+                <select class="field-input" id="sSpecies" required></select>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="sDestination">Destino</label>
+                  <select class="field-input" id="sDestination" required></select>
+                </div>
+                <div class="field">
+                  <label for="sDate">Fecha</label>
+                  <input class="field-input" type="date" id="sDate" required>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="sDepth">Profundidad (m) <span class="field-optional">opcional</span></label>
+                  <input class="field-input" type="number" id="sDepth" min="0" max="130" step="0.5" inputmode="decimal">
+                </div>
+                <div class="field">
+                  <label for="sCount">Cantidad</label>
+                  <input class="field-input" type="number" id="sCount" min="1" max="500" step="1" value="1" inputmode="numeric">
+                </div>
+              </div>
+              <div class="field">
+                <label for="sNotes">Notas <span class="field-optional">opcional</span></label>
+                <textarea class="field-input" id="sNotes" maxlength="280" rows="2" placeholder="Comportamiento, hora, condiciones…"></textarea>
+              </div>
+              <div class="auth-message" id="sMessage" role="alert"></div>
+              <button type="submit" class="btn btn-primary auth-submit" id="sSubmit">
+                <span class="auth-spinner" aria-hidden="true"></span>
+                <span>Publicar avistamiento</span>
+              </button>
+            </form>
+          </div>
+          <div class="feed-wrap">
+            <ul class="feed" id="sightingsFeed" aria-live="polite">
+              <li class="feed-empty">Cargando avistamientos…</li>
+            </ul>
+            <p class="db-status" id="sightingsStatus" role="status"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bitácora privada -->
+      <div class="community-block">
+        <div class="community-head">
+          <h3>Mi bitácora de inmersiones</h3>
+          <span class="private-badge"><i data-lucide="lock" aria-hidden="true"></i>Privada</span>
+        </div>
+
+        <div id="logbookCta" class="figure-card navy community-cta">
+          <i data-lucide="notebook-pen" aria-hidden="true"></i>
+          <p>Inicia sesión para registrar tus inmersiones y guardar tus destinos favoritos. Solo tú puedes ver tu bitácora.</p>
+          <button type="button" class="btn btn-primary" id="logbookLoginBtn">Iniciar sesión</button>
+        </div>
+
+        <div id="logbookContent" class="community-private" hidden>
+          <div class="stat-grid" id="logStats"></div>
+          <div class="favorites-bar">
+            <span class="dossier-meta">Destinos favoritos</span>
+            <div class="filter-bar" id="favoritesList"></div>
+          </div>
+          <div class="grid-2">
+            <form id="logForm" class="figure-card navy db-form" novalidate>
+              <h4 class="db-form-title">Registrar inmersión</h4>
+              <div class="field-row">
+                <div class="field">
+                  <label for="lDate">Fecha</label>
+                  <input class="field-input" type="date" id="lDate" required>
+                </div>
+                <div class="field">
+                  <label for="lDestination">Destino</label>
+                  <select class="field-input" id="lDestination" required></select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="lSite">Sitio de buceo <span class="field-optional">opcional</span></label>
+                <input class="field-input" id="lSite" list="lSiteOptions" maxlength="80" placeholder="Elige o escribe un sitio">
+                <datalist id="lSiteOptions"></datalist>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="lDepth">Profundidad máx. (m)</label>
+                  <input class="field-input" type="number" id="lDepth" min="1" max="130" step="0.5" inputmode="decimal" required>
+                </div>
+                <div class="field">
+                  <label for="lTime">Tiempo de fondo (min)</label>
+                  <input class="field-input" type="number" id="lTime" min="1" max="300" step="1" inputmode="numeric" required>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="lTemp">Temperatura (°C) <span class="field-optional">opcional</span></label>
+                  <input class="field-input" type="number" id="lTemp" min="10" max="40" step="0.5" inputmode="decimal">
+                </div>
+                <div class="field">
+                  <label for="lVis">Visibilidad (m) <span class="field-optional">opcional</span></label>
+                  <input class="field-input" type="number" id="lVis" min="0" max="80" step="1" inputmode="numeric">
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="lGas">Mezcla</label>
+                  <select class="field-input" id="lGas">
+                    <option value="aire">Aire</option>
+                    <option value="nitrox32">Nitrox 32 %</option>
+                    <option value="nitrox36">Nitrox 36 %</option>
+                    <option value="trimix">Trimix</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="lRating">Valoración</label>
+                  <select class="field-input" id="lRating">
+                    <option value="">Sin valorar</option>
+                    <option value="5">★★★★★ (5)</option>
+                    <option value="4">★★★★☆ (4)</option>
+                    <option value="3">★★★☆☆ (3)</option>
+                    <option value="2">★★☆☆☆ (2)</option>
+                    <option value="1">★☆☆☆☆ (1)</option>
+                  </select>
+                </div>
+              </div>
+              <fieldset class="field">
+                <legend>Especies observadas <span class="field-optional">opcional</span></legend>
+                <div class="check-grid" id="lSpecies"></div>
+              </fieldset>
+              <div class="field">
+                <label for="lNotes">Notas <span class="field-optional">opcional</span></label>
+                <textarea class="field-input" id="lNotes" maxlength="500" rows="3" placeholder="Corriente, compañero, equipo, sensaciones…"></textarea>
+              </div>
+              <div class="auth-message" id="lMessage" role="alert"></div>
+              <button type="submit" class="btn btn-primary auth-submit" id="lSubmit">
+                <span class="auth-spinner" aria-hidden="true"></span>
+                <span>Guardar en mi bitácora</span>
+              </button>
+            </form>
+            <div class="feed-wrap">
+              <ul class="feed" id="logList" aria-live="polite">
+                <li class="feed-empty">Cargando tu bitácora…</li>
+              </ul>
+              <p class="db-status" id="logStatus" role="status"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- SECCIÓN 9: GALERÍA SUBMARINA INTERACTIVA -->
     <section id="galeria" aria-labelledby="gal-title">
       <div class="dossier-bar">
-        <span class="dossier-pill">08 / GALERÍA</span>
+        <span class="dossier-pill">10 / GALERÍA</span>
         <span class="dossier-meta">TESTIMONIOS VISUALES DE LA BIÓSFERA Y PECIOS DEL CARIBE</span>
       </div>
 
@@ -2417,7 +3062,7 @@
     <!-- SECCIÓN 10: FUENTES E INSTITUCIONES DE REFERENCIA -->
     <section id="fuentes" aria-labelledby="fuentes-title">
       <div class="dossier-bar">
-        <span class="dossier-pill">09 / REFERENCIAS</span>
+        <span class="dossier-pill">11 / REFERENCIAS</span>
         <span class="dossier-meta">ORGANISMOS CIENTÍFICOS Y ENTIDADES GUBERNAMENTALES DE CONSULTA</span>
       </div>
 
@@ -3146,319 +3791,9 @@
   </script>
 
   <!-- =========================================================
-       MÓDULO DE ACCESO — Firebase Authentication
-       Proveedor: correo electrónico y contraseña.
+       MÓDULOS DE FIREBASE (carpeta js/): acceso, naufragios y comunidad.
        Si el SDK no se puede descargar, se muestra "Acceso no disponible".
        ========================================================= -->
-  <script type="module" onerror="var n=document.getElementById('navAuth');if(n){n.dataset.state='error';n.querySelector('.nav-auth-skeleton').hidden=true;n.querySelector('.nav-auth-offline').hidden=false;}">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signInWithEmailAndPassword,
-      createUserWithEmailAndPassword,
-      sendPasswordResetEmail,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
-
-    // ---------- 1. Configuración del proyecto Firebase "web-caribe" ----------
-    // Estos valores identifican al proyecto y son públicos por diseño: la
-    // seguridad la aportan Firebase Authentication y las reglas del proyecto.
-    const firebaseConfig = {
-      apiKey: "AIzaSyBeqxkihiCpuiUm88SOMlH19ldrUPncaaQ",
-      authDomain: "web-caribe.firebaseapp.com",
-      projectId: "web-caribe",
-      storageBucket: "web-caribe.firebasestorage.app",
-      messagingSenderId: "531276173278",
-      appId: "1:531276173278:web:1ae23a7d3a5dae7783d74f",
-      measurementId: "G-9T0FVWTEEQ"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    auth.languageCode = 'es'; // Correos de Firebase (p. ej. restablecer contraseña) en español
-
-    // Analytics se carga aparte: si un bloqueador de anuncios lo impide
-    // o el navegador no lo admite, el inicio de sesión sigue funcionando.
-    import("https://www.gstatic.com/firebasejs/13.3.0/firebase-analytics.js")
-      .then(async ({ getAnalytics, isSupported }) => {
-        if (await isSupported()) getAnalytics(app);
-      })
-      .catch(() => console.info('Firebase Analytics no está disponible en este navegador.'));
-
-    // ---------- 2. Referencias al DOM ----------
-    const $ = (id) => document.getElementById(id);
-    const navAuth = $('navAuth');
-    const openAuthBtn = $('openAuthBtn');
-    const navUser = $('navUser');
-    const overlay = $('authModalOverlay');
-    const form = $('authForm');
-    const emailInput = $('authEmail');
-    const passwordInput = $('authPassword');
-    const confirmInput = $('authConfirm');
-    const togglePassBtn = $('togglePassBtn');
-    const messageBox = $('authMessage');
-    const submitBtn = $('authSubmit');
-    const tabs = [$('tabLogin'), $('tabRegister')];
-
-    // ---------- 3. Textos de cada modo de la ventana ----------
-    const MODOS = {
-      login: {
-        titulo: 'Inicia sesión',
-        descripcion: 'Accede con tu correo electrónico y contraseña.',
-        boton: 'Entrar',
-        autocompletar: 'current-password'
-      },
-      register: {
-        titulo: 'Crea tu cuenta',
-        descripcion: 'Regístrate con tu correo electrónico y una contraseña de al menos 6 caracteres.',
-        boton: 'Crear cuenta',
-        autocompletar: 'new-password'
-      },
-      reset: {
-        titulo: 'Recupera tu contraseña',
-        descripcion: 'Escribe tu correo y te enviaremos un enlace para crear una contraseña nueva.',
-        boton: 'Enviar enlace',
-        autocompletar: 'current-password'
-      }
-    };
-
-    // Errores de Firebase traducidos a mensajes claros en español
-    const ERRORES = {
-      'auth/invalid-email': 'El correo electrónico no tiene un formato válido.',
-      'auth/missing-email': 'Escribe tu correo electrónico.',
-      'auth/missing-password': 'Escribe tu contraseña.',
-      'auth/invalid-credential': 'Correo o contraseña incorrectos.',
-      'auth/invalid-login-credentials': 'Correo o contraseña incorrectos.',
-      'auth/wrong-password': 'Correo o contraseña incorrectos.',
-      'auth/user-not-found': 'Correo o contraseña incorrectos.',
-      'auth/user-disabled': 'Esta cuenta está deshabilitada.',
-      'auth/email-already-in-use': 'Ya existe una cuenta con este correo. Inicia sesión o recupera tu contraseña.',
-      'auth/weak-password': 'La contraseña es muy débil: usa al menos 6 caracteres.',
-      'auth/password-does-not-meet-requirements': 'La contraseña no cumple los requisitos de seguridad del proyecto.',
-      'auth/too-many-requests': 'Demasiados intentos seguidos. Espera unos minutos e inténtalo de nuevo.',
-      'auth/network-request-failed': 'No hay conexión con el servidor. Revisa tu conexión a internet.',
-      'auth/operation-not-allowed': 'El acceso con correo y contraseña no está habilitado en la consola de Firebase.'
-    };
-    const traducirError = (err) =>
-      ERRORES[err?.code] || 'No se pudo completar la operación. Inténtalo de nuevo.';
-
-    // ---------- 4. Utilidades de interfaz ----------
-    let modoActual = 'login';
-    let ultimoFoco = null;
-    let toastTimer = null;
-
-    function mostrarMensaje(texto, tipo) {
-      messageBox.textContent = texto;
-      messageBox.className = 'auth-message ' + (tipo === 'success' ? 'is-success' : 'is-error');
-    }
-
-    function limpiarMensaje() {
-      messageBox.textContent = '';
-      messageBox.className = 'auth-message';
-      [emailInput, passwordInput, confirmInput].forEach((el) => el.removeAttribute('aria-invalid'));
-    }
-
-    function marcarCampo(input, texto) {
-      mostrarMensaje(texto, 'error');
-      input.setAttribute('aria-invalid', 'true');
-      input.focus();
-    }
-
-    function setCargando(cargando) {
-      submitBtn.disabled = cargando;
-      submitBtn.classList.toggle('is-loading', cargando);
-      submitBtn.setAttribute('aria-busy', String(cargando));
-    }
-
-    function mostrarContrasena(mostrar) {
-      const tipo = mostrar ? 'text' : 'password';
-      passwordInput.type = tipo;
-      confirmInput.type = tipo;
-      togglePassBtn.setAttribute('aria-pressed', String(mostrar));
-      togglePassBtn.setAttribute('aria-label', mostrar ? 'Ocultar contraseña' : 'Mostrar contraseña');
-      togglePassBtn.querySelector('[data-icon="show"]').hidden = mostrar;
-      togglePassBtn.querySelector('[data-icon="hide"]').hidden = !mostrar;
-    }
-
-    function toast(texto) {
-      const el = $('authToast');
-      el.textContent = texto;
-      el.classList.add('is-visible');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => el.classList.remove('is-visible'), 3500);
-    }
-
-    // Cambia entre "login", "register" y "reset"
-    function setModo(modo) {
-      modoActual = modo;
-      const cfg = MODOS[modo];
-      $('authTitle').textContent = cfg.titulo;
-      $('authLead').textContent = cfg.descripcion;
-      $('authSubmitLabel').textContent = cfg.boton;
-      passwordInput.setAttribute('autocomplete', cfg.autocompletar);
-
-      $('authTabs').hidden = modo === 'reset';
-      $('fieldPassword').hidden = modo === 'reset';
-      $('authPasswordHint').hidden = modo !== 'register';
-      $('fieldConfirm').hidden = modo !== 'register';
-      $('rowForgot').hidden = modo !== 'login';
-      $('backToLoginBtn').hidden = modo !== 'reset';
-
-      tabs.forEach((tab) => {
-        const activa = tab.dataset.mode === modo;
-        tab.setAttribute('aria-selected', String(activa));
-        tab.tabIndex = activa ? 0 : -1;
-      });
-
-      confirmInput.value = '';
-      mostrarContrasena(false);
-      limpiarMensaje();
-    }
-
-    function abrirModal(modo = 'login') {
-      ultimoFoco = document.activeElement;
-      form.reset();
-      setModo(modo);
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => emailInput.focus(), 50);
-    }
-
-    function cerrarModal() {
-      if (!overlay.classList.contains('active')) return;
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-      setCargando(false);
-      if (ultimoFoco && document.contains(ultimoFoco)) ultimoFoco.focus();
-    }
-
-    // ---------- 5. Validación antes de llamar a Firebase ----------
-    const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // Devuelve [campo, mensaje] si hay un error, o null si todo está bien
-    function validar(email, password, confirmacion) {
-      if (!email) return [emailInput, 'Escribe tu correo electrónico.'];
-      if (!EMAIL_VALIDO.test(email)) return [emailInput, 'El correo electrónico no tiene un formato válido.'];
-      if (modoActual === 'reset') return null;
-      if (!password) return [passwordInput, 'Escribe tu contraseña.'];
-      if (modoActual === 'register') {
-        if (password.length < 6) return [passwordInput, 'La contraseña debe tener al menos 6 caracteres.'];
-        if (password !== confirmacion) return [confirmInput, 'Las contraseñas no coinciden.'];
-      }
-      return null;
-    }
-
-    // ---------- 6. Envío del formulario: login, registro o recuperación ----------
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      limpiarMensaje();
-
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
-      const error = validar(email, password, confirmInput.value);
-      if (error) {
-        marcarCampo(...error);
-        return;
-      }
-
-      setCargando(true);
-      try {
-        if (modoActual === 'login') {
-          const { user } = await signInWithEmailAndPassword(auth, email, password);
-          cerrarModal();
-          toast(`Sesión iniciada: ${user.email}`);
-        } else if (modoActual === 'register') {
-          const { user } = await createUserWithEmailAndPassword(auth, email, password);
-          cerrarModal();
-          toast(`Cuenta creada para ${user.email}. ¡Te damos la bienvenida a bordo!`);
-        } else {
-          await sendPasswordResetEmail(auth, email);
-          mostrarMensaje('Si existe una cuenta con ese correo, recibirás un enlace para restablecer la contraseña. Revisa también la carpeta de spam.', 'success');
-        }
-      } catch (err) {
-        console.error('[Firebase Auth]', err.code, err.message);
-        mostrarMensaje(traducirError(err), 'error');
-      } finally {
-        setCargando(false);
-      }
-    });
-
-    // ---------- 7. Estado de la sesión (se ejecuta al cargar y en cada cambio) ----------
-    onAuthStateChanged(auth, (user) => {
-      navAuth.dataset.state = user ? 'in' : 'out';
-      navAuth.querySelector('.nav-auth-skeleton').hidden = true;
-      openAuthBtn.hidden = Boolean(user);
-      navUser.hidden = !user;
-
-      if (user) {
-        $('navUserEmail').textContent = user.email;
-        $('navUserEmail').title = user.email;
-        $('navUserAvatar').textContent = (user.email || '?').charAt(0);
-      }
-    });
-
-    $('signOutBtn').addEventListener('click', async () => {
-      try {
-        await signOut(auth);
-        toast('Sesión cerrada. ¡Buenas inmersiones!');
-      } catch (err) {
-        console.error('[Firebase Auth]', err.code, err.message);
-        toast('No se pudo cerrar la sesión. Inténtalo de nuevo.');
-      }
-    });
-
-    // ---------- 8. Interacción de la ventana ----------
-    openAuthBtn.addEventListener('click', () => abrirModal('login'));
-    $('authCloseBtn').addEventListener('click', cerrarModal);
-    $('forgotBtn').addEventListener('click', () => {
-      setModo('reset');
-      emailInput.focus();
-    });
-    $('backToLoginBtn').addEventListener('click', () => {
-      setModo('login');
-      emailInput.focus();
-    });
-    togglePassBtn.addEventListener('click', () => mostrarContrasena(passwordInput.type === 'password'));
-
-    [emailInput, passwordInput, confirmInput].forEach((input) =>
-      input.addEventListener('input', () => input.removeAttribute('aria-invalid'))
-    );
-
-    // Pestañas: clic y flechas izquierda/derecha
-    tabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => setModo(tab.dataset.mode));
-      tab.addEventListener('keydown', (e) => {
-        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-        const siguiente = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
-        setModo(siguiente.dataset.mode);
-        siguiente.focus();
-      });
-    });
-
-    // Cerrar con clic fuera de la ventana o con Escape; mantener el foco dentro
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) cerrarModal();
-    });
-    window.addEventListener('keydown', (e) => {
-      if (!overlay.classList.contains('active')) return;
-      if (e.key === 'Escape') {
-        cerrarModal();
-        return;
-      }
-      if (e.key !== 'Tab') return;
-      const enfocables = [...overlay.querySelectorAll('button, input')]
-        .filter((el) => !el.disabled && el.offsetParent !== null && el.tabIndex !== -1);
-      const primero = enfocables[0];
-      const ultimo = enfocables[enfocables.length - 1];
-      if (e.shiftKey && document.activeElement === primero) {
-        e.preventDefault();
-        ultimo.focus();
-      } else if (!e.shiftKey && document.activeElement === ultimo) {
-        e.preventDefault();
-        primero.focus();
-      }
-    });
-  </script>
+  <script type="module" src="js/main.js" onerror="var n=document.getElementById('navAuth');if(n){n.dataset.state='error';n.querySelector('.nav-auth-skeleton').hidden=true;n.querySelector('.nav-auth-offline').hidden=false;}"></script>
 </body>
 </html>

@@ -1,0 +1,153 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "meta": {
+      ".read": true,
+      ".write": "auth != null && root.child('admins').child(auth.uid).val() === true"
+    },
+
+    "catalog": {
+      ".read": true,
+      ".write": "auth != null && root.child('admins').child(auth.uid).val() === true",
+      "destinations": { ".indexOn": ["regionId", "countryCode", "order"] },
+      "diveSites": { ".indexOn": ["destinationId", "type"] },
+      "wrecks": { ".indexOn": ["destinationId", "sunkYear", "order"] },
+      "species": { ".indexOn": ["group", "category", "iucnStatus"] },
+      "hyperbaricChambers": { ".indexOn": ["destinationId"] }
+    },
+
+    "indexes": {
+      ".read": true,
+      ".write": "auth != null && root.child('admins').child(auth.uid).val() === true"
+    },
+
+    "admins": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid"
+      }
+    },
+
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "newData.hasChildren(['createdAt', 'lastLoginAt'])",
+        "alias": {
+          ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 30 && !newData.val().contains('<') && !newData.val().contains('>')"
+        },
+        "createdAt": {
+          ".validate": "newData.isNumber() && (data.exists() ? newData.val() === data.val() : newData.val() <= now)"
+        },
+        "lastLoginAt": {
+          ".validate": "newData.isNumber() && newData.val() <= now"
+        },
+        "$other": { ".validate": false }
+      }
+    },
+
+    "favorites": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$destinationId": {
+          ".write": "auth != null && auth.uid === $uid",
+          ".validate": "newData.isNumber() && newData.val() <= now && root.child('catalog/destinations').child($destinationId).exists()"
+        }
+      }
+    },
+
+    "diveLogs": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".indexOn": ["date"],
+        "$logId": {
+          ".write": "auth != null && auth.uid === $uid && (!data.exists() || !newData.exists())",
+          ".validate": "newData.hasChildren(['date', 'destinationId', 'maxDepthM', 'bottomTimeMin', 'createdAt'])",
+          "date": {
+            ".validate": "newData.isString() && newData.val().matches(/^(19|20)[0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)"
+          },
+          "destinationId": {
+            ".validate": "newData.isString() && root.child('catalog/destinations').child(newData.val()).exists()"
+          },
+          "siteName": {
+            ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 80"
+          },
+          "maxDepthM": {
+            ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= 130"
+          },
+          "bottomTimeMin": {
+            ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= 300"
+          },
+          "waterTempC": {
+            ".validate": "newData.isNumber() && newData.val() >= 10 && newData.val() <= 40"
+          },
+          "visibilityM": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 80"
+          },
+          "gas": {
+            ".validate": "newData.isString() && (newData.val() === 'aire' || newData.val() === 'nitrox32' || newData.val() === 'nitrox36' || newData.val() === 'trimix')"
+          },
+          "rating": {
+            ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5 && newData.val() % 1 === 0"
+          },
+          "speciesIds": {
+            "$speciesId": {
+              ".validate": "newData.val() === true && root.child('catalog/species').child($speciesId).exists()"
+            }
+          },
+          "notes": {
+            ".validate": "newData.isString() && newData.val().length <= 500"
+          },
+          "createdAt": {
+            ".validate": "newData.val() === now"
+          },
+          "$other": { ".validate": false }
+        }
+      }
+    },
+
+    "sightings": {
+      ".read": true,
+      ".indexOn": ["createdAt", "speciesId", "destinationId"],
+      "$sightingId": {
+        ".write": "auth != null && ((!data.exists() && newData.child('uid').val() === auth.uid) || (data.exists() && !newData.exists() && data.child('uid').val() === auth.uid))",
+        ".validate": "newData.hasChildren(['uid', 'alias', 'speciesId', 'speciesName', 'destinationId', 'destinationName', 'date', 'createdAt'])",
+        "uid": {
+          ".validate": "newData.val() === auth.uid"
+        },
+        "alias": {
+          ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 30 && !newData.val().contains('<') && !newData.val().contains('>')"
+        },
+        "speciesId": {
+          ".validate": "newData.isString() && root.child('catalog/species').child(newData.val()).exists()"
+        },
+        "speciesName": {
+          ".validate": "newData.val() === root.child('catalog/species').child(newData.parent().child('speciesId').val()).child('name').val()"
+        },
+        "destinationId": {
+          ".validate": "newData.isString() && root.child('catalog/destinations').child(newData.val()).exists()"
+        },
+        "destinationName": {
+          ".validate": "newData.val() === root.child('catalog/destinations').child(newData.parent().child('destinationId').val()).child('name').val()"
+        },
+        "date": {
+          ".validate": "newData.isString() && newData.val().matches(/^(19|20)[0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)"
+        },
+        "depthM": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 130"
+        },
+        "count": {
+          ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 500 && newData.val() % 1 === 0"
+        },
+        "notes": {
+          ".validate": "newData.isString() && newData.val().length <= 280"
+        },
+        "createdAt": {
+          ".validate": "newData.val() === now"
+        },
+        "$other": { ".validate": false }
+      }
+    }
+  }
+}
